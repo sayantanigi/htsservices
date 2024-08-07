@@ -1,0 +1,24 @@
+.nav-tabs-cus > li > .nav-link{
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.nav-tabs-addcus > li > .nav-link{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.nav-tabs-cus > li > a {
+    color: #445990;
+    font-weight: 500;
+    font-size: 12px;
+}
+.avatar-xs-sm{
+    width: 20px;
+    height: 20px;
+}
+.row-border-bottom{
+    border-bottom: 1px solid #ced4da;
+}
+.tab-box { display:none; }
+#sidebar-menu ul li a {
+    cursor: pointer;
+}
