@@ -167,8 +167,8 @@
 
                             @if (Auth::user()->profile_image && file_exists('public/uploads/users/' . @Auth::user()->profile_image))
                                 <img class="rounded-circle header-profile-user"
-                                    src="{{ asset('/uploads/users/' . Auth::user()->profile_image) }}"
-                                    alt="profile_image" style="padding: 0;">
+                                    src="{{ asset('/uploads/users/' . Auth::user()->profile_image) }}" alt="profile_image"
+                                    style="padding: 0;">
                             @else
                                 <img class="rounded-circle header-profile-user"
                                     src="{{ asset('/admin-assets/images/avtar-image.jpg') }}" alt="Header Avatar"
@@ -238,8 +238,7 @@
                 </a>
                 <a href="{{ route('admin-dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('/admin-assets/images/favicon.png') }}" alt=""
-                            style="margin-left:-10px;">
+                        <img src="{{ asset('/admin-assets/images/favicon.png') }}" alt="" style="margin-left:-10px;">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('/admin-assets/images/logo.png') }}" alt="" style="height:22px;">
@@ -255,8 +254,8 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title">Menu</li>
-                        <li><a href="{{ route('admin-dashboard') }}" class="waves-effect"><i
-                                    class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="{{ route('admin-dashboard') }}" class="waves-effect"><i class="fas fa-home"></i>
+                                Dashboard</a></li>
 
                         <li class="{{ @$data['page'] == 'lists' ? 'mm-active' : '' }}">
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -305,8 +304,8 @@
                                         Participation</a></li>
 
                                 <li><a href="{{ route('pmt-terms') }}"
-                                    class="{{ @$data['subpage'] == 'pmtTerms' ? 'active' : '' }}">List of
-                                    Payment Terms</a></li>
+                                        class="{{ @$data['subpage'] == 'pmtTerms' ? 'active' : '' }}">List of
+                                        Payment Terms</a></li>
 
                             </ul>
                         </li>
@@ -541,8 +540,9 @@
     <script src="{{ asset('/admin-assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('/admin-assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}">
     </script>
-    <script src="{{ asset('/admin-assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}">
-    </script>
+    <script
+        src="{{ asset('/admin-assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}">
+        </script>
     <script src="{{ asset('/admin-assets/js/pages/dashboard.init.js') }}"></script>
     <!-- Required datatable js -->
     <script src="{{ asset('/admin-assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
@@ -571,10 +571,13 @@
     <script src="{{ asset('/admin-assets/libs/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('/admin-assets/libs/sweetalert/jquery.sweet-alert.custom.js') }}"></script>
 
-    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js" type="text/javascript"></script>
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"
+        type="text/javascript"></script>
 
     <!-- twitter-bootstrap-wizard js -->
-    {{-- <script src="{{ asset('/admin-assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script> --}}
+    {{--
+    <script src="{{ asset('/admin-assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
+    --}}
 
     <script src="{{ asset('/admin-assets/libs/twitter-bootstrap-wizard/prettify.js') }}"></script>
 
@@ -584,11 +587,11 @@
         Dropzone.options.formValidatedConCarrierGallery = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, response) {
+            success: function (file, response) {
                 console.log(response);
                 getImages();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -601,8 +604,8 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(response) {
+                beforeSend: function () { },
+                success: function (response) {
                     $("#conHTML").html(response);
                 }
             });
@@ -612,11 +615,11 @@
         Dropzone.options.formValidatedCarrierGallery = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, responseC) {
+            success: function (file, responseC) {
                 console.log(responseC);
                 getCarrierImages();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -629,8 +632,8 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(response) {
+                beforeSend: function () { },
+                success: function (response) {
                     $("#conHTMLForCarrier").html(response);
                 }
             });
@@ -640,11 +643,11 @@
         Dropzone.options.formValidatedEmployeeGallery = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, responseCE) {
+            success: function (file, responseCE) {
                 console.log(responseCE);
                 getEmployeeImages();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -653,11 +656,11 @@
         Dropzone.options.formValidatedEmployeeGalleryEdt = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, responseCE) {
+            success: function (file, responseCE) {
                 console.log(responseCE);
                 getEmployeeImagesEdt();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -670,8 +673,8 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(responseE) {
+                beforeSend: function () { },
+                success: function (responseE) {
                     $("#hTMLForEmployee").html(responseE);
                 }
             });
@@ -686,8 +689,8 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(responseE) {
+                beforeSend: function () { },
+                success: function (responseE) {
                     $("#hTMLForEmployee").html(responseE);
                 }
             });
@@ -697,11 +700,11 @@
         Dropzone.options.formValidatedConCarrierGalleryEdt = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, response) {
+            success: function (file, response) {
                 console.log(response);
                 getImagesEdt();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -715,8 +718,8 @@
                     carrier_id: carrier_id,
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(response) {
+                beforeSend: function () { },
+                success: function (response) {
                     $("#conHTML").html(response);
                 }
             });
@@ -726,11 +729,11 @@
         Dropzone.options.formValidatedCarrierGalleryEdt = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, responseC) {
+            success: function (file, responseC) {
                 console.log(responseC);
                 getCarrierImagesEdt();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -746,8 +749,8 @@
                     carrier_id: carrier_id,
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(response) {
+                beforeSend: function () { },
+                success: function (response) {
                     $("#conHTMLForCarrier").html(response);
                 }
             });
@@ -757,11 +760,11 @@
         Dropzone.options.formValidatedConHtsGallery = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, response) {
+            success: function (file, response) {
                 console.log(response);
                 getImagesHts();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -774,8 +777,8 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(htsresponse) {
+                beforeSend: function () { },
+                success: function (htsresponse) {
                     $("#conHtsHTML").html(htsresponse);
                 }
             });
@@ -784,11 +787,11 @@
         Dropzone.options.formValidatedHtsGallery = {
             maxFilesize: 100,
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.txt,.docx,.doc,.xlsx,.xl,.csv",
-            success: function(file, response) {
+            success: function (file, response) {
                 console.log(response);
                 getImagesHtsGallery();
             },
-            error: function(file, response) {
+            error: function (file, response) {
                 return false;
             }
         };
@@ -801,8 +804,8 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                beforeSend: function() {},
-                success: function(htsresponse) {
+                beforeSend: function () { },
+                success: function (htsresponse) {
                     $("#htmlForHTS").html(htsresponse);
                 }
             });
@@ -811,19 +814,19 @@
 
         // var myDropzoneTheFirst = new Dropzone(
         //         //id of drop zone element 1
-        //         '#formValidatedCarrierGallery', { 
+        //         '#formValidatedCarrierGallery', {
         //             url : "{{ route('upload-carrier-images') }}"
         //         }
         //     );
 
         // var myDropzoneTheSecond = new Dropzone(
         //         //id of drop zone element 2
-        //         '#an-other-form-element', { 
+        //         '#an-other-form-element', {
         //             url : "uploadUrl/2"
         //         }
         //     );
 
-        $(function() {
+        $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
 
@@ -838,7 +841,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteGalleryImage') }}" + '/' + id
                 }
@@ -856,7 +859,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsGalleryImage') }}" + '/' + id
                 }
@@ -874,7 +877,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsMainGalleryImage') }}" + '/' + id
                 }
@@ -892,7 +895,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteGalleryImageEdt') }}" + '/' + id
                 }
@@ -910,7 +913,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteCarrierGalleryImage') }}" + '/' + id
                 }
@@ -929,7 +932,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteCarrierGalleryImageEdt') }}" + '/' + id
                 }
@@ -947,7 +950,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteEmployeeGalleryImage') }}" + '/' + id
                 }
@@ -965,7 +968,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteEmployeeGalleryImageEdt/') }}" + '/' + id
                 }
@@ -974,7 +977,8 @@
     </script>
 
     <!-- form wizard init -->
-    {{-- <script src="{{ asset('/admin-assets/js/pages/form-wizard.init.js') }}"></script> --}}
+    {{--
+    <script src="{{ asset('/admin-assets/js/pages/form-wizard.init.js') }}"></script> --}}
     <script src="https://cdn.tiny.cloud/1/x6x4f6m4vw9tmo4wqlhi62jlulv8qfgfna8fyt608rkd9dbu/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
 
@@ -997,7 +1001,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             // $("#basic-pills-wizard").bootstrapWizard({
             //         tabClass: "nav nav-pills nav-justified"
@@ -1018,31 +1022,31 @@
 
             //         @if (Session::get('listing_step') == '1')
 
-            //             $($wizard).find('.steptb1').addClass('active');
-            //             $($wizard).find('.steptb2').removeClass('active');
-            //             $($wizard).find('.steptb3').removeClass('active');
+                //             $($wizard).find('.steptb1').addClass('active');
+                //             $($wizard).find('.steptb2').removeClass('active');
+                //             $($wizard).find('.steptb3').removeClass('active');
 
-            //             $($wizard).find('.step1').show();
-            //             $($wizard).find('.step2').hide();
-            //             $($wizard).find('.step3').hide();
+                //             $($wizard).find('.step1').show();
+                //             $($wizard).find('.step2').hide();
+                //             $($wizard).find('.step3').hide();
             //         @elseif (Session::get('listing_step') == '2')
 
-            //             $($wizard).find('.steptb1').removeClass('active');
-            //             $($wizard).find('.steptb2').addClass('active');
-            //             $($wizard).find('.steptb3').removeClass('active');
+                //             $($wizard).find('.steptb1').removeClass('active');
+                //             $($wizard).find('.steptb2').addClass('active');
+                //             $($wizard).find('.steptb3').removeClass('active');
 
-            //             $($wizard).find('.step1').hide();
-            //             $($wizard).find('.step2').show();
-            //             $($wizard).find('.step3').hide();
+                //             $($wizard).find('.step1').hide();
+                //             $($wizard).find('.step2').show();
+                //             $($wizard).find('.step3').hide();
             //         @elseif (Session::get('listing_step') == '3')
 
-            //             $($wizard).find('.steptb1').removeClass('active');
-            //             $($wizard).find('.steptb2').removeClass('active');
-            //             $($wizard).find('.steptb3').addClass('active');
+                //             $($wizard).find('.steptb1').removeClass('active');
+                //             $($wizard).find('.steptb2').removeClass('active');
+                //             $($wizard).find('.steptb3').addClass('active');
 
-            //             $($wizard).find('.step1').hide();
-            //             $($wizard).find('.step2').hide();
-            //             $($wizard).find('.step3').show();
+                //             $($wizard).find('.step1').hide();
+                //             $($wizard).find('.step2').hide();
+                //             $($wizard).find('.step3').show();
             //         @endif
 
             //         // If it's the last tab then hide the last button and show the finish instead
@@ -1156,7 +1160,7 @@
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var location = {
                 latitude: '',
                 longitude: ''
@@ -1164,7 +1168,7 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
-            } else {}
+            } else { }
 
             function showPosition(position) {
                 location.latitude = position.coords.latitude;
@@ -1180,9 +1184,9 @@
                     if (geocoder) {
                         geocoder.geocode({
                             'latLng': latLng
-                        }, function(results, status) {
+                        }, function (results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
-                                // console.log(results); 
+                                // console.log(results);
                                 $('#location').val(results[0].formatted_address);
                             } else {
                                 $('#location').html('Geocoding failed: ' + status);
@@ -1195,9 +1199,9 @@
         });
 
 
-        google.maps.event.addDomListener(window, 'load', function() {
+        google.maps.event.addDomListener(window, 'load', function () {
             var places = new google.maps.places.Autocomplete(document.getElementById('location'));
-            google.maps.event.addListener(places, 'place_changed', function() {
+            google.maps.event.addListener(places, 'place_changed', function () {
                 var place = places.getPlace();
                 var address = place.formatted_address;
                 var latitude = place.geometry.location.lat();
@@ -1209,7 +1213,7 @@
 
                 $('#search_lon').val(longitude);
 
-                var whole_address = place.address_components; //alert(whole_address + 'whole_address'); 
+                var whole_address = place.address_components; //alert(whole_address + 'whole_address');
                 console.log(whole_address);
                 $('#ownCity').val('');
                 $('#ownState').val('');
@@ -1218,7 +1222,7 @@
                 $('#ownLocality').val('');
                 $('#neighborHood').val('');
 
-                $.each(whole_address, function(key1, value1) {
+                $.each(whole_address, function (key1, value1) {
                     if ((value1.types[0]) == 'locality') {
                         var prev_long_name_city = value1.long_name;
                         $('#ownCity').val(prev_long_name_city);
@@ -1258,7 +1262,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             tinymce.init({
                 selector: '#basic-example',
@@ -1279,7 +1283,7 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // $('#example').DataTable();
             $('#dataTable').DataTable({
                 aLengthMenu: [
@@ -1323,7 +1327,7 @@
                 cancelButtonText: btn[1],
                 closeOnConfirm: okclose,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     return true;
                 } else {
@@ -1399,7 +1403,7 @@
             $("#myModal").removeClass("show");
             $("#myModal").css('display', 'none');
 
-            $("#conModalCls").click(function() {
+            $("#conModalCls").click(function () {
                 $("#myModal").addClass("hide");
                 $("#myModal").removeClass("show");
                 $("#myModal").css('display', 'none');
@@ -1407,18 +1411,20 @@
         </script>
     @endif
 
-    @if (Session::get('carrier_con_tab') == 'cgeneral' ||
+    @if (
+            Session::get('carrier_con_tab') == 'cgeneral' ||
             Session::get('carrier_con_tab') == 'caddress' ||
             Session::get('carrier_con_tab') == 'cbaddress' ||
             Session::get('carrier_con_tab') == 'coaddress' ||
             Session::get('carrier_con_tab') == 'cpinfo' ||
             Session::get('carrier_con_tab') == 'cattachment' ||
             Session::get('carrier_con_tab') == 'cnotes' ||
-            Session::get('carrier_con_tab') == 'cinternalnotes')
-        <script>
-            $("#myModal").addClass("show");
-            $("#myModal").css('display', 'block');
-        </script>
+            Session::get('carrier_con_tab') == 'cinternalnotes'
+        )
+            <script>
+                $("#myModal").addClass("show");
+                $("#myModal").css('display', 'block');
+            </script>
     @endif
 
     @if (Session::has('carrier_rate_tab'))
@@ -1436,7 +1442,7 @@
             $("#myModalRate").removeClass("show");
             $("#myModalRate").css('display', 'none');
 
-            $("#conModalClsRate").click(function() {
+            $("#conModalClsRate").click(function () {
                 $("#myModalRate").addClass("hide");
                 $("#myModalRate").removeClass("show");
                 $("#myModalRate").css('display', 'none');
@@ -1444,13 +1450,15 @@
         </script>
     @endif
 
-    @if (Session::get('carrier_rate_tab') == 'rgeneral' ||
+    @if (
+            Session::get('carrier_rate_tab') == 'rgeneral' ||
             Session::get('carrier_rate_tab') == 'rpinfo' ||
-            Session::get('carrier_rate_tab') == 'rnotes')
-        <script>
-            $("#myModalRate").addClass("show");
-            $("#myModalRate").css('display', 'block');
-        </script>
+            Session::get('carrier_rate_tab') == 'rnotes'
+        )
+            <script>
+                $("#myModalRate").addClass("show");
+                $("#myModalRate").css('display', 'block');
+            </script>
     @endif
 
     @if (Session::has('employee_tab'))
@@ -1499,7 +1507,7 @@
             $("#myModalCharge").removeClass("show");
             $("#myModalCharge").css('display', 'none');
 
-            $("#conModalClsCharge").click(function() {
+            $("#conModalClsCharge").click(function () {
                 $("#myModalCharge").addClass("hide");
                 $("#myModalCharge").removeClass("show");
                 $("#myModalCharge").css('display', 'none');
@@ -1594,8 +1602,8 @@
     <script>
         var activeNavLink = $('#myAccordion .nav-link.active');
 
-        $(document).ready(function() {
-            $('#myAccordion a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        $(document).ready(function () {
+            $('#myAccordion a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var activeTab = e.target; // The active tab element
                 var activeTabId = activeTab.getAttribute('id'); // ID of the active tab
                 var activeTabText = $(activeTab).text(); // Text content of the active tab
@@ -1621,8 +1629,8 @@
         // $('#generalce_nav').addClass('active');
         // $('#generalce').addClass('active');
 
-        $(document).ready(function() {
-            $('#myAccordionEdt a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        $(document).ready(function () {
+            $('#myAccordionEdt a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
 
                 var activeTab = e.target; // The active tab element
                 var activeTabId = activeTab.getAttribute('id'); // ID of the active tab
@@ -1746,17 +1754,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -1801,17 +1809,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -1832,17 +1840,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -1887,17 +1895,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -1954,17 +1962,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2021,17 +2029,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2086,17 +2094,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2144,17 +2152,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2178,17 +2186,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2209,17 +2217,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2264,17 +2272,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2319,17 +2327,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2368,17 +2376,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2405,17 +2413,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2436,17 +2444,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2466,17 +2474,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2502,17 +2510,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2532,17 +2540,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2562,17 +2570,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2605,17 +2613,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2623,16 +2631,16 @@
 
         });
 
-        $("#formValidatedAWB").validate({
+        /*$("#formValidatedAWB").validate({
             ignore: [],
             rules: {
                 start_awb_number: {
                     required: true,
-                    digits:true,
+                    digits: true,
                 },
                 end_awb_number: {
                     required: true,
-                    digits:true,
+                    digits: true,
                 },
             },
             messages: {
@@ -2644,23 +2652,21 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
-
             }
-
-        });
+        });*/
 
         $("#formValidatedPMT").validate({
             ignore: [],
@@ -2690,17 +2696,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2727,17 +2733,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2758,17 +2764,17 @@
                 },
             },
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('.form-group').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             },
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 // console.log(form.action);
                 return true;
 
@@ -2778,7 +2784,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // alert("kkk");
         });
 
@@ -2788,14 +2794,14 @@
             }
         });
 
-        $(function() {
+        $(function () {
             $.validator.setDefaults({
-                submitHandler: function() {
+                submitHandler: function () {
                     return true;
                 }
             });
 
-            $.validator.addMethod("ssn_validate", function(value, element) {
+            $.validator.addMethod("ssn_validate", function (value, element) {
                 let ssn = value;
                 if (!(/^\(?([0-9]{3})\)?[- ]?([0-9]{2})[- ]?([0-9]{4})$/.test(ssn))) {
                     return false;
@@ -2847,7 +2853,7 @@
                             type: "post",
                             async: false,
                             data: {
-                                type_name: function() {
+                                type_name: function () {
                                     return $("#type_name").val();
                                 }
                             }
@@ -2872,7 +2878,7 @@
                             type: "post",
                             async: false,
                             data: {
-                                amenity_name: function() {
+                                amenity_name: function () {
                                     return $("#amenity_name").val();
                                 }
                             }
@@ -2916,14 +2922,14 @@
                     },
                 },
                 errorElement: 'span',
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 }
             });
@@ -2933,7 +2939,7 @@
             $('#notification_id').val(id);
         }
 
-        $("#resetAllFileds").click(function() {
+        $("#resetAllFileds").click(function () {
             //$("#property_type").empty().trigger('change');
             $("#property_type").val('').trigger('change');
             $("#state_county").val('').trigger('change');
@@ -2945,9 +2951,9 @@
     </script>
 
     <script>
-        $(function() {
+        $(function () {
             $.validator.setDefaults({
-                submitHandler: function() {
+                submitHandler: function () {
                     return true;
                 }
             });
@@ -3037,14 +3043,14 @@
                     },
                 },
                 errorElement: 'span',
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 }
             });
@@ -3052,9 +3058,9 @@
     </script>
 
     <script>
-        $(function() {
+        $(function () {
             $.validator.setDefaults({
-                submitHandler: function() {
+                submitHandler: function () {
 
                     var form = $(this);
                     var actionUrl = form.attr('action');
@@ -3071,7 +3077,7 @@
                         type: "POST",
                         url: actionUrl,
                         data: form.serialize(), // serializes the form's elements.
-                        success: function(data) {
+                        success: function (data) {
                             alert(data); // show response from the php script.
                         }
                     });
@@ -3162,14 +3168,14 @@
                     },
                 },
                 errorElement: 'span',
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 }
             });
@@ -3211,14 +3217,14 @@
                     },
                 },
                 errorElement: 'span',
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
                     error.addClass('invalid-feedback');
                     element.closest('.form-group').append(error);
                 },
-                highlight: function(element, errorClass, validClass) {
+                highlight: function (element, errorClass, validClass) {
                     $(element).addClass('is-invalid');
                 },
-                unhighlight: function(element, errorClass, validClass) {
+                unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 }
             });
@@ -3226,8 +3232,8 @@
     </script>
 
     <script>
-        $(function() {
-            $('.notifi-btn').click(function() {
+        $(function () {
+            $('.notifi-btn').click(function () {
                 $('.notification-menu').toggle();
             });
         });
@@ -3241,14 +3247,14 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var max_fields = 3; //maximum input boxes allowed
             var wrapper = $(".phone-box"); //Fields wrapper
             var add_button = $(".add-phone"); //Add button ID
 
             var x = 1; //initlal box count
 
-            $(add_button).click(function(e) { //on add input button click
+            $(add_button).click(function (e) { //on add input button click
                 var numItems = $('.usrPhone').length;
                 x = numItems;
                 e.preventDefault();
@@ -3261,21 +3267,21 @@
                 }
             });
 
-            $(wrapper).on("click", ".remove", function(e) { //user click on remove text
+            $(wrapper).on("click", ".remove", function (e) { //user click on remove text
                 e.preventDefault();
                 $(this).parents(".form-row").remove();
                 x--;
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             var max_fields = 2; //maximum input boxes allowed
             var wrapper = $(".email-box"); //Fields wrapper
             var add_button = $(".add-email"); //Add button ID
 
             var x = 1; //initlal box count
 
-            $(add_button).click(function(e) { //on add input button click
+            $(add_button).click(function (e) { //on add input button click
                 var numItems = $('.usrEmailBox').length;
                 x = numItems;
                 e.preventDefault();
@@ -3288,21 +3294,21 @@
                 }
             });
 
-            $(wrapper).on("click", ".remove", function(e) { //user click on remove text
+            $(wrapper).on("click", ".remove", function (e) { //user click on remove text
                 e.preventDefault();
                 $(this).parents(".form-row").remove();
                 x--;
             })
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             var max_fields = 2; //maximum input boxes allowed
             var wrapper = $(".address-box"); //Fields wrapper
             var add_button = $(".add-address"); //Add button ID
 
             var x = 1; //initlal box count
 
-            $(add_button).click(function(e) { //on add input button click
+            $(add_button).click(function (e) { //on add input button click
                 var numItems = $('.usrAddressBox').length;
                 x = numItems;
                 e.preventDefault();
@@ -3315,7 +3321,7 @@
                 }
             });
 
-            $(wrapper).on("click", ".remove", function(e) { //user click on remove text
+            $(wrapper).on("click", ".remove", function (e) { //user click on remove text
                 e.preventDefault();
                 $(this).parents(".form-row").remove();
                 x--;
@@ -3354,7 +3360,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteUser') }}" + '/' + userId
                 }
@@ -3372,7 +3378,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteListing') }}" + '/' + id
                 }
@@ -3390,7 +3396,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteGalleryImage') }}" + '/' + id
                 }
@@ -3408,7 +3414,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteIdentificationType') }}" + '/' + id
                 }
@@ -3426,7 +3432,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteDivison') }}" + '/' + id
                 }
@@ -3444,7 +3450,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deletePort') }}" + '/' + id
                 }
@@ -3462,7 +3468,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteFrequency') }}" + '/' + id
                 }
@@ -3480,7 +3486,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteCommodity') }}" + '/' + id
                 }
@@ -3498,7 +3504,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteCode') }}" + '/' + id
                 }
@@ -3516,7 +3522,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteTransportation') }}" + '/' + id
                 }
@@ -3534,7 +3540,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deletePmtTerms') }}" + '/' + id
                 }
@@ -3552,7 +3558,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteFreightServiceClass') }}" + '/' + id
                 }
@@ -3570,7 +3576,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteCustomCharge') }}" + '/' + id
                 }
@@ -3588,7 +3594,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteFlight') }}" + '/' + id
                 }
@@ -3606,7 +3612,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteCarrier') }}" + '/' + id
                 }
@@ -3624,7 +3630,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsUser') }}" + '/' + id + '/' + routeurl
                 }
@@ -3642,7 +3648,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteOtherAddress') }}" + '/' + id
                 }
@@ -3660,7 +3666,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsOtherAddress') }}" + '/' + id
                 }
@@ -3678,7 +3684,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteOtherAddressEdt') }}" + '/' + id
                 }
@@ -3696,7 +3702,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteUsrOtherAddress') }}" + '/' + id
                 }
@@ -3714,7 +3720,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteUsrOtherAddressEmp') }}" + '/' + id
                 }
@@ -3732,7 +3738,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteConNote') }}" + '/' + id
                 }
@@ -3750,7 +3756,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsConNote') }}" + '/' + id
                 }
@@ -3768,7 +3774,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteConNoteEdt') }}" + '/' + id
                 }
@@ -3786,7 +3792,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteNote') }}" + '/' + id
                 }
@@ -3804,7 +3810,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsNote') }}" + '/' + id
                 }
@@ -3822,7 +3828,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteNoteEdt') }}" + '/' + id
                 }
@@ -3840,7 +3846,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteConTabData') }}" + '/' + id
                 }
@@ -3858,7 +3864,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsConTabData') }}" + '/' + id
                 }
@@ -3876,7 +3882,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteConTabDataEdt') }}" + '/' + id
                 }
@@ -3894,7 +3900,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteRateGroundTabData') }}" + '/' + id
                 }
@@ -3912,7 +3918,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsRateGroundTabData') }}" + '/' + id
                 }
@@ -3930,7 +3936,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteRateGroundTabDataEdt') }}" + '/' + id
                 }
@@ -3948,7 +3954,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteChargeTabData') }}" + '/' + id
                 }
@@ -3966,7 +3972,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteHtsChargeTabData') }}" + '/' + id
                 }
@@ -3984,7 +3990,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteChargeTabDataEdt') }}" + '/' + id
                 }
@@ -4002,7 +4008,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('deleteAmenity') }}" + '/' + id
                 }
@@ -4020,7 +4026,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('delete-participation') }}" + '/' + id
                 }
@@ -4038,7 +4044,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('delete-participation-details') }}" + '/' + id
                 }
@@ -4056,7 +4062,7 @@
                 cancelButtonText: 'No',
                 closeOnConfirm: true,
                 closeOnCancel: true
-            }, function(isConfirm) {
+            }, function (isConfirm) {
                 if (isConfirm) {
                     window.location.href = "{{ url('delete-awb-details') }}" + '/' + id
                 }
@@ -4074,19 +4080,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/updateUserStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/updateUserStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4102,19 +4108,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/updateIdentiTypeStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/updateIdentiTypeStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4130,19 +4136,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeDivisonStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeDivisonStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4158,19 +4164,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changePortStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changePortStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4186,19 +4192,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeHtsUserStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeHtsUserStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4214,19 +4220,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeFrequencyStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeFrequencyStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4242,19 +4248,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeCommodityStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeCommodityStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4270,19 +4276,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeCodeStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeCodeStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4298,19 +4304,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeTransportationStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeTransportationStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4326,19 +4332,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeFreightServiceClass') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeFreightServiceClass') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4354,19 +4360,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeChargeStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeChargeStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4382,19 +4388,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/changeFlightStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/changeFlightStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4410,19 +4416,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/updateAmenityStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/updateAmenityStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4438,19 +4444,19 @@
             }
 
             $.ajax({
-                    url: "{{ url('/updateListingStatus') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('/updateListingStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
@@ -4466,36 +4472,36 @@
             }
 
             $.ajax({
-                    url: "{{ url('change-participation-status') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: String(id),
-                        status: String(newStatus),
-                        _token: '{{ csrf_token() }}'
-                    },
-                })
-                .done(function(data) {
+                url: "{{ url('change-participation-status') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
                     alert_func(data);
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     console.log(data);
                 });
         }
 
         $('.paydiv').hide();
 
-        $('.radioButtons').click(function() {
+        $('.radioButtons').click(function () {
             if ($("input[name='part_payment']").prop('checked')) {
                 //implement your logic
                 $('.paydiv').show(500);
             } else {
                 $('.paydiv').hide(500);
-                //do something else as radio not checked   
+                //do something else as radio not checked
             }
         });
 
-        $('.radioButtonsTaxPy').click(function() {
+        $('.radioButtonsTaxPy').click(function () {
             var taxapplicable = $("input[name='taxapplicable'].radioButtonsTaxPy:checked").val();
 
             if (taxapplicable == "Tax") {
@@ -4521,14 +4527,14 @@
             autoclose: true
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             var max_fields = 31; //maximum input boxes allowed
             var wrapper = $(".part-payment-box"); //Fields wrapper
             var add_button = $("#partPay"); //Add button ID
 
             var x = 1; //initlal box count
 
-            $(add_button).click(function(e) { //on add input button click
+            $(add_button).click(function (e) { //on add input button click
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
@@ -4548,7 +4554,7 @@
                 }
             });
 
-            $(wrapper).on("click", ".remove", function(e) { //user click on remove text
+            $(wrapper).on("click", ".remove", function (e) { //user click on remove text
                 e.preventDefault();
                 $(this).parents(".form-row").remove();
                 x--;
@@ -4563,12 +4569,12 @@
         //     }
         // });
 
-        $("#parent_entity_emp").change(function() {
+        $("#parent_entity_emp").change(function () {
             $("#formValidatedAddressEmp").submit();
 
         });
 
-        $("#country_id").change(function() {
+        $("#country_id").change(function () {
             var country_id = $("#country_id option:selected").val();
 
             if (country_id) {
@@ -4579,8 +4585,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#state_html").html(response);
                         $(".select2").select2();
                     }
@@ -4591,7 +4597,7 @@
             }
         });
 
-        $("#billing_country_id").change(function() {
+        $("#billing_country_id").change(function () {
             var country_id = $("#billing_country_id option:selected").val();
 
             if (country_id) {
@@ -4602,8 +4608,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#billing_state_html").html(response);
                         $(".select2").select2();
                     }
@@ -4614,7 +4620,7 @@
             }
         });
 
-        $("#other_country_id").change(function() {
+        $("#other_country_id").change(function () {
             var country_id = $("#other_country_id option:selected").val();
 
             if (country_id) {
@@ -4625,8 +4631,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#other_state_html").html(response);
                         $(".select2").select2();
                     }
@@ -4637,7 +4643,7 @@
             }
         });
 
-        $("#cont_country_id").change(function() {
+        $("#cont_country_id").change(function () {
             var country_id = $("#cont_country_id option:selected").val();
 
             if (country_id) {
@@ -4648,8 +4654,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#cont_state_html").html(response);
                         $(".select2").select2();
                     }
@@ -4660,7 +4666,7 @@
             }
         });
 
-        $("#con_billing_country_id").change(function() {
+        $("#con_billing_country_id").change(function () {
             var country_id = $("#con_billing_country_id option:selected").val();
 
             if (country_id) {
@@ -4671,8 +4677,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#con_billing_state_html").html(response);
                         $(".select2").select2();
                     }
@@ -4683,7 +4689,7 @@
             }
         });
 
-        $("#other_country_id_2").change(function() {
+        $("#other_country_id_2").change(function () {
             var country_id = $("#other_country_id_2 option:selected").val();
 
             if (country_id) {
@@ -4694,8 +4700,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#other_state_html_2").html(response);
                         $(".select2").select2();
                     }
@@ -4706,7 +4712,7 @@
             }
         });
 
-        $("#state_county").change(function() {
+        $("#state_county").change(function () {
             var state_county = $("#state_county option:selected").val();
 
             if (state_county) {
@@ -4717,8 +4723,8 @@
                         "state_county": state_county,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#city_html").html(response);
                         $(".select2").select2();
                     }
@@ -4729,7 +4735,7 @@
             }
         });
 
-        $("#hts_rate_method").change(function() {
+        $("#hts_rate_method").change(function () {
             var hts_rate_method = $("#hts_rate_method option:selected").val();
 
             if (hts_rate_method) {
@@ -4740,8 +4746,8 @@
                         "hts_rate_method": hts_rate_method,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#transportation").html(response);
                         $(".select2").select2();
                     }
@@ -4752,7 +4758,7 @@
             }
         });
 
-        $('#AddRateId').click(function() {
+        $('#AddRateId').click(function () {
 
             var rate_val = $("#rate_val").val();
 
@@ -4763,8 +4769,8 @@
                     "rate_val": rate_val,
                     '_token': $('meta[name="csrf-token"]').attr('content'),
                 },
-                beforeSend: function() {},
-                success: function(responseRate) {
+                beforeSend: function () { },
+                success: function (responseRate) {
                     $("#rateHTMLCal").html(responseRate);
                 }
             });
@@ -4781,8 +4787,8 @@
                         "country_id": country_id,
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $('#other_state_html_' + id).html(response);
                         $(".select2").select2();
                     }
@@ -4824,8 +4830,8 @@
                         "client_id": client_id,
                         _token: '{{ csrf_token() }}'
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#paid-project-html").html(response);
                         $("#paid-installment-html").empty().append(
                             '<option value="">Select paid installment...</option>');
@@ -4848,8 +4854,8 @@
                         "project_id": project_id,
                         _token: '{{ csrf_token() }}'
                     },
-                    beforeSend: function() {},
-                    success: function(response) {
+                    beforeSend: function () { },
+                    success: function (response) {
                         $("#paid-installment-html").html(response);
                     }
                 });
@@ -4870,7 +4876,7 @@
             _pattern: /[a-zA-Z0-9_\-\+\.]/,
 
 
-            _getRandomByte: function() {
+            _getRandomByte: function () {
                 // http://caniuse.com/#feat=getrandomvalues
                 if (window.crypto && window.crypto.getRandomValues) {
                     var result = new Uint8Array(1);
@@ -4885,11 +4891,11 @@
                 }
             },
 
-            generate: function(length) {
+            generate: function (length) {
                 return Array.apply(null, {
-                        'length': length
-                    })
-                    .map(function() {
+                    'length': length
+                })
+                    .map(function () {
                         var result;
                         while (true) {
                             result = String.fromCharCode(this._getRandomByte());
@@ -4961,7 +4967,7 @@
                         "userId": userId,
                         _token: '{{ csrf_token() }}'
                     },
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $('#loader-' + id).css('display', 'inline-block');
 
                         $('#sendCredentials-' + id).prop('disabled', true);
@@ -4969,7 +4975,7 @@
                             'cursor': 'no-drop'
                         });
                     },
-                    success: function(data) {
+                    success: function (data) {
                         $('#loader-' + id).hide();
 
                         $('#sendCredentials-' + id).prop('disabled', false);
@@ -5001,7 +5007,7 @@
 
         function preview_image(event) {
             var reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function () {
                 var output = document.getElementById('output_image');
                 output.src = reader.result;
             }
@@ -5010,13 +5016,13 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('.table-radio').on('change', function() {
+        $(document).ready(function () {
+            $('.table-radio').on('change', function () {
                 $('.table-radio').prop('checked', false);
                 $(this).prop('checked', true);
             });
 
-            $('tr').on('click', function() {
+            $('tr').on('click', function () {
                 $(this).find('.table-radio').prop('checked', true);
                 $('#airline_code').val($(".clsGender:checked").val());
                 $('#airline_prefix').val($(".clsGenderFL:checked").val());
@@ -5039,10 +5045,8 @@
         }
 
 
-        $(document).ready(function() 
-        {
-            $('#participation_type').change(function() 
-            {
+        $(document).ready(function () {
+            $('#participation_type').change(function () {
                 var selectedOption = $(this).val();
 
                 if (selectedOption == 'Shipment Participation') {

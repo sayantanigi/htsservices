@@ -75,7 +75,7 @@
                                     </a>
                                 </li>
 
-                                @if($data['userType']!="6") 
+                                @if($data['userType']!="6")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#relatedentities" id="relatedentities_nav" role="tab" aria-selected="true">
@@ -91,15 +91,15 @@
                                         </a>
                                     </li>
                                 @endif
-                                
-                                @if($data['userType']=="1")         
+
+                                @if($data['userType']=="1")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#participation" id="participation_nav" role="tab" aria-selected="true">
                                             <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
                                             <span class="d-none d-sm-block">Participation</span>
                                         </a>
-                                    </li>  
+                                    </li>
 
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
@@ -107,28 +107,28 @@
                                             <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
                                             <span class="d-none d-sm-block">Agent</span>
                                         </a>
-                                    </li> 
+                                    </li>
 
                                 @endif
 
-                                @if($data['userType']=="5") 
+                                @if($data['userType']=="5")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#participation" id="participation_nav" role="tab" aria-selected="true">
                                             <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
                                             <span class="d-none d-sm-block">Participation</span>
                                         </a>
-                                    </li>  
+                                    </li>
                                 @endif
 
-                                @if($data['userType']=="1" || $data['userType']=="3") 
+                                @if($data['userType']=="1" || $data['userType']=="3")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#airbaybills" id="airbaybills_nav" role="tab" aria-selected="true">
                                             <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
                                             <span class="d-none d-sm-block">Air Waybills</span>
                                         </a>
-                                    </li> 
+                                    </li>
 
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
@@ -146,7 +146,7 @@
                                     </li>
                                 @endif
 
-                                @if($data['userType']=="4") 
+                                @if($data['userType']=="4")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#charges" id="charges_nav" role="tab" aria-selected="true">
@@ -156,7 +156,7 @@
                                     </li>
                                 @endif
 
-                                @if($data['userType']!="6") 
+                                @if($data['userType']!="6")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#pmttems" id="pmttems_nav" role="tab" aria-selected="true">
@@ -166,14 +166,14 @@
                                     </li>
                                 @endif
 
-                                @if($data['userType']=="3" || $data['userType']=="4" || $data['userType']=="5" || $data['userType']=="6") 
+                                @if($data['userType']=="3" || $data['userType']=="4" || $data['userType']=="5" || $data['userType']=="6")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#personalInfoC" id="personalInfoC_nav" role="tab" aria-selected="true">
                                             <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
                                             <span class="d-none d-sm-block">Personal Info</span>
                                         </a>
-                                    </li> 
+                                    </li>
                                 @endif
 
                                 <li class="nav-item">
@@ -198,7 +198,7 @@
                                     </a>
                                 </li>
 
-                                @if($data['userType']=="3") 
+                                @if($data['userType']=="3")
                                     <li class="nav-item">
                                         <a class="nav-link" {{ Session::has('hts_user_id') ? '' : 'disabled' }}
                                             data-bs-toggle="tab" href="#moreinfo" id="moreinfo_nav" role="tab" aria-selected="true">
@@ -207,7 +207,7 @@
                                         </a>
                                     </li>
                                 @endif
-                                
+
                             </ul>
 
                             <!-- Tab panes -->
@@ -809,8 +809,8 @@
                                         } else {
                                             $carrieryTitle = "";
                                         }
-                                        
-            
+
+
                                     @endphp
                                     <div class="mb-3">
                                         <label>Parent Entity</label>
@@ -823,7 +823,7 @@
                                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
-     
+
                                                 <div class="modal-body">
                                                     {{-- <div class="table-responsive" style="max-height: 450px; overflow-y: auto;"> --}}
                                                     <div class="table-responsive">
@@ -833,29 +833,29 @@
                                                                @csrf
                                                                <table class="table table-centered table-nowrap table-hover mb-0">
                                                                 <thead>
-                                                                    
+
                                                                     <tr>
-    
+
                                                                         <th scope="col">Name</th>
                                                                         <th scope="">Entity ID</th>
                                                                         <th scope="col">Type</th>
                                                                         <th scope="col">Action</th>
-    
+
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     @if(!empty($data['all_users']))
                                                                         @foreach($data['all_users'] as $key=>$item_val)
-                                                
+
                                                                         @php
                                                                             $usertypes = DB::table('hts_user_types')->where('id', $item_val->user_type)->select('name')->first();
-                                                
+
                                                                         @endphp
-                                                                         
+
                                                                             <tr>
-    
+
                                                                                 <td>
-                                                                                    <h5 class="font-size-16"> 
+                                                                                    <h5 class="font-size-16">
                                                                                         @if (@$item_val->name)
                                                                                                 {{ $item_val->name }}
                                                                                         @else
@@ -881,13 +881,13 @@
                                                                                     <div class="form-group">
                                                                                         <input class="table-radio" type="radio" {{ @$item_val->id == @$data['userData']->parent_entity ? 'checked' : '' }} name="parent_entity" required id="parent_entity_{{ @$item_val->id }}" value="{{ @$item_val->id }}">
                                                                                     </div>
-                                                                                    
+
                                                                                 </td>
-    
+
                                                                             </tr>
-                                                                        
+
                                                                         @endforeach
-                                                                    @endif 
+                                                                    @endif
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -914,25 +914,25 @@
                                 <div class="tab-pane " id="contacts" role="tabpanel">
                                     <div class="rates_main">
                                         <div class="table-responsive fixhei">
-    
+
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h4 class="card-title mb-3">Contact lists
                                                         <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl"
                                                             class="btn btn-primary btn-sm waves-effect waves-light">
-                                                            <i class="fas fa-plus"></i> 
+                                                            <i class="fas fa-plus"></i>
                                                             @if (empty(Session::has('hts_cont_id')))
                                                                 Add New
                                                             @else
                                                                 Edit
                                                             @endif
-                                                            
+
                                                         </button>
                                                     </h4>
                                                 </div>
-        
+
                                                 <div class="table-responsive fixhei">
-        
+
                                                     <table class="table table-hover mb-0">
                                                         <thead>
                                                             <tr>
@@ -958,14 +958,14 @@
                                                                             ->select('name')
                                                                             ->first();
                                                                         }
-                                                                        
+
                                                                         if(!empty($row->country)) {
                                                                             $country = DB::table('countries')
                                                                             ->where('id', $row->country)
                                                                             ->select('name')
                                                                             ->first();
                                                                         }
-                                                                        
+
                                                                     @endphp
                                                                     <tr>
                                                                         <td>{{ $loop->iteration }}</td>
@@ -1033,15 +1033,15 @@
                                                                             </button>
                                                                         </td>
                                                                     </tr>
-    
+
                                                                 @endforeach
                                                             @endif
                                                         </tbody>
                                                     </table>
-        
+
                                                 </div>
                                             </div>
-                                        
+
                                         </div>
 
                                         <div class="modal fade bs-example-modal-xl" id="myModal" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
@@ -1060,42 +1060,42 @@
                                                                         <a class="nav-link active" data-bs-toggle="tab" href="#cgeneral" id="cgeneral_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                                             <span class="d-none d-sm-block">General
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_cont_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#caddress" id="caddress_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                                             <span class="d-none d-sm-block">Address
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_cont_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#cbaddress" id="cbaddress_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Billing Address
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_cont_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#coaddress" id="coaddress_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Other Address
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_cont_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#cpinfo" id="cpinfo_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Personal Info
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_cont_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#cattachment" id="cattachment_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Attachments
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
@@ -1103,14 +1103,14 @@
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Notes
 
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_cont_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#cinternalnotes" id="cinternalnotes_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Internal Notes
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
@@ -1288,7 +1288,7 @@
                                                                             </div>
 
                                                                         </form>
-                                                                        
+
                                                                     </div>
 
                                                                     <div class="tab-pane" id="caddress" role="tabpanel">
@@ -1546,7 +1546,7 @@
                                                                                     @endif
                                                                                 </select>
                                                                             </div>
-                                                                            
+
                                                                             <div class="mb-0 float-end">
                                                                                 <div>
                                                                                     <button type="submit"
@@ -1617,7 +1617,7 @@
                                                                                     <div class="mb-3">
                                                                                         <i class="display-4 text-muted ri-upload-cloud-2-line"></i>
                                                                                     </div>
-                                                                                    
+
                                                                                     <h4>Drop files here or click to upload.</h4>
                                                                                 </div>
                                                                             </form>
@@ -1635,12 +1635,12 @@
                                                                                               <th>Actions</th>
                                                                                            </tr>
                                                                                         </thead>
-                                                                      
-                                                                      
+
+
                                                                                         <tbody>
                                                                                            @if(!empty($data['contact_gallery']))
                                                                                               @foreach($data['contact_gallery'] as $key=>$row)
-                                                                                             
+
                                                                                                  <tr>
                                                                                                     <td>{{ $key+1 }}</td>
                                                                                                     <td>
@@ -1667,10 +1667,10 @@
                                                                                         </tbody>
                                                                                      </table>
                                                                                 </div>
-                                                                                
+
                                                                             </div>
                                                                         </div>
-                                                                        
+
                                                                     </div>
 
                                                                     <div class="tab-pane " id="cnotes" role="tabpanel">
@@ -1698,7 +1698,7 @@
                                                                                                 <label class="form-check-label" for="inlineRadio2">Not Completed</label>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            
+
                                                                                         </div>
                                                                                         <div class="mb-3">
                                                                                             <div>
@@ -1722,21 +1722,21 @@
                                                                                 <table class="table table-centered table-nowrap table-hover mb-0">
                                                                                     <thead>
                                                                                         <tr>
-                                                                                            
+
                                                                                             <th scope="col">Created On</th>
                                                                                             <th width="300" scope="">Notes</th>
                                                                                             <th scope="col">Craeted By</th>
                                                                                             <th scope="col">Last Modified</th>
                                                                                             <th scope="col">Last Modified By</th>
                                                                                             <th scope="col" width="200">Action</th>
-                                                                                            
+
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
                                                                                         @if(!empty($data['contact_notes']))
                                                                                               @foreach($data['contact_notes'] as $key=>$row)
                                                                                                     <tr>
-                                                                                                        
+
                                                                                                         <td>
                                                                                                             @if (@$row->created_at)
                                                                                                                 {{ date("jS M, Y", strtotime($row->created_at)) }}
@@ -1772,8 +1772,8 @@
                                                                                                                   &#8212;
                                                                                                             @endif
                                                                                                          </td>
-                                    
-                                                                                                        
+
+
                                                                                                         <td>
                                                                                                             <button type="button" class="btn btn-primary btn-sm waves-effect" data-bs-toggle="modal" data-bs-target="#editConNote-{{ $row->id }}">
                                                                                                                 <i class="fas fa-edit"></i> Edit
@@ -1783,9 +1783,9 @@
                                                                                                                 <i class="fas fa-trash"></i> Delete
                                                                                                             </button>
                                                                                                         </td>
-                                                                                                        
+
                                                                                                     </tr>
-                                                                                        
+
                                                                                                     <div class="modal fade" id="editConNote-{{ $row->id }}" tabindex="-1" role="dialog"
                                                                                                         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                                                                                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -1806,15 +1806,15 @@
                                                                                                                                 <textarea required="" name="conn_note_edt" class="form-control" rows="5">{{ @$row->notes }}</textarea>
                                                                                                                             </div>
                                                                                                                         </div>
-                                        
+
                                                                                                                         <div class="form-group mb-3">
                                                                                                                             <button type="submit" name="submit" value="conNoteEdt"
                                                                                                                                 class="btn btn-primary waves-effect waves-light">Save</button>
-                                        
+
                                                                                                                             <button type="button" class="btn btn-light waves-effect"
                                                                                                                                 data-bs-dismiss="modal">Cancel</button>
                                                                                                                         </div>
-                                        
+
                                                                                                                     </form>
                                                                                                                 </div>
                                                                                                             </div><!-- /.modal-content -->
@@ -1844,19 +1844,19 @@
                                                 <h4 class="card-title mb-3">Participation lists
                                                     <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-participation-modal-xl"
                                                         class="btn btn-primary btn-sm waves-effect waves-light">
-                                                        <i class="fas fa-plus"></i> 
+                                                        <i class="fas fa-plus"></i>
                                                         @if (empty(Session::has('hts_charge_id')))
                                                             Add New
                                                         @else
                                                             Edit
                                                         @endif
-                                                        
+
                                                     </button>
                                                 </h4>
                                             </div>
-                                        
+
                                             <div class="table-responsive fixhei">
-                                        
+
                                                 <table class="table table-hover mb-0">
                                                     <thead>
                                                         <tr>
@@ -1948,16 +1948,16 @@
                                                                             &#8212;
                                                                         @endif
                                                                     </td>
-                                                                   
+
                                                                     <td>
-                                                                        
+
                                                                         @if (@$row_val->ground_export)
                                                                             Yes
                                                                     @else
                                                                         &#8212;
                                                                     @endif
                                                                     </td>
-                                                                   
+
                                                                     <td>
                                                                         @if (@$row_val->created_at)
                                                                             {{ date("d M, Y, H:i", strtotime(@$row_val->created_at)) }}
@@ -1965,7 +1965,7 @@
                                                                             &#8212;
                                                                         @endif
                                                                     </td>
-                                                                    
+
                                                                     <td>
                                                                         <button type="reset"
                                                                             class="btn btn-danger btn-sm waves-effect"
@@ -1974,12 +1974,12 @@
                                                                         </button>
                                                                     </td>
                                                                 </tr>
-                                        
+
                                                             @endforeach
                                                         @endif
                                                     </tbody>
                                                 </table>
-                                        
+
                                             </div>
 
                                             <div class="modal fade bs-participation-modal-xl" id="myModalParticipation" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
@@ -2024,7 +2024,7 @@
                                                                                                 @endforeach
                                                                                             @endif
                                                                                         </optgroup>
-                                                                                        
+
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -2047,7 +2047,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                       
+
                                                                         <div class="row mt-3 mb-3">
                                                                             <div class="col-lg-8">
                                                                                 <div class="mb-3 form-group">
@@ -2113,12 +2113,12 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        
+
                                                                         <div style="text-align: center; mt-3">
-                                                        
+
                                                                             <button class="btn btn-primary" type="submit" name="submit" value="customCharge">Submit</button>
                                                                         </div>
-                                    
+
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -2186,14 +2186,14 @@
                                                 <h4 class="card-title mb-3">Air Waybill lists
                                                     <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-air-aybills-modal-xl"
                                                         class="btn btn-primary btn-sm waves-effect waves-light">
-                                                        <i class="fas fa-plus"></i> 
-                                                        Add New 
+                                                        <i class="fas fa-plus"></i>
+                                                        Add New
                                                     </button>
                                                 </h4>
                                             </div>
-                                        
+
                                             <div class="table-responsive fixhei">
-                                        
+
                                                 <table class="table table-hover mb-0">
                                                     <thead>
                                                         <tr>
@@ -2243,7 +2243,7 @@
                                                                     <td>
                                                                         &#8212;
                                                                     </td>
-                                                                    
+
                                                                     <td>
                                                                         <button type="reset"
                                                                             class="btn btn-danger btn-sm waves-effect"
@@ -2252,12 +2252,12 @@
                                                                         </button>
                                                                     </td>
                                                                 </tr>
-                                        
+
                                                             @endforeach
                                                         @endif
                                                     </tbody>
                                                 </table>
-                                        
+
                                             </div>
 
                                             <div class="modal fade bs-air-aybills-modal-xl" id="myModalAirwaybills" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
@@ -2281,7 +2281,7 @@
                                                                                 </h5>
                                                                             </div>
                                                                         </div>
-                                                                       
+
                                                                         <div class="row mt-3">
                                                                             <div class="col-lg-12">
                                                                                 <div class="mb-3 ms-3 form-group">
@@ -2307,7 +2307,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                    
+
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -2323,25 +2323,25 @@
                                 <div class="tab-pane " id="rates" role="tabpanel">
                                     <div class="rates_main">
                                         <div class="table-responsive fixhei">
-                                
+
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h4 class="card-title mb-3">Rate lists
                                                         <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-rate-modal-xl"
                                                             class="btn btn-primary btn-sm waves-effect waves-light">
-                                                            <i class="fas fa-plus"></i> 
+                                                            <i class="fas fa-plus"></i>
                                                             @if (empty(Session::has('hts_rate_id')))
                                                                 Add New
                                                             @else
                                                                 Edit
                                                             @endif
-                                                            
+
                                                         </button>
                                                     </h4>
                                                 </div>
-                                
+
                                                 <div class="table-responsive fixhei">
-                                
+
                                                     <table class="table table-hover mb-0">
                                                         <thead>
                                                             <tr>
@@ -2367,13 +2367,13 @@
                                                                             ->first();
                                                                         }
 
-                                                                        
+
                                                                         if(!empty($row_val->freight_service_class)) {
                                                                             $freight_service_classData = DB::table('freight_service_class')
                                                                             ->where('id', $row_val->freight_service_class)
                                                                             ->first();
                                                                         }
-                                                                        
+
                                                                     @endphp
                                                                     <tr>
                                                                         <td>{{ $loop->iteration }}</td>
@@ -2441,17 +2441,17 @@
                                                                             </button>
                                                                         </td>
                                                                     </tr>
-                                
+
                                                                 @endforeach
                                                             @endif
                                                         </tbody>
                                                     </table>
-                                
+
                                                 </div>
                                             </div>
-                                        
+
                                         </div>
-                                
+
                                         <div class="modal fade bs-rate-modal-xl" id="myModalRate" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
@@ -2468,30 +2468,30 @@
                                                                         <a class="nav-link active" data-bs-toggle="tab" href="#rgeneral" id="rgeneral_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                                             <span class="d-none d-sm-block">General
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
-                                                                    
+
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_rate_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#rpinfo" id="rpinfo_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Contract
-                                                                            </span>    
+                                                                            </span>
                                                                         </a>
                                                                     </li>
-                                          
+
                                                                     <li class="nav-item">
                                                                         <a {{ Session::has('hts_rate_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#rnotes" id="rnotes_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Notes
-                                
-                                                                            </span>    
+
+                                                                            </span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
-                                
+
                                                                 <div class="tab-content p-3 text-muted">
-                                
+
                                                                     <div class="tab-pane active" id="rgeneral" role="tabpanel">
                                                                         <form action="{{ route('createHtsRateGround') }}" class="custom-validation" method="post"
                                                                             id="formValidatedRateGround">
@@ -2521,9 +2521,9 @@
                                                                                                     @endforeach
                                                                                                 @endif
                                                                                             </optgroup>
-                                                                                            
+
                                                                                         </select>
-                                                            
+
                                                                                     </div>
                                                                                     <div class="form-check mb-3 form-group">
                                                                                         <input class="form-check-input" type="checkbox" name="auto_charge" {{ '1' == @$data['rateData']->auto_charge ? 'checked' : '' }} value="1" id="invalidCheck">
@@ -2549,11 +2549,11 @@
                                                                                                     @endforeach
                                                                                                 @endif
                                                                                             </optgroup>
-                                                                                            
+
                                                                                         </select>
-                                                            
+
                                                                                     </div>
-                                                                                    
+
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Carriers</label>
                                                                                         <select class="form-select select2" name="carrier" aria-label="Default select example">
@@ -2731,7 +2731,7 @@
                                                                                                 <option value="ZMW" {{ 'ZMW' == @$data['rateData']->currency ? 'selected' : '' }}>ZMW Zambian kwacha</option>
                                                                                                 <option value="ZWB" {{ 'ZWB' == @$data['rateData']->currency ? 'selected' : '' }}>ZWB Zimbabwean bonds</option>
                                                                                             </select>
-                                                            
+
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Frequency</label>
@@ -2751,25 +2751,25 @@
                                                                                     <div class="mb-3 form-group">
                                                                                         <label for="validationCustom05" class="form-label">Transit Time(Days)</label>
                                                                                         <input type="text" class="form-control" id="validationCustom05" name="transit_time" placeholder="0" value="{{ @$data['rateData']->transit_time }}">
-                                                                                        
+
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                            
+
                                                                             <div class="row row-border-bottom mt-4 mb-3">
                                                                                 <div class="col-lg-6 form-group">
                                                                                     <label class="form-check-label" style="margin-right: 37px;" for="invalidCheck1">
                                                                                         <b>Origin:</b>
                                                                                     </label>
                                                                                     <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                        
+
                                                                                         <input class="form-check-input" name="origin_apply_to_country" type="checkbox" {{ '1' == @$data['rateData']->origin_apply_to_country ? 'checked' : '' }} value="1" id="invalidCheck15">
                                                                                         <label class="form-check-label" for="invalidCheck15">
                                                                                             Apply to country
                                                                                         </label>
-                                                                                        
+
                                                                                     </div>
-                                                            
+
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Port of landing</label>
                                                                                         <select class="form-select select2" name="port_of_landing" aria-label="Default select example">
@@ -2782,7 +2782,7 @@
                                                                                                 @endforeach
                                                                                             @endif
                                                                                             </select>
-                                                            
+
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Country</label>
@@ -2796,7 +2796,7 @@
                                                                                                 @endforeach
                                                                                             @endif
                                                                                             </select>
-                                                            
+
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-6 form-group">
@@ -2808,7 +2808,7 @@
                                                                                         <label class="form-check-label" for="invalidCheck2">
                                                                                             Apply to country
                                                                                         </label>
-                                                                                        
+
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Port of unlanding</label>
@@ -2822,7 +2822,7 @@
                                                                                                 @endforeach
                                                                                             @endif
                                                                                             </select>
-                                                            
+
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Country</label>
@@ -2836,11 +2836,11 @@
                                                                                                 @endforeach
                                                                                             @endif
                                                                                             </select>
-                                                            
+
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                            
+
                                                                             <div class="row row-border-bottom mt-4 mb-3">
                                                                                 <div class="col-lg-8">
                                                                                     <div class="row">
@@ -2857,7 +2857,7 @@
                                                                                                         <option value="Calculated Amount" {{ 'Calculated Amount' == @$data['rateData']->apply_by ? 'selected' : '' }}>Calculated Amount</option>
                                                                                                     </select>
                                                                                                 </div>
-                                                                                                
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-lg-6">
@@ -2874,7 +2874,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    
+
                                                                                     <div class="form-check mb-3 form-group">
                                                                                         <input class="form-check-input" type="checkbox" name="use_gross_weight" {{ '1' == @$data['rateData']->use_gross_weight ? 'checked' : '' }} value="1" id="invalidCheck78">
                                                                                         <label class="form-check-label" for="invalidCheck78">
@@ -2905,14 +2905,14 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                            
+
                                                                             <div class="row row-border-bottom mt-3 mb-3">
                                                                                 <div class="col-lg-2">
-                                                                                    
+
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Minimum</label>
                                                                                         <input type="text" class="form-control" name="minimum" id="validationCustom05" value="{{ @$data['rateData']->minimum }}" placeholder="0.00">
-                                                            
+
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Rate Per</label>
@@ -2921,43 +2921,43 @@
                                                                                             <option value="Unit" {{ 'Unit' == @$data['rateData']->rate_per ? 'selected' : '' }}>Unit</option>
                                                                                             <option value="Range" {{ 'Range' == @$data['rateData']->rate_per ? 'selected' : '' }}>Range</option>
                                                                                         </select>
-                                                            
+
                                                                                     </div>
                                                                                 </div>
-                                                            
+
                                                                                 <div class="col-lg-2">
-                                                                                    
+
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>Maximum</label>
                                                                                         <input type="text" class="form-control" name="maximum" id="maximum" value="{{ @$data['rateData']->maximum }}" placeholder="0.00">
-                                                            
+
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
                                                                                         <label>lb</label>
                                                                                         <input type="text" class="form-control" name="rate_val" id="rate_val" value="{{ @$data['rateData']->rate_val }}" placeholder="1.00">
-                                                            
+
                                                                                     </div>
                                                                                 </div>
-                                                            
+
                                                                                 <div class="col-lg-8 form-group">
                                                                                     {{-- <a href="javascript:void(0);" style="float: right;" id="AddRateId" class="me-3 text-primary" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Add" aria-label="Add"><i class="mdi mdi-plus font-size-18"></i> Add New</a> --}}
                                                                                     <div class="table-responsive" id="rateHTMLCal">
                                                                                         <table class="table table-centered table-nowrap table-border table-hover mb-0">
                                                                                             <thead>
                                                                                                 <tr>
-                                                                                                    
+
                                                                                                     <th scope="col">More Than</th>
                                                                                                     <th scope="">Rate</th>
                                                                                                     <th scope="col"></th>
-                                                                                                    
+
                                                                                                 </tr>
                                                                                             </thead>
                                                                                             <tbody>
                                                                                                 <tr>
-                                                                                                    
+
                                                                                                     <td>
                                                                                                         <h5 class="font-size-16">
-                                                                                                            <input class="form-control" type="text" name="more_than" value="{{ @$data['rateData']->more_than ? @$data['rateData']->more_than : '1.00' }}"> 
+                                                                                                            <input class="form-control" type="text" name="more_than" value="{{ @$data['rateData']->more_than ? @$data['rateData']->more_than : '1.00' }}">
                                                                                                         </h5>
                                                                                                     </td>
                                                                                                     <td>
@@ -2969,20 +2969,20 @@
                                                                                                     </td>
                                                                                                 </tr>
 
-                                                                                                
+
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div style="text-align: center;">
-                                                            
+
                                                                                 <button class="btn btn-primary" type="submit" name="submit" value="rateGround">Submit</button>
                                                                             </div>
-                                
+
                                                                         </form>
                                                                     </div>
-                                
+
                                                                     <div class="tab-pane " id="rpinfo" role="tabpanel">
                                                                         <form action="{{ route('updateHtsRateContract') }}" class="custom-validation"
                                                                             method="post" id="formValidatedBillingAddress2ndTab_3">
@@ -3031,7 +3031,7 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
-                                                                    
+
                                                                     <div class="tab-pane " id="rnotes" role="tabpanel">
                                                                         <div class="rates_main">
                                                                             <form action="{{ route('create-hts-rate-notes') }}" class="form-horizontal form" method="post" id="formValidatedBillingAddress2ndTab_4">
@@ -3056,14 +3056,14 @@
                                                                                                 <label class="form-check-label" for="inlineRadio2cc">Not Completed</label>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            
+
                                                                                         </div>
                                                                                         <div class="mb-3">
                                                                                             <div>
                                                                                                 <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                                                                                     Submit
                                                                                                 </button>
-                                                                                                
+
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -3071,7 +3071,7 @@
                                                                             </form>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -3089,19 +3089,19 @@
                                                 <h4 class="card-title mb-3">Charge lists
                                                     <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-charge-modal-xl"
                                                         class="btn btn-primary btn-sm waves-effect waves-light">
-                                                        <i class="fas fa-plus"></i> 
+                                                        <i class="fas fa-plus"></i>
                                                         @if (empty(Session::has('hts_charge_id')))
                                                             Add New
                                                         @else
                                                             Edit
                                                         @endif
-                                                        
+
                                                     </button>
                                                 </h4>
                                             </div>
-                                        
+
                                             <div class="table-responsive fixhei">
-                                        
+
                                                 <table class="table table-hover mb-0">
                                                     <thead>
                                                         <tr>
@@ -3154,7 +3154,7 @@
                                                                             &#8212;
                                                                         @endif
                                                                     </td>
-                                                                    
+
                                                                     <td>
                                                                         <button type="reset"
                                                                             class="btn btn-danger btn-sm waves-effect"
@@ -3163,12 +3163,12 @@
                                                                         </button>
                                                                     </td>
                                                                 </tr>
-                                        
+
                                                             @endforeach
                                                         @endif
                                                     </tbody>
                                                 </table>
-                                        
+
                                             </div>
 
                                             <div class="modal fade bs-charge-modal-xl" id="myModalCharge" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
@@ -3187,22 +3187,22 @@
                                                                             <a class="nav-link active" data-bs-toggle="tab" href="#chgeneral" id="chgeneral_nav" role="tab" aria-selected="false">
                                                                                 <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                                                 <span class="d-none d-sm-block">Custom Charge
-                                                                                </span>    
+                                                                                </span>
                                                                             </a>
                                                                         </li>
-                                                                        
+
                                                                         <li class="nav-item">
                                                                             <a {{ Session::has('hts_charge_id') ? '' : 'disabled' }} class="nav-link" data-bs-toggle="tab" href="#chinfo" id="chinfo_nav" role="tab" aria-selected="false">
                                                                                 <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                                 <span class="d-none d-sm-block">Automatic Creation
-                                                                                </span>    
+                                                                                </span>
                                                                             </a>
                                                                         </li>
-                                            
+
                                                                     </ul>
-                                            
+
                                                                     <div class="tab-content p-3 text-muted">
-                                            
+
                                                                         <div class="tab-pane active" id="chgeneral" role="tabpanel">
                                                                             <form action="{{ route('createHtsCustomCharge') }}" class="custom-validation" method="post"
                                                                                 id="formValidatedCharge">
@@ -3222,14 +3222,14 @@
                                                                                                         @endforeach
                                                                                                     @endif
                                                                                                 </optgroup>
-                                                                                                
+
                                                                                             </select>
-                                                                
+
                                                                                         </div>
-                                                                                        
+
                                                                                     </div>
 
-                                                                                    
+
                                                                                 </div>
 
 
@@ -3241,12 +3241,12 @@
                                                                                                 <span class="input-group-text" id="basic-addon1">USD</span>
                                                                                                 <input type="text" class="form-control" placeholder="0.00" name="charge_price" value="{{ @$data['chargeData']->price }}" aria-label="Username" aria-describedby="basic-addon1">
                                                                                               </div>
-                                                                
+
                                                                                         </div>
-                                                                                        
+
                                                                                     </div>
 
-                                                                                    
+
                                                                                 </div>
 
                                                                                 <div class="row row-border-bottom mt-3 mb-3">
@@ -3255,25 +3255,25 @@
                                                                                             <label class="form-label">Vendor</label>
                                                                                             <select class="form-control select2" name="vendor">
                                                                                                 <option value="">Select...</option>
-                                                                                                
+
                                                                                             </select>
-                                                                
+
                                                                                         </div>
-                                                                                        
+
                                                                                     </div>
 
-                                                                                    
+
                                                                                 </div>
-                                                                
+
                                                                                 <div class="row row-border-bottom mt-4 mb-3">
                                                                                     <div class="col-lg-8 form-group">
                                                                                         <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                            
+
                                                                                             <input class="form-check-input" name="show_in_documents" type="checkbox" {{ '1' == @$data['chargeData']->show_in_documents ? 'checked' : '' }} value="1" id="invalidCheckCharge">
                                                                                             <label class="form-check-label" for="invalidCheckCharge">
                                                                                                 Don not show in documents
                                                                                             </label>
-                                                                                            
+
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-lg-8 form-group">
@@ -3282,21 +3282,21 @@
                                                                                             <label class="form-check-label" for="invalidCheckCharge2">
                                                                                                 The price for this charge depends on other charges in the transaction
                                                                                             </label>
-                                                                                            
+
                                                                                         </div>
-                                                                                       
+
                                                                                     </div>
                                                                                 </div>
-                                                                
-                                                                                
+
+
                                                                                 <div style="text-align: center;">
-                                                                
+
                                                                                     <button class="btn btn-primary" type="submit" name="submit" value="customCharge">Submit</button>
                                                                                 </div>
-                                            
+
                                                                             </form>
                                                                         </div>
-                                            
+
                                                                         <div class="tab-pane " id="chinfo" role="tabpanel">
                                                                             <form action="{{ route('createHtsCustomChargeAutoCreation') }}" class="custom-validation" method="post"
                                                                                 id="formValidatedChargeCreation">
@@ -3305,7 +3305,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="mb-0 form-group">
                                                                                             <label class="form-label" style="width: 100%;"><b>Enable Automatic Creation</b> <hr></label>
-                                                                                        </div>  
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 @php
@@ -3322,13 +3322,13 @@
                                                                                             }
                                                                                         }
                                                                                     }
-                                                                                    
+
                                                                                 @endphp
 
                                                                                 <div class="row mt-0 mb-0">
                                                                                     <div class="col-lg-4 form-group">
                                                                                         <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                            
+
                                                                                             <input class="form-check-input" name="auto_creation[]" type="checkbox" {{ in_array("Warehouse Receipts(WR)", @$autoCreationArray) ? 'checked' : '' }} value="Warehouse Receipts(WR)" id="Warehouse Receipts(WR)">
                                                                                             <label class="form-check-label" for="Warehouse Receipts(WR)">
                                                                                                 Warehouse Receipts(WR)
@@ -3373,14 +3373,14 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="mb-0 form-group">
                                                                                             <label class="form-label" style="width: 100%;"><b>Export Shipments</b> <hr></label>
-                                                                                        </div>  
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="row mt-0 mb-0">
                                                                                     <div class="col-lg-4 form-group">
                                                                                         <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                            
+
                                                                                             <input class="form-check-input" name="auto_creation[]" type="checkbox" {{ in_array("Air Master Shipments(AME)", @$autoCreationArray) ? 'checked' : '' }} value="Air Master Shipments(AME)" id="Air Master Shipments(AME)">
                                                                                             <label class="form-check-label" for="Air Master Shipments(AME)">
                                                                                                 Air Master Shipments(AME)
@@ -3433,14 +3433,14 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="mb-0 form-group">
                                                                                             <label class="form-label" style="width: 100%;"><b>Import Shipments</b> <hr></label>
-                                                                                        </div>  
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="row mt-0 mb-0">
                                                                                     <div class="col-lg-4 form-group">
                                                                                         <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                            
+
                                                                                             <input class="form-check-input" name="auto_creation[]" type="checkbox" {{ in_array("Air Master Shipments(AMI)", @$autoCreationArray) ? 'checked' : '' }} value="Air Master Shipments(AMI)" id="Air Master Shipments(AMI)">
                                                                                             <label class="form-check-label" for="Air Master Shipments(AMI)">
                                                                                                 Air Master Shipments(AMI)
@@ -3494,19 +3494,19 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="mb-0 form-group">
                                                                                             <label class="form-label" style="width: 100%;"><hr></label>
-                                                                                        </div>  
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="row mt-0 mb-0">
                                                                                     <div class="col-lg-12 form-group">
                                                                                         <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                            
+
                                                                                             <input class="form-check-input" name="route_assigned" type="checkbox" {{ '1' == @$data['chargeData']->route_assigned ? 'checked' : '' }} value="1" id="route_assigned">
                                                                                             <label class="form-check-label" for="route_assigned">
                                                                                                 Don not generate when route is assigned to the operation
                                                                                             </label>
-                                                                                            
+
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -3515,7 +3515,7 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="mb-0 form-group">
                                                                                             <label class="form-label" style="width: 100%;"><hr></label>
-                                                                                        </div>  
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
@@ -3533,20 +3533,20 @@
                                                                                             <label class="form-check-label" for="completed_status2">Not Completed</label>
                                                                                             </div>
                                                                                         </div>
-                                                                                        
+
                                                                                     </div>
-                                                                                    
+
                                                                                 </div>
-                                                                
-                                                                                
+
+
                                                                                 <div style="text-align: center;">
-                                                                
+
                                                                                     <button class="btn btn-primary" type="submit" name="submit" value="rateGround">Submit</button>
                                                                                 </div>
-                                            
+
                                                                             </form>
                                                                         </div>
-                                                                        
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -3564,7 +3564,7 @@
                                         <div class=" mb-3">
                                             <h4 class="card-title mb-3">Payment Terms <hr></h4>
                                         </div>
-                                        
+
                                         <form action="{{ route('updatePmtData') }}" method="post" id="formValidatedPMT">
                                             @csrf
                                             <div class="row mb-3">
@@ -3783,11 +3783,11 @@
                                                     </select>
                                                 </div>
                                             </div>
-    
+
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">The Credit limit is:</label>
                                                 <div class="col-sm-3 form-group">
-                                                    <input class="form-control" name="pmt_credit_limit" type="number" value="{{ @$data['userData']->pmt_credit_limit }}" placeholder="0.00" id="pmt_credit_limit"> 
+                                                    <input class="form-control" name="pmt_credit_limit" type="number" value="{{ @$data['userData']->pmt_credit_limit }}" placeholder="0.00" id="pmt_credit_limit">
                                                 </div>
 
                                                 <label for="example-text-input" class="col-sm-1 col-form-label">USD</label>
@@ -3801,7 +3801,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
-    
+
                                             </div>
 
                                             <div class="row mb-3">
@@ -3820,7 +3820,7 @@
                                             <div class=" mb-3">
                                                 <h4 class="card-title mb-3">TSA Compliance <hr></h4>
                                             </div>
-    
+
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-1 col-form-label">&nbsp;</label>
                                                 <div class="col-sm-5">
@@ -3856,8 +3856,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-    
-    
+
+
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">&nbsp;</label>
                                                 <div class="col-sm-5">
@@ -3905,22 +3905,22 @@
                                                 <button type="submit" name="submit" value="saveDOB" class="btn btn-primary waves-effect waves-light me-1">
                                                     Save
                                                 </button>
-   
+
                                             </div>
                                         </div>
                                         </form>
                                     </div>
                                 </div>
-                                
+
                                 <div class="tab-pane " id="attachments" role="tabpanel">
                                     <div class="rates_main">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card">
                                                     <div class="card-body">
-                        
+
                                                         <h4 class="card-title mb-3">Drop your file and attachment here.</h4>
-                        
+
                                                         <div>
                                                             <form action="{{ route('upload-hts-gallery-images') }}" class="form-horizontal form dropzone" method="post" id="formValidatedHtsGallery">
                                                                 @csrf
@@ -3931,12 +3931,12 @@
                                                                     <div class="mb-3">
                                                                         <i class="display-4 text-muted ri-upload-cloud-2-line"></i>
                                                                     </div>
-                                                                    
+
                                                                     <h4>Drop files here or click to upload.</h4>
                                                                 </div>
                                                             </form>
                                                         </div>
-                        
+
                                                         <div class="text-center mt-4">
                                                             {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Send Files</button> --}}
                                                             <div class="card">
@@ -3951,12 +3951,12 @@
                                                                                   <th>Actions</th>
                                                                                </tr>
                                                                             </thead>
-                                                          
-                                                          
+
+
                                                                             <tbody>
                                                                                @if(!empty($data['gallery']))
                                                                                   @foreach($data['gallery'] as $key=>$row)
-                                                                                 
+
                                                                                      <tr>
                                                                                         <td>{{ $key+1 }}</td>
                                                                                         <td>
@@ -3983,7 +3983,7 @@
                                                                             </tbody>
                                                                          </table>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -4028,21 +4028,21 @@
                                             <table class="table table-centered table-nowrap table-hover mb-0">
                                                 <thead>
                                                     <tr>
-                                                        
+
                                                         <th scope="col">Created On</th>
                                                         <th width="300" scope="">Notes</th>
                                                         <th scope="col">Craeted By</th>
                                                         <th scope="col">Last Modified</th>
                                                         <th scope="col">Last Modified By</th>
                                                         <th scope="col">Action</th>
-                                                        
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @if(!empty($data['cr_notes']))
                                                           @foreach($data['cr_notes'] as $key=>$row)
                                                                 <tr>
-                                                                    
+
                                                                     <td>
                                                                         @if (@$row->created_at)
                                                                             {{ date("jS M, Y", strtotime($row->created_at)) }}
@@ -4079,7 +4079,7 @@
                                                                         @endif
                                                                      </td>
 
-                                                                    
+
                                                                     <td>
                                                                         <button type="button" class="btn btn-primary btn-sm waves-effect" data-bs-toggle="modal" data-bs-target="#editConNote-{{ $row->id }}">
                                                                             <i class="fas fa-edit"></i> Edit
@@ -4089,9 +4089,9 @@
                                                                             <i class="fas fa-trash"></i> Delete
                                                                         </button>
                                                                     </td>
-                                                                    
+
                                                                 </tr>
-                                                    
+
                                                                 <div class="modal fade" id="editConNote-{{ $row->id }}" tabindex="-1" role="dialog"
                                                                     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -4112,15 +4112,15 @@
                                                                                             <textarea required="" name="note_edt" class="form-control" rows="5">{{ @$row->notes }}</textarea>
                                                                                         </div>
                                                                                     </div>
-    
+
                                                                                     <div class="form-group mb-3">
                                                                                         <button type="submit" name="submit" value="conNoteEdt"
                                                                                             class="btn btn-primary btn-sm waves-effect waves-light">Save</button>
-    
+
                                                                                         <button type="button" class="btn btn-sm btn-light waves-effect"
                                                                                             data-bs-dismiss="modal">Cancel</button>
                                                                                     </div>
-    
+
                                                                                 </form>
                                                                             </div>
                                                                         </div><!-- /.modal-content -->
@@ -4176,14 +4176,14 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="form-group mb-3">
                                                 <div>
                                                     <textarea style="border:0; color: #8ca3bd!important;" name="more_info" placeholder="More info" class="form-control" rows="3">{{ @$data['userData']->more_info }}</textarea>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group mb-0 float-end">
                                                 <div>
                                                     <button type="submit"

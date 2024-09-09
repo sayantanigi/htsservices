@@ -20,7 +20,7 @@
                </div>
             </div>
          </div>
- 
+
          <div class="card custom-shadow rounded-lg border">
          	<div class="card-body">
              <div class="col-sm-12">
@@ -42,11 +42,11 @@
                   <div class="row justify-content-center">
                         <div class="col-lg-6 mb-4">
                            <div class="searchwithdrop row bg-light py-3 px-2">
-                               
-                                 <div class="col-md-10 form-group">
+
+                                 <div class="col-md-9 form-group">
                                     <input type="text" class="form-control" name="keyword" placeholder="Search here" value="{{ @$keyword }}">
                                  </div>
-                                 <div class="col-md-2">
+                                 <div class="col-md-3">
                                     <button class="btn btn-primary" type="submit" name="submit" value="search"><i class="fa fa-search"></i> Search</button>
                                  </div>
                            </div>
@@ -57,7 +57,7 @@
                   <thead>
                      <tr>
                         <th width="10">#</th>
-                        <th>Name</th>                       
+                        <th>Name</th>
                         <th>Phone</th>
                         <th>Mobile Phone</th>
                         <th>Email</th>
@@ -71,12 +71,12 @@
 
 
                   <tbody>
-                    @if(!$list->isEmpty())                                
+                    @if(!$list->isEmpty())
                         @foreach($list as $key=>$row)
                            @php
                               $state = DB::table('states')->where('id', $row->state)->select('name')->first();
                               $country = DB::table('countries')->where('id', $row->country)->select('name')->first();
-                           @endphp                       
+                           @endphp
                            <tr>
                               <td>{{ $loop->iteration }}. </td>
                               <td>
@@ -86,8 +86,8 @@
                                        &#8212;
                                  @endif
                               </td>
-                            
-                              
+
+
                               <td>
                                  @if (@$row->phone)
                                        {{ @$row->phone_1." ".@$row->phone }}
@@ -149,14 +149,14 @@
                       <tr><td colspan="10" class="text-danger">No Data was found.</td></tr>
                     @endif
                   </tbody>
-                  
+
                </table>
-               
+
                <div class="pagination">
                   {!! $list->links() !!}
               </div>
             </div>
-  
+
             </div>
          </div>
       </div>
