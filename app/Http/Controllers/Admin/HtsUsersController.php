@@ -3130,6 +3130,7 @@ class HtsUsersController extends Controller {
         $auto_id = DB::table('hts_air_waybills')->insertGetId([
             'user_id' => @$hts_user_id,
             'awb_number' => @$awb_number,
+            'check_digit' => $request->check_digit,
             'status' => 1,
             'created_at' => date('Y-m-d h:i:s')
         ]);
@@ -3168,5 +3169,64 @@ class HtsUsersController extends Controller {
         }
         Session::flash($type, $msg);
         return redirect('add-agent/'.$hts_user_type);
+    }
+    public function createHtssimplequerycarrierrates(Request $request) {
+        $hts_user_id = Session::get('hts_user_id');
+        $hts_user_type = Session::get('hts_user_type');
+        $scarrier_auto_id = DB::table('hts_querycarrierrates')->insertGetId([
+            'hts_user_id' => $hts_user_id,
+            'query_tabqr' => $_POST['query_tabqr'],
+            'hts_query_typeqr' => $_POST['hts_query_typeqr'],
+            'hts_transportationqr' => $_POST['hts_transportationqr'],
+            'hts_service_typeqr' => $_POST['hts_service_typeqr'],
+            'hts_frequencyqr' => $_POST['hts_frequencyqr'],
+            'hts_query_dateqr' => $_POST['hts_query_dateqr'],
+            'hts_careerqr' => $_POST['hts_careerqr'],
+            'hts_freight_service_classqr' => $_POST['hts_freight_service_classqr'],
+            'hts_currencyqr' => $_POST['hts_currencyqr'],
+            'hts_customerqr' => $_POST['hts_customerqr'],
+            'hts_other_chargesqr' => $_POST['hts_other_chargesqr'],
+            'hts_port_ladingqr' => $_POST['hts_port_ladingqr'],
+            'hts_origincountryqr' => $_POST['hts_origincountryqr'],
+            'hts_port_receiptqr' => $_POST['hts_port_receiptqr'],
+            'hts_port_unladingqr' => $_POST['hts_port_unladingqr'],
+            'hts_destinationcountryqr' => $_POST['hts_destinationcountryqr'],
+            'hts_port_deliveryladingqr' => $_POST['hts_port_deliveryladingqr'],
+            'hts_containerizedqr' => $_POST['hts_containerizedqr'],
+            'hts_piecesqr' => $_POST['hts_piecesqr'],
+            'hts_weightqr' => $_POST['hts_weightqr'],
+            'hts_weight_unitqr' => $_POST['hts_weight_unitqr'],
+            'hts_volumeqr' => $_POST['hts_volumeqr'],
+            'hts_volume_unitqr' => $_POST['hts_volume_unitqr'],
+            'hts_carrier_commodityqr' => $_POST['hts_carrier_commodityqr'],
+            'status' => 1,
+            'created_at' => date('Y-m-d h:i:s')
+        ]);
+        echo '1';
+    }
+
+    public function createHtsadvquerycarrierrates(Request $request) {
+        //print_r($_POST); die();
+        $hts_user_id = Session::get('hts_user_id');
+        $scarrier_auto_id = DB::table('hts_querycarrierratesadvncqr')->insertGetId([
+            'hts_user_id' => $hts_user_id,
+            'query_typeadvncqr' => $_POST['query_typeadvncqr'],
+            'customeradvncqr' => $_POST['customeradvncqr'],
+            'transportationadvncqr' => $_POST['transportationadvncqr'],
+            'servicetypeadvncqr' => $_POST['servicetypeadvncqr'],
+            'port_receiptadvncqr' => $_POST['port_receiptadvncqr'],
+            'port_ladingadvncqr' => $_POST['port_ladingadvncqr'],
+            'port_unladingadvncqr' => $_POST['port_unladingadvncqr'],
+            'port_deliveryladingadvncqr' => $_POST['port_deliveryladingadvncqr'],
+            'containerizedadvncqr' => $_POST['containerizedadvncqr'],
+            'piecesadvncqr' => $_POST['piecesadvncqr'],
+            'weightadvncqr' => $_POST['weightadvncqr'],
+            'weight_unitadvncqr' => $_POST['weight_unitadvncqr'],
+            'volumeadvncqr' => $_POST['volumeadvncqr'],
+            'volume_unitadvncqr' => $_POST['volume_unitadvncqr'],
+            'status' => 1,
+            'created_at' => date('Y-m-d h:i:s')
+        ]);
+        echo '1';
     }
 }

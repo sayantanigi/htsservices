@@ -254,7 +254,11 @@ Route::get('/deleteHtsGalleryImage/{id}', [HtsUsersController::class, 'deleteHts
 Route::post('/create-hts-notes', [HtsUsersController::class, 'createHtsNotes'])->name('create-hts-notes');
 Route::post('/saveHtsConNote', [HtsUsersController::class, 'saveHtsConNote'])->name('saveHtsConNote');
 Route::get('/deleteHtsConNote/{id}', [HtsUsersController::class, 'deleteHtsConNote'])->name('deleteHtsConNote');
+
 Route::post('/createHtsRateGround', [HtsUsersController::class, 'createHtsRateGround'])->name('createHtsRateGround');
+Route::post('/createHtssimplequerycarrierrates', [HtsUsersController::class, 'createHtssimplequerycarrierrates'])->name('createHtssimplequerycarrierrates');
+Route::post('/createHtsadvquerycarrierrates', [HtsUsersController::class, 'createHtsadvquerycarrierrates'])->name('createHtsadvquerycarrierrates');
+
 Route::post('/updateHtsRateContract', [HtsUsersController::class, 'updateHtsRateContract'])->name('updateHtsRateContract');
 Route::post('/create-hts-rate-notes', [HtsUsersController::class, 'createHtsRateNotes'])->name('create-hts-rate-notes');
 Route::get('/deleteHtsRateGroundTabData/{id}', [HtsUsersController::class, 'deleteHtsRateGroundTabData'])->name('deleteHtsRateGroundTabData');

@@ -2276,6 +2276,10 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="check_digit" style="display: inline-block; float: none; width: 100%; margin-top: 20px;">
+                                                                            <input type="checkbox" name="check_digit" id="check_digit" style="display: inline-block; float: left; margin-right: 10px; margin-top: 4px;">
+                                                                            <p> Check Digit</p>
+                                                                        </div>
                                                                         <div class="row mt-3" style="display: inline-block;">
                                                                             <div class="col-lg-12">
                                                                                 <div class="mb-3 ms-3 form-group">
@@ -2419,8 +2423,7 @@
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="addcontactdetails">Carrier Rate-Ground
-                                                        </h5>
+                                                        <h5 class="modal-title" id="addcontactdetails">Carrier Rate-Ground</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" id="conModalClsRate" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -2703,7 +2706,7 @@
                                                                                         <input type="text" class="form-control" id="validationCustom05" name="transit_time" placeholder="0" value="{{ @$data['rateData']->transit_time }}">
                                                                                     </div>
                                                                                     <div class="mb-3 form-group">
-                                                                                        <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-rate-modal-xl-qcr" class="btn btn-primary btn-sm waves-effect waves-light">
+                                                                                        <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-rate-modal-xl-qcr" id="bsratemodalxlqcr" class="btn btn-primary btn-sm waves-effect waves-light">
                                                                                         <i class="fas fa-plus"></i> Query Carrier Rates</button>
                                                                                     </div>
                                                                                 </div>
@@ -2743,7 +2746,7 @@
                                                                                                         {{ @$item_val->name }}</option>
                                                                                                 @endforeach
                                                                                             @endif
-                                                                                            </select>
+                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-6 form-group">
@@ -2775,12 +2778,12 @@
                                                                                             <option value="" selected="">Select Country</option>
                                                                                             @if (!$data['countries']->isEmpty())
                                                                                                 @foreach ($data['countries'] as $key => $item_val)
-                                                                                                    <option value="{{ @$item_val->name }}"
-                                                                                                        {{ @$item_val->name == @$data['rateData']->port_of_unlanding_country ? 'selected' : '' }}>
-                                                                                                        {{ @$item_val->name }}</option>
-                                                                                                @endforeach
-                                                                                            @endif
-                                                                                            </select>
+                                                                                                <option value="{{ @$item_val->name }}"
+                                                                                                    {{ @$item_val->name == @$data['rateData']->port_of_unlanding_country ? 'selected' : '' }}>
+                                                                                                    {{ @$item_val->name }}</option>
+                                                                                            @endforeach
+                                                                                        @endif
+                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2997,7 +3000,7 @@
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
                                         </div>
-                                        <div class="modal fade bs-rate-modal-xl-qcr" id="myModalRate" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
+                                        <div class="modal fade bs-rate-modal-xl-qcr" id="myModalcarrierRate" role="dialog" aria-labelledby="addcontactdetails" aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -3009,36 +3012,36 @@
                                                             <div class="card-body">
                                                                 <ul class="nav nav-tabs nav-tabs-cus" role="tablist">
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link active" data-bs-toggle="tab" href="#crsimple" id="crsimple_nav" role="tab" aria-selected="false">
+                                                                        <a class="nav-link active" data-bs-toggle="tab" href="#crsimple" id="crsimple_nav" role="tab" aria-selected="true">
                                                                             <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                                             <span class="d-none d-sm-block">Simple</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="nav-item">
-                                                                        <a class="nav-link" data-bs-toggle="tab" href="#cradvance" id="radvance_nav" role="tab" aria-selected="false">
+                                                                        <a class="nav-link" data-bs-toggle="tab" href="#cradvance" id="cradvance_nav" role="tab" aria-selected="false">
                                                                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
                                                                             <span class="d-none d-sm-block">Advance</span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
                                                                 <div class="tab-content p-3 text-muted">
-                                                                    <div class="tab-pane active" id="crsimple" role="tabpanel">
-                                                                        <form action="{{ route('createHtsRateGround') }}" class="custom-validation" method="post" id="formValidatedRateGround">
+                                                                    <div class="tab-pane show active" id="crsimple" role="tabpanel">
+                                                                        <p id="errmsg" style="color: red;">* All fields are mandatory</p>
+                                                                        <form action="{{ route('createHtssimplequerycarrierrates') }}" class="custom-validation qsrsmplform" method="post" id="formValidatedRateGround">
                                                                             @csrf
                                                                             <div class="row">
                                                                                 <div class="col-12">
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Query Type</label>
-                                                                                        <select class="form-control form-select select2" name="hts_rate_method" id="hts_rate_method">
+                                                                                        <label class="form-label">Query Type <span style="color:red">*</span></label>
+                                                                                        <select class="form-control form-select" name="hts_query_typeqr" id="hts_query_typeqr">
                                                                                             <option value="">Choose One</option>
-                                                                                            <option value="Air" {{'Air' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>Air Rate</option>
-                                                                                            <option value="Ocean" {{'Ocean' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>Ocean Rate</option>
-                                                                                            <option value="Ground" {{'Ground' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>Ground Rate</option>
+                                                                                            <option value="Sales" {{'Sales' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>Sales</option>
+                                                                                            <option value="All" {{'All' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>All</option>
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Mode of Transportation</label>
-                                                                                        <select class="form-control select2" name="transportation" id="transportation">
+                                                                                        <label class="form-label">Mode of Transportation <span style="color:red">*</span></label>
+                                                                                        <select class="form-control" name="hts_transportationqr" id="hts_transportationqr">
                                                                                             <option value="">Select...</option>
                                                                                             <optgroup label="Description / Method / Code">
                                                                                                 @if (!$data['transportation']->isEmpty())
@@ -3052,56 +3055,50 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Service Type</label>
-                                                                                        <select class="form-control select2" name="transportation" id="transportation">
-                                                                                            <option value="">Select...</option>
-                                                                                            <optgroup label="Description / Method / Code">
-                                                                                                @if (!$data['transportation']->isEmpty())
-                                                                                                    @foreach ($data['transportation'] as $key => $item_val_t)
-                                                                                                        <option value="{{ @$item_val_t->id }}"
-                                                                                                            {{ @$item_val_t->id == @$data['rateData']->transportation ? 'selected' : '' }}>
-                                                                                                            {{ @$item_val_t->description." / ".@$item_val_t->method." / ".@$item_val_t->code }}</option>
-                                                                                                    @endforeach
-                                                                                                @endif
-                                                                                            </optgroup>
+                                                                                        <label class="form-label">Service Type <span style="color:red">*</span></label>
+                                                                                        <select class="form-control" name="hts_service_typeqr" id="hts_service_typeqr">
+                                                                                            <option value="">Choose One</option>
+                                                                                            <option value="any">Any</option>
+                                                                                            <option value="dtd">Door to Door</option>
+                                                                                            <option value="dtp">Door to Port</option>
+                                                                                            <option value="ptp">Port to Port</option>
+                                                                                            <option value="ptd">Port to Door</option>
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left;">
-                                                                                        <label class="form-label">Frequency</label>
-                                                                                        <select class="form-control select2" name="transportation" id="transportation">
-                                                                                            <option value="">Select...</option>
-                                                                                            <optgroup label="Description / Method / Code">
-                                                                                                @if (!$data['transportation']->isEmpty())
-                                                                                                    @foreach ($data['transportation'] as $key => $item_val_t)
-                                                                                                        <option value="{{ @$item_val_t->id }}"
-                                                                                                            {{ @$item_val_t->id == @$data['rateData']->transportation ? 'selected' : '' }}>
-                                                                                                            {{ @$item_val_t->description." / ".@$item_val_t->method." / ".@$item_val_t->code }}</option>
-                                                                                                    @endforeach
-                                                                                                @endif
-                                                                                            </optgroup>
+                                                                                        <label class="form-label">Frequency <span style="color:red">*</span></label>
+                                                                                        <select class="form-control" name="hts_frequencyqr" id="hts_frequencyqr">
+                                                                                            <option value="">Choose One</option>
+                                                                                            <option value="other">Other</option>
+                                                                                            <option value="daily">Daily</option>
+                                                                                            <option value="weekly">Weekly</option>
+                                                                                            <option value="biweekly">Biweekly</option>
+                                                                                            <option value="monthly">Monthly</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-12"></div>
-                                                                            </div>
-                                                                            <div class="row row-border-bottom mt-3 mb-3">
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="form-check mb-3 form-group">
-                                                                                        <input class="form-check-input" type="checkbox" name="auto_charge" {{ '1' == @$data['rateData']->auto_charge ? 'checked' : '' }} value="1" id="invalidCheck">
-                                                                                        <label class="form-check-label" for="invalidCheck">
-                                                                                            Automatically create charge with this rate
-                                                                                        </label>
-                                                                                        <div class="invalid-feedback">
-                                                                                            You must agree before submitting.
-                                                                                        </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Query Date <span style="color:red">*</span></label>
+                                                                                        <input type="date" class="form-control" name="hts_query_dateqr" id="hts_query_dateqr" required="" placeholder="" value="">
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label class="form-label">Freight Service Class</label>
-                                                                                        <select class="form-control select2" name="freight_service_class">
-                                                                                            <option value="">Select</option>
-                                                                                            <optgroup label="Description / Code / Account Name">
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Carrier <span style="color:red">*</span></label>
+                                                                                        <select class="form-select" aria-label="Default select example" name="hts_careerqr" id="hts_careerqr">
+                                                                                            <option value="" selected="">Choose One</option>
+                                                                                            @if (!empty($data['all_carriers_contact']))
+                                                                                                @foreach ($data['all_carriers_contact'] as $key => $item_val)
+                                                                                                <option value="{{ @$item_val->id }}" {{ @$item_val->id == @$data['contactData']->parent ? 'selected' : '' }}> {{ @$item_val->name." - ".@$item_val->entity_id }}</option>
+                                                                                                @endforeach
+                                                                                            @endif
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <div class="col-6" style="display: inline-block; float: left;">
+                                                                                            <label class="form-label">Freight Service Class <span style="color:red">*</span></label>
+                                                                                            <select class="form-control" name="hts_freight_service_classqr" id="hts_freight_service_classqr">
+                                                                                                <option value="">Select</option>
+                                                                                                <optgroup label="Description / Code / Account Name">
                                                                                                 @if (!$data['freight_service_class']->isEmpty())
                                                                                                     @foreach ($data['freight_service_class'] as $key => $item_val_t2)
                                                                                                         <option value="{{ @$item_val_t2->id }}"
@@ -3109,455 +3106,580 @@
                                                                                                             {{ @$item_val_t2->description." / ".@$item_val_t2->code." / ".@$item_val_t2->account_name }}</option>
                                                                                                     @endforeach
                                                                                                 @endif
+                                                                                                </optgroup>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <!-- <div class="col-6" style="display: inline-block; float: left; margin-top: 30px; padding: 0 10px;">
+                                                                                            <button class="btn btn-primary" value="rateGround">Select</button>
+                                                                                        </div> -->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Currency <span style="color:red">*</span></label>
+                                                                                        <select name="hts_currencyqr" id="hts_currencyqr" class="form-select">
+                                                                                            <option value="USD" {{ 'USD' == @$data['rateData']->currency ? 'selected' : '' }}>USD United States Dollar</option>
+                                                                                            <option value="EUR" {{ 'EUR' == @$data['rateData']->currency ? 'selected' : '' }}>EUR Euro</option>
+                                                                                            <option value="JPY" {{ 'JPY' == @$data['rateData']->currency ? 'selected' : '' }}>JPY Japanese Yen</option>
+                                                                                            <option value="GBP" {{ 'GBP' == @$data['rateData']->currency ? 'selected' : '' }}>GBP British Pound</option>
+                                                                                            <option disabled>──────────</option>
+                                                                                            <option value="AED" {{ 'AED' == @$data['rateData']->currency ? 'selected' : '' }}>AED United Arab Emirates dirham</option>
+                                                                                            <option value="AFN" {{ 'AFN' == @$data['rateData']->currency ? 'selected' : '' }}>AFN Afghan afghani</option>
+                                                                                            <option value="ALL" {{ 'ALL' == @$data['rateData']->currency ? 'selected' : '' }}>ALL Albanian lek</option>
+                                                                                            <option value="AMD" {{ 'AMD' == @$data['rateData']->currency ? 'selected' : '' }}>AMD Armenian dram</option>
+                                                                                            <option value="ANG" {{ 'ANG' == @$data['rateData']->currency ? 'selected' : '' }}>ANG Netherlands Antillean guilder</option>
+                                                                                            <option value="AOA" {{ 'AOA' == @$data['rateData']->currency ? 'selected' : '' }}>AOA Angolan kwanza</option>
+                                                                                            <option value="ARS" {{ 'ARS' == @$data['rateData']->currency ? 'selected' : '' }}>ARS Argentine peso</option>
+                                                                                            <option value="AUD" {{ 'AUD' == @$data['rateData']->currency ? 'selected' : '' }}>AUD Australian dollar</option>
+                                                                                            <option value="AWG" {{ 'AWG' == @$data['rateData']->currency ? 'selected' : '' }}>AWG Aruban florin</option>
+                                                                                            <option value="AZN" {{ 'AZN' == @$data['rateData']->currency ? 'selected' : '' }}>AZN Azerbaijani manat</option>
+                                                                                            <option value="BAM" {{ 'BAM' == @$data['rateData']->currency ? 'selected' : '' }}>BAM Bosnia and Herzegovina convertible mark</option>
+                                                                                            <option value="BBD" {{ 'BBD' == @$data['rateData']->currency ? 'selected' : '' }}>BBD Barbadian dollar</option>
+                                                                                            <option value="BDT" {{ 'BDT' == @$data['rateData']->currency ? 'selected' : '' }}>BDT Bangladeshi taka</option>
+                                                                                            <option value="BGN" {{ 'BGN' == @$data['rateData']->currency ? 'selected' : '' }}>BGN Bulgarian lev</option>
+                                                                                            <option value="BHD" {{ 'BHD' == @$data['rateData']->currency ? 'selected' : '' }}>BHD Bahraini dinar</option>
+                                                                                            <option value="BIF" {{ 'BIF' == @$data['rateData']->currency ? 'selected' : '' }}>BIF Burundian franc</option>
+                                                                                            <option value="BMD" {{ 'BMD' == @$data['rateData']->currency ? 'selected' : '' }}>BMD Bermudian dollar</option>
+                                                                                            <option value="BND" {{ 'BND' == @$data['rateData']->currency ? 'selected' : '' }}>BND Brunei dollar</option>
+                                                                                            <option value="BOB" {{ 'BOB' == @$data['rateData']->currency ? 'selected' : '' }}>BOB Bolivian boliviano</option>
+                                                                                            <option value="BRL" {{ 'BRL' == @$data['rateData']->currency ? 'selected' : '' }}>BRL Brazilian real</option>
+                                                                                            <option value="BSD" {{ 'BSD' == @$data['rateData']->currency ? 'selected' : '' }}>BSD Bahamian dollar</option>
+                                                                                            <option value="BTN" {{ 'BTN' == @$data['rateData']->currency ? 'selected' : '' }}>BTN Bhutanese ngultrum</option>
+                                                                                            <option value="BWP" {{ 'BWP' == @$data['rateData']->currency ? 'selected' : '' }}>BWP Botswana pula</option>
+                                                                                            <option value="BYN" {{ 'BYN' == @$data['rateData']->currency ? 'selected' : '' }}>BYN Belarusian ruble</option>
+                                                                                            <option value="BZD" {{ 'BZD' == @$data['rateData']->currency ? 'selected' : '' }}>BZD Belize dollar</option>
+                                                                                            <option value="CAD" {{ 'CAD' == @$data['rateData']->currency ? 'selected' : '' }}>CAD Canadian dollar</option>
+                                                                                            <option value="CDF" {{ 'CDF' == @$data['rateData']->currency ? 'selected' : '' }}>CDF Congolese franc</option>
+                                                                                            <option value="CHF" {{ 'CHF' == @$data['rateData']->currency ? 'selected' : '' }}>CHF Swiss franc</option>
+                                                                                            <option value="CLP" {{ 'CLP' == @$data['rateData']->currency ? 'selected' : '' }}>CLP Chilean peso</option>
+                                                                                            <option value="CNY" {{ 'CNY' == @$data['rateData']->currency ? 'selected' : '' }}>CNY Chinese yuan</option>
+                                                                                            <option value="COP" {{ 'COP' == @$data['rateData']->currency ? 'selected' : '' }}>COP Colombian peso</option>
+                                                                                            <option value="CRC" {{ 'CRC' == @$data['rateData']->currency ? 'selected' : '' }}>CRC Costa Rican colón</option>
+                                                                                            <option value="CUC" {{ 'CUC' == @$data['rateData']->currency ? 'selected' : '' }}>CUC Cuban convertible peso</option>
+                                                                                            <option value="CUP" {{ 'CUP' == @$data['rateData']->currency ? 'selected' : '' }}>CUP Cuban peso</option>
+                                                                                            <option value="CVE" {{ 'CVE' == @$data['rateData']->currency ? 'selected' : '' }}>CVE Cape Verdean escudo</option>
+                                                                                            <option value="CZK" {{ 'CZK' == @$data['rateData']->currency ? 'selected' : '' }}>CZK Czech koruna</option>
+                                                                                            <option value="DJF" {{ 'DJF' == @$data['rateData']->currency ? 'selected' : '' }}>DJF Djiboutian franc</option>
+                                                                                            <option value="DKK" {{ 'DKK' == @$data['rateData']->currency ? 'selected' : '' }}>DKK Danish krone</option>
+                                                                                            <option value="DOP" {{ 'DOP' == @$data['rateData']->currency ? 'selected' : '' }}>DOP Dominican peso</option>
+                                                                                            <option value="DZD" {{ 'DZD' == @$data['rateData']->currency ? 'selected' : '' }}>DZD Algerian dinar</option>
+                                                                                            <option value="EGP" {{ 'EGP' == @$data['rateData']->currency ? 'selected' : '' }}>EGP Egyptian pound</option>
+                                                                                            <option value="ERN" {{ 'ERN' == @$data['rateData']->currency ? 'selected' : '' }}>ERN Eritrean nakfa</option>
+                                                                                            <option value="ETB" {{ 'ETB' == @$data['rateData']->currency ? 'selected' : '' }}>ETB Ethiopian birr</option>
+                                                                                            <option value="EUR" {{ 'EUR' == @$data['rateData']->currency ? 'selected' : '' }}>EUR EURO</option>
+                                                                                            <option value="FJD" {{ 'FJD' == @$data['rateData']->currency ? 'selected' : '' }}>FJD Fijian dollar</option>
+                                                                                            <option value="FKP" {{ 'FKP' == @$data['rateData']->currency ? 'selected' : '' }}>FKP Falkland Islands pound</option>
+                                                                                            <option value="GBP" {{ 'GBP' == @$data['rateData']->currency ? 'selected' : '' }}>GBP British pound</option>
+                                                                                            <option value="GEL" {{ 'GEL' == @$data['rateData']->currency ? 'selected' : '' }}>GEL Georgian lari</option>
+                                                                                            <option value="GGP" {{ 'GGP' == @$data['rateData']->currency ? 'selected' : '' }}>GGP Guernsey pound</option>
+                                                                                            <option value="GHS" {{ 'GHS' == @$data['rateData']->currency ? 'selected' : '' }}>GHS Ghanaian cedi</option>
+                                                                                            <option value="GIP" {{ 'GIP' == @$data['rateData']->currency ? 'selected' : '' }}>GIP Gibraltar pound</option>
+                                                                                            <option value="GMD" {{ 'GMD' == @$data['rateData']->currency ? 'selected' : '' }}>GMD Gambian dalasi</option>
+                                                                                            <option value="GNF" {{ 'GNF' == @$data['rateData']->currency ? 'selected' : '' }}>GNF Guinean franc</option>
+                                                                                            <option value="GTQ" {{ 'GTQ' == @$data['rateData']->currency ? 'selected' : '' }}>GTQ Guatemalan quetzal</option>
+                                                                                            <option value="GYD" {{ 'GYD' == @$data['rateData']->currency ? 'selected' : '' }}>GYD Guyanese dollar</option>
+                                                                                            <option value="HKD" {{ 'HKD' == @$data['rateData']->currency ? 'selected' : '' }}>HKD Hong Kong dollar</option>
+                                                                                            <option value="HNL" {{ 'HNL' == @$data['rateData']->currency ? 'selected' : '' }}>HNL Honduran lempira</option>
+                                                                                            <option value="HRK" {{ 'HRK' == @$data['rateData']->currency ? 'selected' : '' }}>HRK Croatian kuna</option>
+                                                                                            <option value="HTG" {{ 'HTG' == @$data['rateData']->currency ? 'selected' : '' }}>HTG Haitian gourde</option>
+                                                                                            <option value="HUF" {{ 'HUF' == @$data['rateData']->currency ? 'selected' : '' }}>HUF Hungarian forint</option>
+                                                                                            <option value="IDR" {{ 'IDR' == @$data['rateData']->currency ? 'selected' : '' }}>IDR Indonesian rupiah</option>
+                                                                                            <option value="ILS" {{ 'ILS' == @$data['rateData']->currency ? 'selected' : '' }}>ILS Israeli new shekel</option>
+                                                                                            <option value="IMP" {{ 'IMP' == @$data['rateData']->currency ? 'selected' : '' }}>IMP Manx pound</option>
+                                                                                            <option value="INR" {{ 'INR' == @$data['rateData']->currency ? 'selected' : '' }}>INR Indian rupee</option>
+                                                                                            <option value="IQD" {{ 'IQD' == @$data['rateData']->currency ? 'selected' : '' }}>IQD Iraqi dinar</option>
+                                                                                            <option value="IRR" {{ 'IRR' == @$data['rateData']->currency ? 'selected' : '' }}>IRR Iranian rial</option>
+                                                                                            <option value="ISK" {{ 'ISK' == @$data['rateData']->currency ? 'selected' : '' }}>ISK Icelandic króna</option>
+                                                                                            <option value="JEP" {{ 'JEP' == @$data['rateData']->currency ? 'selected' : '' }}>JEP Jersey pound</option>
+                                                                                            <option value="JMD" {{ 'JMD' == @$data['rateData']->currency ? 'selected' : '' }}>JMD Jamaican dollar</option>
+                                                                                            <option value="JOD" {{ 'JOD' == @$data['rateData']->currency ? 'selected' : '' }}>JOD Jordanian dinar</option>
+                                                                                            <option value="JPY" {{ 'JPY' == @$data['rateData']->currency ? 'selected' : '' }}>JPY Japanese yen</option>
+                                                                                            <option value="KES" {{ 'KES' == @$data['rateData']->currency ? 'selected' : '' }}>KES Kenyan shilling</option>
+                                                                                            <option value="KGS" {{ 'KGS' == @$data['rateData']->currency ? 'selected' : '' }}>KGS Kyrgyzstani som</option>
+                                                                                            <option value="KHR" {{ 'KHR' == @$data['rateData']->currency ? 'selected' : '' }}>KHR Cambodian riel</option>
+                                                                                            <option value="KID" {{ 'KID' == @$data['rateData']->currency ? 'selected' : '' }}>KID Kiribati dollar</option>
+                                                                                            <option value="KMF" {{ 'KMF' == @$data['rateData']->currency ? 'selected' : '' }}>KMF Comorian franc</option>
+                                                                                            <option value="KPW" {{ 'KPW' == @$data['rateData']->currency ? 'selected' : '' }}>KPW North Korean won</option>
+                                                                                            <option value="KRW" {{ 'KRW' == @$data['rateData']->currency ? 'selected' : '' }}>KRW South Korean won</option>
+                                                                                            <option value="KWD" {{ 'KWD' == @$data['rateData']->currency ? 'selected' : '' }}>KWD Kuwaiti dinar</option>
+                                                                                            <option value="KYD" {{ 'KYD' == @$data['rateData']->currency ? 'selected' : '' }}>KYD Cayman Islands dollar</option>
+                                                                                            <option value="KZT" {{ 'KZT' == @$data['rateData']->currency ? 'selected' : '' }}>KZT Kazakhstani tenge</option>
+                                                                                            <option value="LAK" {{ 'LAK' == @$data['rateData']->currency ? 'selected' : '' }}>LAK Lao kip</option>
+                                                                                            <option value="LBP" {{ 'LBP' == @$data['rateData']->currency ? 'selected' : '' }}>LBP Lebanese pound</option>
+                                                                                            <option value="LKR" {{ 'LKR' == @$data['rateData']->currency ? 'selected' : '' }}>LKR Sri Lankan rupee</option>
+                                                                                            <option value="LRD" {{ 'LRD' == @$data['rateData']->currency ? 'selected' : '' }}>LRD Liberian dollar</option>
+                                                                                            <option value="LSL" {{ 'LSL' == @$data['rateData']->currency ? 'selected' : '' }}>LSL Lesotho loti</option>
+                                                                                            <option value="LYD" {{ 'LYD' == @$data['rateData']->currency ? 'selected' : '' }}>LYD Libyan dinar</option>
+                                                                                            <option value="MAD" {{ 'MAD' == @$data['rateData']->currency ? 'selected' : '' }}>MAD Moroccan dirham</option>
+                                                                                            <option value="MDL" {{ 'MDL' == @$data['rateData']->currency ? 'selected' : '' }}>MDL Moldovan leu</option>
+                                                                                            <option value="MGA" {{ 'MGA' == @$data['rateData']->currency ? 'selected' : '' }}>MGA Malagasy ariary</option>
+                                                                                            <option value="MKD" {{ 'MKD' == @$data['rateData']->currency ? 'selected' : '' }}>MKD Macedonian denar</option>
+                                                                                            <option value="MMK" {{ 'MMK' == @$data['rateData']->currency ? 'selected' : '' }}>MMK Burmese kyat</option>
+                                                                                            <option value="MNT" {{ 'MNT' == @$data['rateData']->currency ? 'selected' : '' }}>MNT Mongolian tögrög</option>
+                                                                                            <option value="MOP" {{ 'MOP' == @$data['rateData']->currency ? 'selected' : '' }}>MOP Macanese pataca</option>
+                                                                                            <option value="MRU" {{ 'MRU' == @$data['rateData']->currency ? 'selected' : '' }}>MRU Mauritanian ouguiya</option>
+                                                                                            <option value="MUR" {{ 'MUR' == @$data['rateData']->currency ? 'selected' : '' }}>MUR Mauritian rupee</option>
+                                                                                            <option value="MVR" {{ 'MVR' == @$data['rateData']->currency ? 'selected' : '' }}>MVR Maldivian rufiyaa</option>
+                                                                                            <option value="MWK" {{ 'MWK' == @$data['rateData']->currency ? 'selected' : '' }}>MWK Malawian kwacha</option>
+                                                                                            <option value="MXN" {{ 'MXN' == @$data['rateData']->currency ? 'selected' : '' }}>MXN Mexican peso</option>
+                                                                                            <option value="MYR" {{ 'MYR' == @$data['rateData']->currency ? 'selected' : '' }}>MYR Malaysian ringgit</option>
+                                                                                            <option value="MZN" {{ 'MZN' == @$data['rateData']->currency ? 'selected' : '' }}>MZN Mozambican metical</option>
+                                                                                            <option value="NAD" {{ 'NAD' == @$data['rateData']->currency ? 'selected' : '' }}>NAD Namibian dollar</option>
+                                                                                            <option value="NGN" {{ 'NGN' == @$data['rateData']->currency ? 'selected' : '' }}>NGN Nigerian naira</option>
+                                                                                            <option value="NIO" {{ 'NIO' == @$data['rateData']->currency ? 'selected' : '' }}>NIO Nicaraguan córdoba</option>
+                                                                                            <option value="NOK" {{ 'NOK' == @$data['rateData']->currency ? 'selected' : '' }}>NOK Norwegian krone</option>
+                                                                                            <option value="NPR" {{ 'NPR' == @$data['rateData']->currency ? 'selected' : '' }}>NPR Nepalese rupee</option>
+                                                                                            <option value="NZD" {{ 'NZD' == @$data['rateData']->currency ? 'selected' : '' }}>NZD New Zealand dollar</option>
+                                                                                            <option value="OMR" {{ 'OMR' == @$data['rateData']->currency ? 'selected' : '' }}>OMR Omani rial</option>
+                                                                                            <option value="PAB" {{ 'PAB' == @$data['rateData']->currency ? 'selected' : '' }}>PAB Panamanian balboa</option>
+                                                                                            <option value="PEN" {{ 'PEN' == @$data['rateData']->currency ? 'selected' : '' }}>PEN Peruvian sol</option>
+                                                                                            <option value="PGK" {{ 'PGK' == @$data['rateData']->currency ? 'selected' : '' }}>PGK Papua New Guinean kina</option>
+                                                                                            <option value="PHP" {{ 'PHP' == @$data['rateData']->currency ? 'selected' : '' }}>PHP Philippine peso</option>
+                                                                                            <option value="PKR" {{ 'PKR' == @$data['rateData']->currency ? 'selected' : '' }}>PKR Pakistani rupee</option>
+                                                                                            <option value="PLN" {{ 'PLN' == @$data['rateData']->currency ? 'selected' : '' }}>PLN Polish złoty</option>
+                                                                                            <option value="PRB" {{ 'PRB' == @$data['rateData']->currency ? 'selected' : '' }}>PRB Transnistrian ruble</option>
+                                                                                            <option value="PYG" {{ 'PYG' == @$data['rateData']->currency ? 'selected' : '' }}>PYG Paraguayan guaraní</option>
+                                                                                            <option value="QAR" {{ 'QAR' == @$data['rateData']->currency ? 'selected' : '' }}>QAR Qatari riyal</option>
+                                                                                            <option value="RON" {{ 'RON' == @$data['rateData']->currency ? 'selected' : '' }}>RON Romanian leu</option>
+                                                                                            <option value="RSD" {{ 'RSD' == @$data['rateData']->currency ? 'selected' : '' }}>RSD Serbian dinar</option>
+                                                                                            <option value="RUB" {{ 'RUB' == @$data['rateData']->currency ? 'selected' : '' }}>RUB Russian ruble</option>
+                                                                                            <option value="RWF" {{ 'RWF' == @$data['rateData']->currency ? 'selected' : '' }}>RWF Rwandan franc</option>
+                                                                                            <option value="SAR" {{ 'SAR' == @$data['rateData']->currency ? 'selected' : '' }}>SAR Saudi riyal</option>
+                                                                                            <option value="SEK" {{ 'SEK' == @$data['rateData']->currency ? 'selected' : '' }}>SEK Swedish krona</option>
+                                                                                            <option value="SGD" {{ 'SGD' == @$data['rateData']->currency ? 'selected' : '' }}>SGD Singapore dollar</option>
+                                                                                            <option value="SHP" {{ 'SHP' == @$data['rateData']->currency ? 'selected' : '' }}>SHP Saint Helena pound</option>
+                                                                                            <option value="SLL" {{ 'SLL' == @$data['rateData']->currency ? 'selected' : '' }}>SLL Sierra Leonean leone</option>
+                                                                                            <option value="SLS" {{ 'SLS' == @$data['rateData']->currency ? 'selected' : '' }}>SLS Somaliland shilling</option>
+                                                                                            <option value="SOS" {{ 'SOS' == @$data['rateData']->currency ? 'selected' : '' }}>SOS Somali shilling</option>
+                                                                                            <option value="SRD" {{ 'SRD' == @$data['rateData']->currency ? 'selected' : '' }}>SRD Surinamese dollar</option>
+                                                                                            <option value="SSP" {{ 'SSP' == @$data['rateData']->currency ? 'selected' : '' }}>SSP South Sudanese pound</option>
+                                                                                            <option value="STN" {{ 'STN' == @$data['rateData']->currency ? 'selected' : '' }}>STN São Tomé and Príncipe dobra</option>
+                                                                                            <option value="SYP" {{ 'SYP' == @$data['rateData']->currency ? 'selected' : '' }}>SYP Syrian pound</option>
+                                                                                            <option value="SZL" {{ 'SZL' == @$data['rateData']->currency ? 'selected' : '' }}>SZL Swazi lilangeni</option>
+                                                                                            <option value="THB" {{ 'THB' == @$data['rateData']->currency ? 'selected' : '' }}>THB Thai baht</option>
+                                                                                            <option value="TJS" {{ 'TJS' == @$data['rateData']->currency ? 'selected' : '' }}>TJS Tajikistani somoni</option>
+                                                                                            <option value="TMT" {{ 'TMT' == @$data['rateData']->currency ? 'selected' : '' }}>TMT Turkmenistan manat</option>
+                                                                                            <option value="TND" {{ 'TND' == @$data['rateData']->currency ? 'selected' : '' }}>TND Tunisian dinar</option>
+                                                                                            <option value="TOP" {{ 'TOP' == @$data['rateData']->currency ? 'selected' : '' }}>TOP Tongan paʻanga</option>
+                                                                                            <option value="TRY" {{ 'TRY' == @$data['rateData']->currency ? 'selected' : '' }}>TRY Turkish lira</option>
+                                                                                            <option value="TTD" {{ 'TTD' == @$data['rateData']->currency ? 'selected' : '' }}>TTD Trinidad and Tobago dollar</option>
+                                                                                            <option value="TVD" {{ 'TVD' == @$data['rateData']->currency ? 'selected' : '' }}>TVD Tuvaluan dollar</option>
+                                                                                            <option value="TWD" {{ 'TWD' == @$data['rateData']->currency ? 'selected' : '' }}>TWD New Taiwan dollar</option>
+                                                                                            <option value="TZS" {{ 'TZS' == @$data['rateData']->currency ? 'selected' : '' }}>TZS Tanzanian shilling</option>
+                                                                                            <option value="UAH" {{ 'UAH' == @$data['rateData']->currency ? 'selected' : '' }}>UAH Ukrainian hryvnia</option>
+                                                                                            <option value="UGX" {{ 'UGX' == @$data['rateData']->currency ? 'selected' : '' }}>UGX Ugandan shilling</option>
+                                                                                            <option value="USD" {{ 'USD' == @$data['rateData']->currency ? 'selected' : '' }}>USD United States dollar</option>
+                                                                                            <option value="UYU" {{ 'UYU' == @$data['rateData']->currency ? 'selected' : '' }}>UYU Uruguayan peso</option>
+                                                                                            <option value="UZS" {{ 'UZS' == @$data['rateData']->currency ? 'selected' : '' }}>UZS Uzbekistani soʻm</option>
+                                                                                            <option value="VES" {{ 'VES' == @$data['rateData']->currency ? 'selected' : '' }}>VES Venezuelan bolívar soberano</option>
+                                                                                            <option value="VND" {{ 'VND' == @$data['rateData']->currency ? 'selected' : '' }}>VND Vietnamese đồng</option>
+                                                                                            <option value="VUV" {{ 'VUV' == @$data['rateData']->currency ? 'selected' : '' }}>VUV Vanuatu vatu</option>
+                                                                                            <option value="WST" {{ 'WST' == @$data['rateData']->currency ? 'selected' : '' }}>WST Samoan tālā</option>
+                                                                                            <option value="XAF" {{ 'XAF' == @$data['rateData']->currency ? 'selected' : '' }}>XAF Central African CFA franc</option>
+                                                                                            <option value="XCD" {{ 'XCD' == @$data['rateData']->currency ? 'selected' : '' }}>XCD Eastern Caribbean dollar</option>
+                                                                                            <option value="XOF" {{ 'XOF' == @$data['rateData']->currency ? 'selected' : '' }}>XOF West African CFA franc</option>
+                                                                                            <option value="XPF" {{ 'XPF' == @$data['rateData']->currency ? 'selected' : '' }}>XPF CFP franc</option>
+                                                                                            <option value="ZAR" {{ 'ZAR' == @$data['rateData']->currency ? 'selected' : '' }}>ZAR South African rand</option>
+                                                                                            <option value="ZMW" {{ 'ZMW' == @$data['rateData']->currency ? 'selected' : '' }}>ZMW Zambian kwacha</option>
+                                                                                            <option value="ZWB" {{ 'ZWB' == @$data['rateData']->currency ? 'selected' : '' }}>ZWB Zimbabwean bonds</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Customer/Lead <span style="color:red">*</span></label>
+                                                                                        <select class="form-control" name="hts_customerqr" id="hts_customerqr">
+                                                                                            <option value="">Select Option <span style="color:red">*</span></option>
+                                                                                            <optgroup label="Name / Entity ID / Type">
+                                                                                            @php
+                                                                                            $customer = DB::table('hts_users')->where('user_type', 3)->select('id','name','entity_id','parent_entity','user_type')->get();
+                                                                                            @endphp
+                                                                                            @if (!$customer->isEmpty())
+                                                                                                @foreach ($customer as $key => $item_val_qr)
+                                                                                                @php
+                                                                                                $usertypesqr = DB::table('hts_user_types')->where('id', $item_val_qr->user_type)->select('name')->first();
+                                                                                                @endphp
+                                                                                                <option value="{{@$item_val_qr->id}}" {{@$item_val_qr->id == @$data['rateData']->transportation ? 'selected' : ''}}> {{@$item_val_qr->name." / ".@$item_val_qr->entity_id." / ".@$usertypesqr->name }}</option>
+                                                                                                @endforeach
+                                                                                            @endif
                                                                                             </optgroup>
                                                                                         </select>
                                                                                     </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Carriers</label>
-                                                                                        <select class="form-select select2" name="carrier" aria-label="Default select example">
-                                                                                            <option value="">Select Carriers</option>
-                                                                                            <option value="{{ @$data['userData']->id  }}" selected>{{ @$data['userData']->name." ".$data['title']  }}</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-lg-2">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Currency</label>
-                                                                                            <select id="currencyList" name="currency" class="form-select select2">
-                                                                                                <option value="USD" {{ 'USD' == @$data['rateData']->currency ? 'selected' : '' }}>USD United States Dollar</option>
-                                                                                                <option value="EUR" {{ 'EUR' == @$data['rateData']->currency ? 'selected' : '' }}>EUR Euro</option>
-                                                                                                <option value="JPY" {{ 'JPY' == @$data['rateData']->currency ? 'selected' : '' }}>JPY Japanese Yen</option>
-                                                                                                <option value="GBP" {{ 'GBP' == @$data['rateData']->currency ? 'selected' : '' }}>GBP British Pound</option>
-                                                                                                <option disabled>──────────</option>
-                                                                                                <option value="AED" {{ 'AED' == @$data['rateData']->currency ? 'selected' : '' }}>AED United Arab Emirates dirham</option>
-                                                                                                <option value="AFN" {{ 'AFN' == @$data['rateData']->currency ? 'selected' : '' }}>AFN Afghan afghani</option>
-                                                                                                <option value="ALL" {{ 'ALL' == @$data['rateData']->currency ? 'selected' : '' }}>ALL Albanian lek</option>
-                                                                                                <option value="AMD" {{ 'AMD' == @$data['rateData']->currency ? 'selected' : '' }}>AMD Armenian dram</option>
-                                                                                                <option value="ANG" {{ 'ANG' == @$data['rateData']->currency ? 'selected' : '' }}>ANG Netherlands Antillean guilder</option>
-                                                                                                <option value="AOA" {{ 'AOA' == @$data['rateData']->currency ? 'selected' : '' }}>AOA Angolan kwanza</option>
-                                                                                                <option value="ARS" {{ 'ARS' == @$data['rateData']->currency ? 'selected' : '' }}>ARS Argentine peso</option>
-                                                                                                <option value="AUD" {{ 'AUD' == @$data['rateData']->currency ? 'selected' : '' }}>AUD Australian dollar</option>
-                                                                                                <option value="AWG" {{ 'AWG' == @$data['rateData']->currency ? 'selected' : '' }}>AWG Aruban florin</option>
-                                                                                                <option value="AZN" {{ 'AZN' == @$data['rateData']->currency ? 'selected' : '' }}>AZN Azerbaijani manat</option>
-                                                                                                <option value="BAM" {{ 'BAM' == @$data['rateData']->currency ? 'selected' : '' }}>BAM Bosnia and Herzegovina convertible mark</option>
-                                                                                                <option value="BBD" {{ 'BBD' == @$data['rateData']->currency ? 'selected' : '' }}>BBD Barbadian dollar</option>
-                                                                                                <option value="BDT" {{ 'BDT' == @$data['rateData']->currency ? 'selected' : '' }}>BDT Bangladeshi taka</option>
-                                                                                                <option value="BGN" {{ 'BGN' == @$data['rateData']->currency ? 'selected' : '' }}>BGN Bulgarian lev</option>
-                                                                                                <option value="BHD" {{ 'BHD' == @$data['rateData']->currency ? 'selected' : '' }}>BHD Bahraini dinar</option>
-                                                                                                <option value="BIF" {{ 'BIF' == @$data['rateData']->currency ? 'selected' : '' }}>BIF Burundian franc</option>
-                                                                                                <option value="BMD" {{ 'BMD' == @$data['rateData']->currency ? 'selected' : '' }}>BMD Bermudian dollar</option>
-                                                                                                <option value="BND" {{ 'BND' == @$data['rateData']->currency ? 'selected' : '' }}>BND Brunei dollar</option>
-                                                                                                <option value="BOB" {{ 'BOB' == @$data['rateData']->currency ? 'selected' : '' }}>BOB Bolivian boliviano</option>
-                                                                                                <option value="BRL" {{ 'BRL' == @$data['rateData']->currency ? 'selected' : '' }}>BRL Brazilian real</option>
-                                                                                                <option value="BSD" {{ 'BSD' == @$data['rateData']->currency ? 'selected' : '' }}>BSD Bahamian dollar</option>
-                                                                                                <option value="BTN" {{ 'BTN' == @$data['rateData']->currency ? 'selected' : '' }}>BTN Bhutanese ngultrum</option>
-                                                                                                <option value="BWP" {{ 'BWP' == @$data['rateData']->currency ? 'selected' : '' }}>BWP Botswana pula</option>
-                                                                                                <option value="BYN" {{ 'BYN' == @$data['rateData']->currency ? 'selected' : '' }}>BYN Belarusian ruble</option>
-                                                                                                <option value="BZD" {{ 'BZD' == @$data['rateData']->currency ? 'selected' : '' }}>BZD Belize dollar</option>
-                                                                                                <option value="CAD" {{ 'CAD' == @$data['rateData']->currency ? 'selected' : '' }}>CAD Canadian dollar</option>
-                                                                                                <option value="CDF" {{ 'CDF' == @$data['rateData']->currency ? 'selected' : '' }}>CDF Congolese franc</option>
-                                                                                                <option value="CHF" {{ 'CHF' == @$data['rateData']->currency ? 'selected' : '' }}>CHF Swiss franc</option>
-                                                                                                <option value="CLP" {{ 'CLP' == @$data['rateData']->currency ? 'selected' : '' }}>CLP Chilean peso</option>
-                                                                                                <option value="CNY" {{ 'CNY' == @$data['rateData']->currency ? 'selected' : '' }}>CNY Chinese yuan</option>
-                                                                                                <option value="COP" {{ 'COP' == @$data['rateData']->currency ? 'selected' : '' }}>COP Colombian peso</option>
-                                                                                                <option value="CRC" {{ 'CRC' == @$data['rateData']->currency ? 'selected' : '' }}>CRC Costa Rican colón</option>
-                                                                                                <option value="CUC" {{ 'CUC' == @$data['rateData']->currency ? 'selected' : '' }}>CUC Cuban convertible peso</option>
-                                                                                                <option value="CUP" {{ 'CUP' == @$data['rateData']->currency ? 'selected' : '' }}>CUP Cuban peso</option>
-                                                                                                <option value="CVE" {{ 'CVE' == @$data['rateData']->currency ? 'selected' : '' }}>CVE Cape Verdean escudo</option>
-                                                                                                <option value="CZK" {{ 'CZK' == @$data['rateData']->currency ? 'selected' : '' }}>CZK Czech koruna</option>
-                                                                                                <option value="DJF" {{ 'DJF' == @$data['rateData']->currency ? 'selected' : '' }}>DJF Djiboutian franc</option>
-                                                                                                <option value="DKK" {{ 'DKK' == @$data['rateData']->currency ? 'selected' : '' }}>DKK Danish krone</option>
-                                                                                                <option value="DOP" {{ 'DOP' == @$data['rateData']->currency ? 'selected' : '' }}>DOP Dominican peso</option>
-                                                                                                <option value="DZD" {{ 'DZD' == @$data['rateData']->currency ? 'selected' : '' }}>DZD Algerian dinar</option>
-                                                                                                <option value="EGP" {{ 'EGP' == @$data['rateData']->currency ? 'selected' : '' }}>EGP Egyptian pound</option>
-                                                                                                <option value="ERN" {{ 'ERN' == @$data['rateData']->currency ? 'selected' : '' }}>ERN Eritrean nakfa</option>
-                                                                                                <option value="ETB" {{ 'ETB' == @$data['rateData']->currency ? 'selected' : '' }}>ETB Ethiopian birr</option>
-                                                                                                <option value="EUR" {{ 'EUR' == @$data['rateData']->currency ? 'selected' : '' }}>EUR EURO</option>
-                                                                                                <option value="FJD" {{ 'FJD' == @$data['rateData']->currency ? 'selected' : '' }}>FJD Fijian dollar</option>
-                                                                                                <option value="FKP" {{ 'FKP' == @$data['rateData']->currency ? 'selected' : '' }}>FKP Falkland Islands pound</option>
-                                                                                                <option value="GBP" {{ 'GBP' == @$data['rateData']->currency ? 'selected' : '' }}>GBP British pound</option>
-                                                                                                <option value="GEL" {{ 'GEL' == @$data['rateData']->currency ? 'selected' : '' }}>GEL Georgian lari</option>
-                                                                                                <option value="GGP" {{ 'GGP' == @$data['rateData']->currency ? 'selected' : '' }}>GGP Guernsey pound</option>
-                                                                                                <option value="GHS" {{ 'GHS' == @$data['rateData']->currency ? 'selected' : '' }}>GHS Ghanaian cedi</option>
-                                                                                                <option value="GIP" {{ 'GIP' == @$data['rateData']->currency ? 'selected' : '' }}>GIP Gibraltar pound</option>
-                                                                                                <option value="GMD" {{ 'GMD' == @$data['rateData']->currency ? 'selected' : '' }}>GMD Gambian dalasi</option>
-                                                                                                <option value="GNF" {{ 'GNF' == @$data['rateData']->currency ? 'selected' : '' }}>GNF Guinean franc</option>
-                                                                                                <option value="GTQ" {{ 'GTQ' == @$data['rateData']->currency ? 'selected' : '' }}>GTQ Guatemalan quetzal</option>
-                                                                                                <option value="GYD" {{ 'GYD' == @$data['rateData']->currency ? 'selected' : '' }}>GYD Guyanese dollar</option>
-                                                                                                <option value="HKD" {{ 'HKD' == @$data['rateData']->currency ? 'selected' : '' }}>HKD Hong Kong dollar</option>
-                                                                                                <option value="HNL" {{ 'HNL' == @$data['rateData']->currency ? 'selected' : '' }}>HNL Honduran lempira</option>
-                                                                                                <option value="HRK" {{ 'HRK' == @$data['rateData']->currency ? 'selected' : '' }}>HRK Croatian kuna</option>
-                                                                                                <option value="HTG" {{ 'HTG' == @$data['rateData']->currency ? 'selected' : '' }}>HTG Haitian gourde</option>
-                                                                                                <option value="HUF" {{ 'HUF' == @$data['rateData']->currency ? 'selected' : '' }}>HUF Hungarian forint</option>
-                                                                                                <option value="IDR" {{ 'IDR' == @$data['rateData']->currency ? 'selected' : '' }}>IDR Indonesian rupiah</option>
-                                                                                                <option value="ILS" {{ 'ILS' == @$data['rateData']->currency ? 'selected' : '' }}>ILS Israeli new shekel</option>
-                                                                                                <option value="IMP" {{ 'IMP' == @$data['rateData']->currency ? 'selected' : '' }}>IMP Manx pound</option>
-                                                                                                <option value="INR" {{ 'INR' == @$data['rateData']->currency ? 'selected' : '' }}>INR Indian rupee</option>
-                                                                                                <option value="IQD" {{ 'IQD' == @$data['rateData']->currency ? 'selected' : '' }}>IQD Iraqi dinar</option>
-                                                                                                <option value="IRR" {{ 'IRR' == @$data['rateData']->currency ? 'selected' : '' }}>IRR Iranian rial</option>
-                                                                                                <option value="ISK" {{ 'ISK' == @$data['rateData']->currency ? 'selected' : '' }}>ISK Icelandic króna</option>
-                                                                                                <option value="JEP" {{ 'JEP' == @$data['rateData']->currency ? 'selected' : '' }}>JEP Jersey pound</option>
-                                                                                                <option value="JMD" {{ 'JMD' == @$data['rateData']->currency ? 'selected' : '' }}>JMD Jamaican dollar</option>
-                                                                                                <option value="JOD" {{ 'JOD' == @$data['rateData']->currency ? 'selected' : '' }}>JOD Jordanian dinar</option>
-                                                                                                <option value="JPY" {{ 'JPY' == @$data['rateData']->currency ? 'selected' : '' }}>JPY Japanese yen</option>
-                                                                                                <option value="KES" {{ 'KES' == @$data['rateData']->currency ? 'selected' : '' }}>KES Kenyan shilling</option>
-                                                                                                <option value="KGS" {{ 'KGS' == @$data['rateData']->currency ? 'selected' : '' }}>KGS Kyrgyzstani som</option>
-                                                                                                <option value="KHR" {{ 'KHR' == @$data['rateData']->currency ? 'selected' : '' }}>KHR Cambodian riel</option>
-                                                                                                <option value="KID" {{ 'KID' == @$data['rateData']->currency ? 'selected' : '' }}>KID Kiribati dollar</option>
-                                                                                                <option value="KMF" {{ 'KMF' == @$data['rateData']->currency ? 'selected' : '' }}>KMF Comorian franc</option>
-                                                                                                <option value="KPW" {{ 'KPW' == @$data['rateData']->currency ? 'selected' : '' }}>KPW North Korean won</option>
-                                                                                                <option value="KRW" {{ 'KRW' == @$data['rateData']->currency ? 'selected' : '' }}>KRW South Korean won</option>
-                                                                                                <option value="KWD" {{ 'KWD' == @$data['rateData']->currency ? 'selected' : '' }}>KWD Kuwaiti dinar</option>
-                                                                                                <option value="KYD" {{ 'KYD' == @$data['rateData']->currency ? 'selected' : '' }}>KYD Cayman Islands dollar</option>
-                                                                                                <option value="KZT" {{ 'KZT' == @$data['rateData']->currency ? 'selected' : '' }}>KZT Kazakhstani tenge</option>
-                                                                                                <option value="LAK" {{ 'LAK' == @$data['rateData']->currency ? 'selected' : '' }}>LAK Lao kip</option>
-                                                                                                <option value="LBP" {{ 'LBP' == @$data['rateData']->currency ? 'selected' : '' }}>LBP Lebanese pound</option>
-                                                                                                <option value="LKR" {{ 'LKR' == @$data['rateData']->currency ? 'selected' : '' }}>LKR Sri Lankan rupee</option>
-                                                                                                <option value="LRD" {{ 'LRD' == @$data['rateData']->currency ? 'selected' : '' }}>LRD Liberian dollar</option>
-                                                                                                <option value="LSL" {{ 'LSL' == @$data['rateData']->currency ? 'selected' : '' }}>LSL Lesotho loti</option>
-                                                                                                <option value="LYD" {{ 'LYD' == @$data['rateData']->currency ? 'selected' : '' }}>LYD Libyan dinar</option>
-                                                                                                <option value="MAD" {{ 'MAD' == @$data['rateData']->currency ? 'selected' : '' }}>MAD Moroccan dirham</option>
-                                                                                                <option value="MDL" {{ 'MDL' == @$data['rateData']->currency ? 'selected' : '' }}>MDL Moldovan leu</option>
-                                                                                                <option value="MGA" {{ 'MGA' == @$data['rateData']->currency ? 'selected' : '' }}>MGA Malagasy ariary</option>
-                                                                                                <option value="MKD" {{ 'MKD' == @$data['rateData']->currency ? 'selected' : '' }}>MKD Macedonian denar</option>
-                                                                                                <option value="MMK" {{ 'MMK' == @$data['rateData']->currency ? 'selected' : '' }}>MMK Burmese kyat</option>
-                                                                                                <option value="MNT" {{ 'MNT' == @$data['rateData']->currency ? 'selected' : '' }}>MNT Mongolian tögrög</option>
-                                                                                                <option value="MOP" {{ 'MOP' == @$data['rateData']->currency ? 'selected' : '' }}>MOP Macanese pataca</option>
-                                                                                                <option value="MRU" {{ 'MRU' == @$data['rateData']->currency ? 'selected' : '' }}>MRU Mauritanian ouguiya</option>
-                                                                                                <option value="MUR" {{ 'MUR' == @$data['rateData']->currency ? 'selected' : '' }}>MUR Mauritian rupee</option>
-                                                                                                <option value="MVR" {{ 'MVR' == @$data['rateData']->currency ? 'selected' : '' }}>MVR Maldivian rufiyaa</option>
-                                                                                                <option value="MWK" {{ 'MWK' == @$data['rateData']->currency ? 'selected' : '' }}>MWK Malawian kwacha</option>
-                                                                                                <option value="MXN" {{ 'MXN' == @$data['rateData']->currency ? 'selected' : '' }}>MXN Mexican peso</option>
-                                                                                                <option value="MYR" {{ 'MYR' == @$data['rateData']->currency ? 'selected' : '' }}>MYR Malaysian ringgit</option>
-                                                                                                <option value="MZN" {{ 'MZN' == @$data['rateData']->currency ? 'selected' : '' }}>MZN Mozambican metical</option>
-                                                                                                <option value="NAD" {{ 'NAD' == @$data['rateData']->currency ? 'selected' : '' }}>NAD Namibian dollar</option>
-                                                                                                <option value="NGN" {{ 'NGN' == @$data['rateData']->currency ? 'selected' : '' }}>NGN Nigerian naira</option>
-                                                                                                <option value="NIO" {{ 'NIO' == @$data['rateData']->currency ? 'selected' : '' }}>NIO Nicaraguan córdoba</option>
-                                                                                                <option value="NOK" {{ 'NOK' == @$data['rateData']->currency ? 'selected' : '' }}>NOK Norwegian krone</option>
-                                                                                                <option value="NPR" {{ 'NPR' == @$data['rateData']->currency ? 'selected' : '' }}>NPR Nepalese rupee</option>
-                                                                                                <option value="NZD" {{ 'NZD' == @$data['rateData']->currency ? 'selected' : '' }}>NZD New Zealand dollar</option>
-                                                                                                <option value="OMR" {{ 'OMR' == @$data['rateData']->currency ? 'selected' : '' }}>OMR Omani rial</option>
-                                                                                                <option value="PAB" {{ 'PAB' == @$data['rateData']->currency ? 'selected' : '' }}>PAB Panamanian balboa</option>
-                                                                                                <option value="PEN" {{ 'PEN' == @$data['rateData']->currency ? 'selected' : '' }}>PEN Peruvian sol</option>
-                                                                                                <option value="PGK" {{ 'PGK' == @$data['rateData']->currency ? 'selected' : '' }}>PGK Papua New Guinean kina</option>
-                                                                                                <option value="PHP" {{ 'PHP' == @$data['rateData']->currency ? 'selected' : '' }}>PHP Philippine peso</option>
-                                                                                                <option value="PKR" {{ 'PKR' == @$data['rateData']->currency ? 'selected' : '' }}>PKR Pakistani rupee</option>
-                                                                                                <option value="PLN" {{ 'PLN' == @$data['rateData']->currency ? 'selected' : '' }}>PLN Polish złoty</option>
-                                                                                                <option value="PRB" {{ 'PRB' == @$data['rateData']->currency ? 'selected' : '' }}>PRB Transnistrian ruble</option>
-                                                                                                <option value="PYG" {{ 'PYG' == @$data['rateData']->currency ? 'selected' : '' }}>PYG Paraguayan guaraní</option>
-                                                                                                <option value="QAR" {{ 'QAR' == @$data['rateData']->currency ? 'selected' : '' }}>QAR Qatari riyal</option>
-                                                                                                <option value="RON" {{ 'RON' == @$data['rateData']->currency ? 'selected' : '' }}>RON Romanian leu</option>
-                                                                                                <option value="RSD" {{ 'RSD' == @$data['rateData']->currency ? 'selected' : '' }}>RSD Serbian dinar</option>
-                                                                                                <option value="RUB" {{ 'RUB' == @$data['rateData']->currency ? 'selected' : '' }}>RUB Russian ruble</option>
-                                                                                                <option value="RWF" {{ 'RWF' == @$data['rateData']->currency ? 'selected' : '' }}>RWF Rwandan franc</option>
-                                                                                                <option value="SAR" {{ 'SAR' == @$data['rateData']->currency ? 'selected' : '' }}>SAR Saudi riyal</option>
-                                                                                                <option value="SEK" {{ 'SEK' == @$data['rateData']->currency ? 'selected' : '' }}>SEK Swedish krona</option>
-                                                                                                <option value="SGD" {{ 'SGD' == @$data['rateData']->currency ? 'selected' : '' }}>SGD Singapore dollar</option>
-                                                                                                <option value="SHP" {{ 'SHP' == @$data['rateData']->currency ? 'selected' : '' }}>SHP Saint Helena pound</option>
-                                                                                                <option value="SLL" {{ 'SLL' == @$data['rateData']->currency ? 'selected' : '' }}>SLL Sierra Leonean leone</option>
-                                                                                                <option value="SLS" {{ 'SLS' == @$data['rateData']->currency ? 'selected' : '' }}>SLS Somaliland shilling</option>
-                                                                                                <option value="SOS" {{ 'SOS' == @$data['rateData']->currency ? 'selected' : '' }}>SOS Somali shilling</option>
-                                                                                                <option value="SRD" {{ 'SRD' == @$data['rateData']->currency ? 'selected' : '' }}>SRD Surinamese dollar</option>
-                                                                                                <option value="SSP" {{ 'SSP' == @$data['rateData']->currency ? 'selected' : '' }}>SSP South Sudanese pound</option>
-                                                                                                <option value="STN" {{ 'STN' == @$data['rateData']->currency ? 'selected' : '' }}>STN São Tomé and Príncipe dobra</option>
-                                                                                                <option value="SYP" {{ 'SYP' == @$data['rateData']->currency ? 'selected' : '' }}>SYP Syrian pound</option>
-                                                                                                <option value="SZL" {{ 'SZL' == @$data['rateData']->currency ? 'selected' : '' }}>SZL Swazi lilangeni</option>
-                                                                                                <option value="THB" {{ 'THB' == @$data['rateData']->currency ? 'selected' : '' }}>THB Thai baht</option>
-                                                                                                <option value="TJS" {{ 'TJS' == @$data['rateData']->currency ? 'selected' : '' }}>TJS Tajikistani somoni</option>
-                                                                                                <option value="TMT" {{ 'TMT' == @$data['rateData']->currency ? 'selected' : '' }}>TMT Turkmenistan manat</option>
-                                                                                                <option value="TND" {{ 'TND' == @$data['rateData']->currency ? 'selected' : '' }}>TND Tunisian dinar</option>
-                                                                                                <option value="TOP" {{ 'TOP' == @$data['rateData']->currency ? 'selected' : '' }}>TOP Tongan paʻanga</option>
-                                                                                                <option value="TRY" {{ 'TRY' == @$data['rateData']->currency ? 'selected' : '' }}>TRY Turkish lira</option>
-                                                                                                <option value="TTD" {{ 'TTD' == @$data['rateData']->currency ? 'selected' : '' }}>TTD Trinidad and Tobago dollar</option>
-                                                                                                <option value="TVD" {{ 'TVD' == @$data['rateData']->currency ? 'selected' : '' }}>TVD Tuvaluan dollar</option>
-                                                                                                <option value="TWD" {{ 'TWD' == @$data['rateData']->currency ? 'selected' : '' }}>TWD New Taiwan dollar</option>
-                                                                                                <option value="TZS" {{ 'TZS' == @$data['rateData']->currency ? 'selected' : '' }}>TZS Tanzanian shilling</option>
-                                                                                                <option value="UAH" {{ 'UAH' == @$data['rateData']->currency ? 'selected' : '' }}>UAH Ukrainian hryvnia</option>
-                                                                                                <option value="UGX" {{ 'UGX' == @$data['rateData']->currency ? 'selected' : '' }}>UGX Ugandan shilling</option>
-                                                                                                <option value="USD" {{ 'USD' == @$data['rateData']->currency ? 'selected' : '' }}>USD United States dollar</option>
-                                                                                                <option value="UYU" {{ 'UYU' == @$data['rateData']->currency ? 'selected' : '' }}>UYU Uruguayan peso</option>
-                                                                                                <option value="UZS" {{ 'UZS' == @$data['rateData']->currency ? 'selected' : '' }}>UZS Uzbekistani soʻm</option>
-                                                                                                <option value="VES" {{ 'VES' == @$data['rateData']->currency ? 'selected' : '' }}>VES Venezuelan bolívar soberano</option>
-                                                                                                <option value="VND" {{ 'VND' == @$data['rateData']->currency ? 'selected' : '' }}>VND Vietnamese đồng</option>
-                                                                                                <option value="VUV" {{ 'VUV' == @$data['rateData']->currency ? 'selected' : '' }}>VUV Vanuatu vatu</option>
-                                                                                                <option value="WST" {{ 'WST' == @$data['rateData']->currency ? 'selected' : '' }}>WST Samoan tālā</option>
-                                                                                                <option value="XAF" {{ 'XAF' == @$data['rateData']->currency ? 'selected' : '' }}>XAF Central African CFA franc</option>
-                                                                                                <option value="XCD" {{ 'XCD' == @$data['rateData']->currency ? 'selected' : '' }}>XCD Eastern Caribbean dollar</option>
-                                                                                                <option value="XOF" {{ 'XOF' == @$data['rateData']->currency ? 'selected' : '' }}>XOF West African CFA franc</option>
-                                                                                                <option value="XPF" {{ 'XPF' == @$data['rateData']->currency ? 'selected' : '' }}>XPF CFP franc</option>
-                                                                                                <option value="ZAR" {{ 'ZAR' == @$data['rateData']->currency ? 'selected' : '' }}>ZAR South African rand</option>
-                                                                                                <option value="ZMW" {{ 'ZMW' == @$data['rateData']->currency ? 'selected' : '' }}>ZMW Zambian kwacha</option>
-                                                                                                <option value="ZWB" {{ 'ZWB' == @$data['rateData']->currency ? 'selected' : '' }}>ZWB Zimbabwean bonds</option>
-                                                                                            </select>
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Frequency</label>
-                                                                                        <select class="form-select select2" name="carrier_frequency" aria-label="Default select example">
-                                                                                            <option selected="">Select</option>
-                                                                                                @if (!$data['carrier_frequency']->isEmpty())
-                                                                                                    @foreach ($data['carrier_frequency'] as $key => $item_val_t3)
-                                                                                                        <option value="{{ @$item_val_t3->name }}"
-                                                                                                            {{ @$item_val_t3->name == @$data['rateData']->carrier_frequency ? 'selected' : '' }}>
-                                                                                                            {{ @$item_val_t3->name }}</option>
-                                                                                                    @endforeach
+                                                                                    <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <div class="col-6" style="display: inline-block; float: left;">
+                                                                                            <label class="form-label">Other Charges <span style="color:red">*</span></label>
+                                                                                            <select class="form-control" name="hts_other_chargesqr" id="hts_other_chargesqr">
+                                                                                                <option value="">Select Option</option>
+                                                                                                <optgroup label="Description / Code / Account Name">
+                                                                                                @php
+                                                                                                $otherCharges = DB::table('charge_list')->where('status', '1')->select('id', 'code', 'account_name', 'description')->get();
+                                                                                                @endphp
+                                                                                                @if(!empty($otherCharges))
+                                                                                                @foreach ($otherCharges as $key => $item_charge)
+                                                                                                <option value="{{$item_charge->id}}" {{@$item_charge->id == @$data['rateData']->item_charge ? 'selected' : ''}}> {{@$item_charge->description." / ".@$item_charge->code." / ".@$item_charge->account_name}}</option>
+                                                                                                @endforeach
                                                                                                 @endif
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-2">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label for="validationCustom05" class="form-label">Transit Time(Days)</label>
-                                                                                        <input type="text" class="form-control" id="validationCustom05" name="transit_time" placeholder="0" value="{{ @$data['rateData']->transit_time }}">
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <button type="button" style="float: right;" data-bs-toggle="modal" data-bs-target=".bs-rate-modal-xl-qcr" class="btn btn-primary btn-sm waves-effect waves-light">
-                                                                                        <i class="fas fa-plus"></i> Query Carrier Rates</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row row-border-bottom mt-4 mb-3">
-                                                                                <div class="col-lg-6 form-group">
-                                                                                    <label class="form-check-label" style="margin-right: 37px;" for="invalidCheck1">
-                                                                                        <b>Origin:</b>
-                                                                                    </label>
-                                                                                    <div class="form-check mb-3 ml-3" style="display: inline-block;">
-                                                                                        <input class="form-check-input" name="origin_apply_to_country" type="checkbox" {{ '1' == @$data['rateData']->origin_apply_to_country ? 'checked' : '' }} value="1" id="invalidCheck15">
-                                                                                        <label class="form-check-label" for="invalidCheck15">
-                                                                                            Apply to country
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Port of landing</label>
-                                                                                        <select class="form-select select2" name="port_of_landing" aria-label="Default select example">
-                                                                                            <option value="" selected="">Select Port...</option>
-                                                                                            @if (!$data['ports']->isEmpty())
-                                                                                                @foreach ($data['ports'] as $key => $item_val_1)
-                                                                                                    <option value="{{ @$item_val_1->name }}"
-                                                                                                        {{ @$item_val_1->name == @$data['rateData']->port_of_landing ? 'selected' : '' }}>
-                                                                                                        {{ @$item_val_1->name }} - {{ @$item_val_1->port_id }}</option>
-                                                                                                @endforeach
-                                                                                            @endif
+                                                                                                </optgroup>
                                                                                             </select>
+                                                                                        </div>
+                                                                                        <!-- <div class="col-6" style="display: inline-block; float: left; margin-top: 30px; padding: 0 10px;">
+                                                                                            <button class="btn btn-primary" value="rateGround">Select</button>
+                                                                                        </div> -->
                                                                                     </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Country</label>
-                                                                                        <select class="form-select select2" name="port_of_landing_country" aria-label="Default select example">
-                                                                                            <option value="" selected="">Select Country</option>
-                                                                                            @if (!$data['countries']->isEmpty())
+                                                                                </div>
+                                                                                <hr style="margin-top: 20px;">
+                                                                                <div class="col-12">
+                                                                                    <div class="col-6" style="display: inline-block; float: left; border-right: 2px solid #666;">
+                                                                                        <h4>Origin</h4>
+                                                                                        <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <div class="col-9" style="display: inline-block; float: left;">
+                                                                                                <label class="form-label">Port of lading <span style="color:red">*</span></label>
+                                                                                                <select class="form-control form-select" name="hts_port_ladingqr" id="hts_port_ladingqr">
+                                                                                                    <option value="">Choose One</option>
+                                                                                                    @php
+                                                                                                    $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                    @endphp
+                                                                                                    @if(!empty($postList))
+                                                                                                    @foreach ($postList as $key => $plist)
+                                                                                                    <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_ladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                    @endforeach
+                                                                                                    @endif
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <!-- <div class="col-3" style="display: inline-block; float: left; margin-top: 30px; padding: 0 10px;">
+                                                                                                <button class="btn btn-primary" value="rateGround">Select</button>
+                                                                                            </div> -->
+                                                                                        </div>
+                                                                                        <div class="col-lg-4 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <label class="form-label">Country <span style="color:red">*</span></label>
+                                                                                            <select class="form-select" name="hts_origincountryqr" id="hts_origincountryqr">
+                                                                                                <option value="" selected="">Select Country...</option>
+                                                                                                @if (!$data['countries']->isEmpty())
                                                                                                 @foreach ($data['countries'] as $key => $item_val)
-                                                                                                    <option value="{{ @$item_val->name }}"
-                                                                                                        {{ @$item_val->name == @$data['rateData']->port_of_landing_country ? 'selected' : '' }}>
-                                                                                                        {{ @$item_val->name }}</option>
+                                                                                                <option value="{{@$item_val->id}}">{{@$item_val->name}}</option>
                                                                                                 @endforeach
-                                                                                            @endif
+                                                                                                @endif
                                                                                             </select>
+                                                                                        </div>
+                                                                                        <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <div class="col-9" style="display: inline-block; float: left;">
+                                                                                                <label class="form-label">Place of Receipt <span style="color:red">*</span></label>
+                                                                                                <select class="form-control form-select" name="hts_port_receiptqr" id="hts_port_receiptqr">
+                                                                                                    <option value="">Choose One</option>
+                                                                                                    @php
+                                                                                                    $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                    @endphp
+                                                                                                    @if(!empty($postList))
+                                                                                                    @foreach ($postList as $key => $plist)
+                                                                                                    <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_ladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                    @endforeach
+                                                                                                    @endif
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <!-- <div class="col-3" style="display: inline-block; float: left; margin-top: 30px; padding: 0 10px;">
+                                                                                                <button class="btn btn-primary" value="rateGround">Select</button>
+                                                                                            </div> -->
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 form-group">
-                                                                                    <label class="form-check-label" style="margin-right: 37px;" for="invalidCheck1">
-                                                                                        <b>Destination:</b>
-                                                                                    </label>
-                                                                                    <div class="form-check mb-3" style="display: inline-block;">
-                                                                                        <input class="form-check-input" type="checkbox" name="destination_apply_to_country" {{ '1' == @$data['rateData']->destination_apply_to_country ? 'checked' : '' }} value="1" id="invalidCheck2">
-                                                                                        <label class="form-check-label" for="invalidCheck2">
-                                                                                            Apply to country
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Port of unlanding</label>
-                                                                                        <select class="form-select select2" name="port_of_unlanding" aria-label="Default select example">
-                                                                                            <option value="">Select Port...</option>
-                                                                                            @if (!$data['ports']->isEmpty())
-                                                                                                @foreach ($data['ports'] as $key => $item_val_1)
-                                                                                                    <option value="{{ @$item_val_1->name }}"
-                                                                                                        {{ @$item_val_1->name == @$data['rateData']->port_of_unlanding ? 'selected' : '' }}>
-                                                                                                        {{ @$item_val_1->name }} - {{ @$item_val_1->port_id }}</option>
-                                                                                                @endforeach
-                                                                                            @endif
-                                                                                            </select>
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Country</label>
-                                                                                        <select class="form-select select2" name="port_of_unlanding_country" aria-label="Default select example">
-                                                                                            <option value="" selected="">Select Country</option>
-                                                                                            @if (!$data['countries']->isEmpty())
+                                                                                    <div class="col-6" style="display: inline-block; padding: 0px 0px 0px 10px;">
+                                                                                        <h4>Destination</h4>
+                                                                                        <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <div class="col-9" style="display: inline-block; float: left;">
+                                                                                                <label class="form-label">Port of Unlading <span style="color:red">*</span></label>
+                                                                                                <select class="form-control form-select" name="hts_port_unladingqr" id="hts_port_unladingqr">
+                                                                                                    <option value="">Choose One</option>
+                                                                                                    @php
+                                                                                                    $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                    @endphp
+                                                                                                    @if(!empty($postList))
+                                                                                                    @foreach ($postList as $key => $plist)
+                                                                                                    <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_unladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                    @endforeach
+                                                                                                    @endif
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <!-- <div class="col-3" style="display: inline-block; float: left; margin-top: 30px; padding: 0 10px;">
+                                                                                                <button class="btn btn-primary" value="rateGround">Select</button>
+                                                                                            </div> -->
+                                                                                        </div>
+                                                                                        <div class="col-lg-4 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <label class="form-label">Country <span style="color:red">*</span></label>
+                                                                                            <select class="form-select" name="hts_destinationcountryqr" id="hts_destinationcountryqr">
+                                                                                                <option value="" selected="">Choose Country</option>
+                                                                                                @if (!$data['countries']->isEmpty())
                                                                                                 @foreach ($data['countries'] as $key => $item_val)
-                                                                                                    <option value="{{ @$item_val->name }}"
-                                                                                                        {{ @$item_val->name == @$data['rateData']->port_of_unlanding_country ? 'selected' : '' }}>
-                                                                                                        {{ @$item_val->name }}</option>
+                                                                                                <option value="{{@$item_val->id}}">{{@$item_val->name}}</option>
                                                                                                 @endforeach
-                                                                                            @endif
+                                                                                                @endif
                                                                                             </select>
+                                                                                        </div>
+                                                                                        <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <div class="col-9" style="display: inline-block; float: left;">
+                                                                                                <label class="form-label">Place of Delivery <span style="color:red">*</span></label>
+                                                                                                <select class="form-control form-select" name="hts_port_deliveryladingqr" id="hts_port_deliveryladingqr">
+                                                                                                    <option value="">Choose One</option>
+                                                                                                    @php
+                                                                                                    $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                    @endphp
+                                                                                                    @if(!empty($postList))
+                                                                                                    @foreach ($postList as $key => $plist)
+                                                                                                    <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_ladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                    @endforeach
+                                                                                                    @endif
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <!-- <div class="col-3" style="display: inline-block; float: left; margin-top: 30px; padding: 0 10px;">
+                                                                                                <button class="btn btn-primary" value="rateGround">Select</button>
+                                                                                            </div> -->
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="row row-border-bottom mt-4 mb-3">
-                                                                                <div class="col-lg-8">
-                                                                                    <div class="row">
-                                                                                        <div class="col-lg-6">
-                                                                                            <div class="mb-3 form-group">
-                                                                                                <label>Apply By</label>
-                                                                                                <div class="mb-3 form-group">
-                                                                                                    <select class="form-select mb-3 select2" name="apply_by" aria-label="Default select example">
-                                                                                                        <option selected="">Select Here</option>
-                                                                                                        <option value="Weight" {{ 'Weight' == @$data['rateData']->apply_by ? 'selected' : '' }}>Weight</option>
-                                                                                                        <option value="Pieces" {{ 'Pieces' == @$data['rateData']->apply_by ? 'selected' : '' }}>Pieces</option>
-                                                                                                        <option value="Volume" {{ 'Volume' == @$data['rateData']->apply_by ? 'selected' : '' }}>Volume</option>
-                                                                                                        <option value="Container" {{ 'Container' == @$data['rateData']->apply_by ? 'selected' : '' }}>Container</option>
-                                                                                                        <option value="Calculated Amount" {{ 'Calculated Amount' == @$data['rateData']->apply_by ? 'selected' : '' }}>Calculated Amount</option>
-                                                                                                    </select>
-                                                                                                </div>
+                                                                                <hr style="margin-top: 20px;">
+                                                                                <div class="col-12">
+                                                                                    <div class="col-6" style="display: inline-block;">
+                                                                                        <div class="col-3" style="display: inline-block; float: left;">
+                                                                                            <h4>Cargo</h4>
+                                                                                        </div>
+                                                                                        <div class="col-3" style="display: inline-block; float: left;">
+                                                                                            <input type="checkbox" name="hts_containerizedqr" id="hts_containerizedqr" style="display: inline-block; float: left; margin-top: 3px; margin-right: 5px;">
+                                                                                            <p style="display: inline-block; float: left;">Containerized</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-12" style="display: inline-block">
+                                                                                        <div class="col-2" style="display: inline-block; float: left;">
+                                                                                            <label>Pieces <span style="color:red">*</span></label>
+                                                                                            <input type="text" class="form-control" name="hts_piecesqr" id="hts_piecesqr" required="" placeholder="Pieces (Exp: 1000)" value="">
+                                                                                        </div>
+                                                                                        <div class="col-5" style="display: flex;float: left;flex-direction: row;align-items: center;flex-wrap: nowrap;justify-content: center;">
+                                                                                            <div class="col-5">
+                                                                                                <label>Weight <span style="color:red">*</span></label>
+                                                                                                <input type="text" class="form-control" name="hts_weightqr" id="hts_weightqr" required="" placeholder="Weight (0.00)" value="">
+                                                                                            </div>
+                                                                                            <div class="col-6" style="margin: 0px 0px 0px 10px;">
+                                                                                                <label>Unit <span style="color:red">*</span></label>
+                                                                                                <select class="form-control form-select" name="hts_weight_unitqr" id="hts_weight_unitqr">
+                                                                                                    <option value="">Choose an option</option>
+                                                                                                    <option value="kilogram">Kilogram (kg)</option>
+                                                                                                    <option value="gram">Gram (g)</option>
+                                                                                                    <option value="ton">Ton (t)</option>
+                                                                                                    <option value="pound">Pound (lb)</option>
+                                                                                                    <option value="ounce">Ounce (oz)</option>
+                                                                                                    <option value="troyounce">Troy Ounce (ozt)</option>
+                                                                                                </select>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-6">
-                                                                                            <div class="mb-3 form-group">
-                                                                                                <label>&nbsp;</label>
-                                                                                                <select class="form-select select2" name="apply_by_measurement" aria-label="Default select example">
-                                                                                                    <option value="">Select Here</option>
-                                                                                                    <option value="Kilogram(kg)" {{ 'Kilogram(kg)' == @$data['rateData']->apply_by_measurement ? 'selected' : '' }}>Kilogram(kg)</option>
-                                                                                                    <option value="Gram(g)" {{ 'Gram(g)' == @$data['rateData']->apply_by_measurement ? 'selected' : '' }}>Gram(g)</option>
-                                                                                                    <option value="Ton(t)" {{ 'Ton(t)' == @$data['rateData']->apply_by_measurement ? 'selected' : '' }}>Ton(t)</option>
-                                                                                                    <option value="Pound(lb)" {{ 'Pound(lb)' == @$data['rateData']->apply_by_measurement ? 'selected' : '' }}>Pound(lb)</option>
-                                                                                                    <option value="Ounce(oz)" {{ 'Ounce(oz)' == @$data['rateData']->apply_by_measurement ? 'selected' : '' }}>Ounce(oz)</option>
+                                                                                        <div class="col-5" style="display: flex;float: left;flex-direction: row;align-items: center;flex-wrap: nowrap;justify-content: center;">
+                                                                                            <div class="col-5">
+                                                                                                <label>Volume <span style="color:red">*</span></label>
+                                                                                                <input type="text" class="form-control" name="hts_volumeqr" id="hts_volumeqr" required="" placeholder="0.00" value="">
+                                                                                            </div>
+                                                                                            <div class="col-6" style="margin: 0px 0px 0px 10px;">
+                                                                                                <label>Unit <span style="color:red">*</span></label>
+                                                                                                <select class="form-control form-select" name="hts_volume_unitqr" id="hts_volume_unitqr">
+                                                                                                    <option value="">Choose an option</option>
+                                                                                                    <option value="cubic_inch">Cubic inch (in³)</option>
+                                                                                                    <option value="cubic_foot">Cubic foot (ft³)</option>
                                                                                                 </select>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="form-check mb-3 form-group">
-                                                                                        <input class="form-check-input" type="checkbox" name="use_gross_weight" {{ '1' == @$data['rateData']->use_gross_weight ? 'checked' : '' }} value="1" id="invalidCheck78">
-                                                                                        <label class="form-check-label" for="invalidCheck78">
-                                                                                            Use gross weight instead of chargable weight.
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-lg-4">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Description/Commodity</label>
-                                                                                        <select class="form-select mb-3 select2" name="carrier_commodity" aria-label="Default select example">
-                                                                                            <option selected="">Select...</option>
-                                                                                                @if (!$data['carrier_commodity']->isEmpty())
-                                                                                                    @foreach ($data['carrier_commodity'] as $key => $item_val_t4)
-                                                                                                        <option value="{{ @$item_val_t4->name }}"
-                                                                                                            {{ @$item_val_t4->name == @$data['rateData']->carrier_commodity ? 'selected' : '' }}>
-                                                                                                            {{ @$item_val_t4->name }}</option>
-                                                                                                    @endforeach
-                                                                                                @endif
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="form-check mb-3 form-group">
-                                                                                        <input class="form-check-input" type="checkbox" name="hazadours" {{ '1' == @$data['rateData']->hazadours ? 'checked' : '' }} value="1" id="invalidCheck2257">
-                                                                                        <label class="form-check-label" for="invalidCheck2257">
-                                                                                            Hazadours
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row row-border-bottom mt-3 mb-3">
-                                                                                <div class="col-lg-2">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Minimum</label>
-                                                                                        <input type="text" class="form-control" name="minimum" id="validationCustom05" value="{{ @$data['rateData']->minimum }}" placeholder="0.00">
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Rate Per</label>
-                                                                                        <select class="form-select mb-3 select2" name="rate_per" aria-label="Default select example">
-                                                                                            <option selected="">Select Here</option>
-                                                                                            <option value="Unit" {{ 'Unit' == @$data['rateData']->rate_per ? 'selected' : '' }}>Unit</option>
-                                                                                            <option value="Range" {{ 'Range' == @$data['rateData']->rate_per ? 'selected' : '' }}>Range</option>
+                                                                                    <div class="col-12" style="display: inline-block;">
+                                                                                        <label>Description/Comodity <span style="color:red">*</span></label>
+                                                                                        <select class="form-select mb-3" name="hts_carrier_commodityqr" id="hts_carrier_commodityqr" aria-label="Default select example">
+                                                                                            <option value="">Choose an option</option>
+                                                                                            @if (!$data['carrier_commodity']->isEmpty())
+                                                                                            @foreach ($data['carrier_commodity'] as $key => $item_val_t4)
+                                                                                            <option value="{{ @$item_val_t4->name }}" {{ @$item_val_t4->name == @$data['rateData']->carrier_commodity ? 'selected' : '' }}>{{ @$item_val_t4->name }}</option>
+                                                                                            @endforeach
+                                                                                            @endif
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-lg-2">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Maximum</label>
-                                                                                        <input type="text" class="form-control" name="maximum" id="maximum" value="{{ @$data['rateData']->maximum }}" placeholder="0.00">
-                                                                                    </div>
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>lb</label>
-                                                                                        <input type="text" class="form-control" name="rate_val" id="rate_val" value="{{ @$data['rateData']->rate_val }}" placeholder="1.00">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-lg-8 form-group">
-                                                                                    {{-- <a href="javascript:void(0);" style="float: right;" id="AddRateId" class="me-3 text-primary" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Add" aria-label="Add"><i class="mdi mdi-plus font-size-18"></i> Add New</a> --}}
-                                                                                    <div class="table-responsive" id="rateHTMLCal">
-                                                                                        <table class="table table-centered table-nowrap table-border table-hover mb-0">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th scope="col">More Than</th>
-                                                                                                    <th scope="">Rate</th>
-                                                                                                    <th scope="col"></th>
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td>
-                                                                                                        <h5 class="font-size-16">
-                                                                                                            <input class="form-control" type="text" name="more_than" value="{{ @$data['rateData']->more_than ? @$data['rateData']->more_than : '1.00' }}">
-                                                                                                        </h5>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <input class="form-control" type="text" name="rateP" value="{{ @$data['rateData']->rateP ? @$data['rateData']->rateP : '0.0000' }}">
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        {{-- <a href="javascript:void(0);" class="me-3 text-primary" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit" aria-label="Edit"><i class="mdi mdi-pencil font-size-18"></i></a> --}}
-                                                                                                        {{-- <a href="javascript:void(0);" class="text-danger" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="mdi mdi-trash-can font-size-18"></i></a> --}}
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
                                                                             </div>
-                                                                            <div style="text-align: center;">
-                                                                                <button class="btn btn-primary" type="submit" name="submit" value="rateGround">Submit</button>
+                                                                            <div style="text-align: center; margin-top: 15px;">
+                                                                                <button class="btn btn-primary" type="button" name="submit" id="hts_carrierrates">Submit</button>
+                                                                                <input type="hidden" id="query_tabqr" name="query_tabqr" value="simple">
                                                                             </div>
+                                                                            <p id="successmsg" style="color: green">Record saved successfully.</p>
                                                                         </form>
                                                                     </div>
                                                                     <div class="tab-pane" id="cradvance" role="tabpanel">
-                                                                        <form action="{{ route('updateHtsRateContract') }}" class="custom-validation"
-                                                                            method="post" id="formValidatedBillingAddress2ndTab_3">
+                                                                        <p id="errmsgadvn" style="color: red;">* All fields are mandatory</p>
+                                                                        <form action="{{ route('createHtsadvquerycarrierrates') }}" class="custom-validation qsradvncform" method="post" id="formValidatedBillingAddress2ndTab_3">
                                                                             @csrf
                                                                             <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Effect Date
-                                                                                        </label>
-                                                                                        <input type="date" class="form-control" name="effect_date" required="" placeholder="" value="{{ @$data['rateData']->effect_date }}">
+                                                                                <div class="col-12">
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Query Type</label>
+                                                                                        <select class="form-control form-select" name="query_typeadvncqr" id="query_typeadvncqr">
+                                                                                            <option value="">Choose One</option>
+                                                                                            <option value="Sales" {{'Sales' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>Sales</option>
+                                                                                            <option value="All" {{'All' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>All</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Customer/Lead</label>
+                                                                                        <select class="form-control" name="customeradvncqr" id="customeradvncqr">
+                                                                                            <option value="">Select Option</option>
+                                                                                            <optgroup label="Name / Entity ID / Type">
+                                                                                            @php
+                                                                                            $customer = DB::table('hts_users')->where('user_type', 3)->select('id','name','entity_id','parent_entity','user_type')->get();
+                                                                                            @endphp
+                                                                                            @if (!$customer->isEmpty())
+                                                                                                @foreach ($customer as $key => $item_val_qr)
+                                                                                                @php
+                                                                                                $usertypesqr = DB::table('hts_user_types')->where('id', $item_val_qr->user_type)->select('name')->first();
+                                                                                                @endphp
+                                                                                                <option value="{{@$item_val_qr->id}}" {{@$item_val_qr->id == @$data['rateData']->transportation ? 'selected' : ''}}> {{@$item_val_qr->name." / ".@$item_val_qr->entity_id." / ".@$usertypesqr->name }}</option>
+                                                                                                @endforeach
+                                                                                            @endif
+                                                                                            </optgroup>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Mode of Transportation</label>
+                                                                                        <select class="form-control" name="transportationadvncqr" id="transportationadvncqr">
+                                                                                            <option value="">Choose Once</option>
+                                                                                            <optgroup label="Description / Method / Code">
+                                                                                                @if (!$data['transportation']->isEmpty())
+                                                                                                @foreach ($data['transportation'] as $key => $item_val_t)
+                                                                                                <option value="{{ @$item_val_t->id }}" {{ @$item_val_t->id == @$data['rateData']->transportation ? 'selected' : '' }}>{{ @$item_val_t->description." / ".@$item_val_t->method." / ".@$item_val_t->code }}</option>
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                            </optgroup>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                        <label class="form-label">Service Type</label>
+                                                                                        <select class="form-control" name="servicetypeadvncqr" id="servicetypeadvncqr">
+                                                                                            <option value="">Choose One</option>
+                                                                                            <option value="any">Any</option>
+                                                                                            <option value="dtd">Door to Door</option>
+                                                                                            <option value="dtp">Door to Port</option>
+                                                                                            <option value="ptp">Port to Port</option>
+                                                                                            <option value="ptd">Port to Door</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr style="margin-top: 20px;">
+                                                                                <div class="col-12">
+                                                                                    <div class="col-6" style="display: inline-block; float: left; border-right: 2px solid #666;">
+                                                                                        <h4>Origin</h4>
+                                                                                        <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <label class="form-label">Place of Receipt</label>
+                                                                                            <select class="form-control form-select" name="port_receiptadvncqr" id="port_receiptadvncqr">
+                                                                                                <option value="">Choose One</option>
+                                                                                                @php
+                                                                                                $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                @endphp
+                                                                                                @if(!empty($postList))
+                                                                                                @foreach ($postList as $key => $plist)
+                                                                                                <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_ladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <label class="form-label">Port of lading</label>
+                                                                                            <select class="form-control form-select" name="port_ladingadvncqr" id="port_ladingadvncqr">
+                                                                                                <option value="">Choose One</option>
+                                                                                                @php
+                                                                                                $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                @endphp
+                                                                                                @if(!empty($postList))
+                                                                                                @foreach ($postList as $key => $plist)
+                                                                                                <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_ladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-6" style="display: inline-block; padding: 0px 0px 0px 10px;">
+                                                                                        <h4>Destination</h4>
+                                                                                        <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <label class="form-label">Port of Unlading</label>
+                                                                                            <select class="form-control form-select" name="port_unladingadvncqr" id="port_unladingadvncqr">
+                                                                                                <option value="">Choose One</option>
+                                                                                                @php
+                                                                                                $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                @endphp
+                                                                                                @if(!empty($postList))
+                                                                                                @foreach ($postList as $key => $plist)
+                                                                                                <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_unladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
+                                                                                            <label class="form-label">Place of Delivery</label>
+                                                                                            <select class="form-control form-select" name="port_deliveryladingadvncqr" id="port_deliveryladingadvncqr">
+                                                                                                <option value="">Choose One</option>
+                                                                                                @php
+                                                                                                $postList = DB::table('port_lists')->where('status', '1')->select('id', 'port_id', 'name')->get();
+                                                                                                @endphp
+                                                                                                @if(!empty($postList))
+                                                                                                @foreach ($postList as $key => $plist)
+                                                                                                <option value="{{$plist->id}}" {{@$plist->id == @$data['rateData']->port_ladingqr ? 'selected' : ''}}>{{@$plist->port_id." / ".@$plist->name}}</option>
+                                                                                                @endforeach
+                                                                                                @endif
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr style="margin-top: 20px;">
+                                                                                <div class="col-12">
+                                                                                    <div class="col-6" style="display: inline-block;">
+                                                                                        <div class="col-3" style="display: inline-block; float: left;">
+                                                                                            <h4>Cargo</h4>
+                                                                                        </div>
+                                                                                        <div class="col-3" style="display: inline-block; float: left;">
+                                                                                            <input type="checkbox" name="containerizedadvncqr" id="containerizedadvncqr" style="display: inline-block; float: left; margin-top: 3px; margin-right: 5px;">
+                                                                                            <p style="display: inline-block; float: left;">Containerized</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-12" style="display: inline-block">
+                                                                                        <div class="col-2" style="display: inline-block; float: left;">
+                                                                                            <label>Pieces</label>
+                                                                                            <input type="text" class="form-control" name="piecesadvncqr" id="piecesadvncqr" required="" placeholder="Pieces (Exp: 1000)" value="">
+                                                                                        </div>
+                                                                                        <div class="col-5" style="display: flex;float: left;flex-direction: row;align-items: center;flex-wrap: nowrap;justify-content: center;">
+                                                                                            <div class="col-5">
+                                                                                                <label>Weight</label>
+                                                                                                <input type="text" class="form-control" name="weightadvncqr" id="weightadvncqr" required="" placeholder="Weight (0.00)" value="">
+                                                                                            </div>
+                                                                                            <div class="col-6" style="margin: 30px 0px 0px 10px;">
+                                                                                                <select class="form-control form-select" name="weight_unitadvncqr" id="weight_unitadvncqr">
+                                                                                                    <option value="">Choose an option</option>
+                                                                                                    <option value="kilogram">Kilogram (kg)</option>
+                                                                                                    <option value="gram">Gram (g)</option>
+                                                                                                    <option value="ton">Ton (t)</option>
+                                                                                                    <option value="pound">Pound (lb)</option>
+                                                                                                    <option value="ounce">Ounce (oz)</option>
+                                                                                                    <option value="troyounce">Troy Ounce (ozt)</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-5" style="display: flex;float: left;flex-direction: row;align-items: center;flex-wrap: nowrap;justify-content: center;">
+                                                                                            <div class="col-5">
+                                                                                                <label>Volume</label>
+                                                                                                <input type="text" class="form-control" name="volumeadvncqr" id="volumeadvncqr" required="" placeholder="0.00" value="">
+                                                                                            </div>
+                                                                                            <div class="col-6" style="margin: 30px 0px 0px 10px;">
+                                                                                                <select class="form-control form-select" name="volume_unitadvncqr" id="volume_unitadvncqr">
+                                                                                                    <option value="">Choose an option</option>
+                                                                                                    <option value="cubic_inch">Cubic inch (in³)</option>
+                                                                                                    <option value="cubic_foot">Cubic foot (ft³)</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Expiration Date
-                                                                                        </label>
-                                                                                        <input type="date" class="form-control" name="expiratin_date" required="" placeholder="" value="{{ @$data['rateData']->expiratin_date }}">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Contract Number
-                                                                                        </label>
-                                                                                        <input type="text" class="form-control" name="contract_number" required="" placeholder="" value="{{ @$data['rateData']->contract_number }}">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-12">
-                                                                                    <div class="mb-3 form-group">
-                                                                                        <label>Amendment Number
-                                                                                        </label>
-                                                                                        <input type="text" class="form-control" name="amendment_number" required="" placeholder="" value="{{ @$data['rateData']->amendment_number }}">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="mb-0 float-end">
+                                                                            <div class="mb-0 float-end" style="width: 100%;display: flex;justify-content: center;margin-top: 20px;">
                                                                                 <div>
-                                                                                    <button type="submit" name="submit" value="saveDOB" class="btn btn-primary waves-effect waves-light me-1">
-                                                                                        Save
-                                                                                    </button>
+                                                                                    <button type="button" name="submit" value="saveDOB" class="btn btn-primary waves-effect waves-light me-1" id="hts_advcarrierrates">Save</button>
+                                                                                    <input type="hidden" name="query_tabqr" id="query_tabqr" value="advance">
                                                                                 </div>
                                                                             </div>
+                                                                            <p id="successmsgadvn" style="color: green">Record saved successfully.</p>
                                                                         </form>
                                                                     </div>
                                                                 </div>
@@ -4702,11 +4824,21 @@
         </div>
     </div>
     <style>
-        #output_image{height:67px;width:67px;padding:2px;border:1px solid #f15a24}.select2-container{display:block}.twitter-bs-wizard .twitter-bs-wizard-pager-link li.finish{float:right}.property-type iframe{width:100%;height:580px}.clear-btn{border:1px solid red;background:red;color:#fff;padding:10px 20px;border-radius:4px}.address-btn,.listing-btn,.map-btn{border:1px solid #000;background:#000;color:#fff;padding:10px 20px;border-radius:4px;margin-left:10px}.nav-tabs-cus>li>a{color:#445990;font-weight:700;font-size:12px}
+        #output_image{height:67px;width:67px;padding:2px;border:1px solid #f15a24}
+        .select2-container{display:block}
+        .twitter-bs-wizard .twitter-bs-wizard-pager-link li.finish{float:right}
+        .property-type iframe{width:100%;height:580px}
+        .clear-btn{border:1px solid red;background:red;color:#fff;padding:10px 20px;border-radius:4px}
+        .address-btn,.listing-btn,.map-btn{border:1px solid #000;background:#000;color:#fff;padding:10px 20px;border-radius:4px;margin-left:10px}
+        .nav-tabs-cus>li>a{color:#445990;font-weight:700;font-size:12px}
+        #errmsg {display: none;}
+        #errmsgadvn {display: none;}
+        #successmsg {display: none;}
+        #successmsgadvn {display: none;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('input[name = "range_waybillno"]').change(function() {
                 var range_waybillno = $('input[name = "range_waybillno"]:checked').val();
                 if(range_waybillno == '1') {
@@ -4746,6 +4878,111 @@
             $('#end_awb_number_range').attr("required", false);
             $('#start_awb_number_amount').attr("required", false);
             $('#end_awb_number_amount').attr("required", false);
+
+            $('#check_digit').on('click', function() {
+                if ($(this).is(':checked')) {
+                    $("#check_digit").val("1");
+                } else {
+                    $("#check_digit").val("0");
+                }
+            });
+            $("#bsratemodalxlqcr").click(function(){
+                $("#crsimple_nav").addClass("active");
+                $("#crsimple").addClass("active");
+            })
+
+            $("#hts_carrierrates").click(function(event) {
+                var hts_query_typeqr = $("#hts_query_typeqr").val();
+                var hts_transportationqr = $("#hts_transportationqr").val();
+                var hts_service_typeqr = $("#hts_service_typeqr").val();
+                var hts_frequencyqr = $("#hts_frequencyqr").val();
+                var hts_query_dateqr = $("#hts_query_dateqr").val();
+                var hts_careerqr = $("#hts_careerqr").val();
+                var hts_freight_service_classqr = $("#hts_freight_service_classqr").val();
+                var hts_currencyqr = $("#hts_currencyqr").val();
+                var hts_customerqr = $("#hts_customerqr").val();
+                var hts_other_chargesqr = $("#hts_other_chargesqr").val();
+                var hts_port_ladingqr = $("#hts_port_ladingqr").val();
+                var hts_origincountryqr = $("#hts_origincountryqr").val();
+                var hts_port_receiptqr = $("#hts_port_receiptqr").val();
+                var hts_port_unladingqr = $("#hts_port_unladingqr").val();
+                var hts_destinationcountryqr = $("#hts_destinationcountryqr").val();
+                var hts_port_deliveryladingqr = $("#hts_port_deliveryladingqr").val();
+                var hts_containerizedqr = $("#hts_containerizedqr").val();
+                var hts_piecesqr = $("#hts_piecesqr").val();
+                var hts_weightqr = $("#hts_weightqr").val();
+                var hts_weight_unitqr = $("#hts_weight_unitqr").val();
+                var hts_volumeqr = $("#hts_volumeqr").val();
+                var hts_volume_unitqr = $("#hts_volume_unitqr").val();
+                var hts_carrier_commodityqr = $("#hts_carrier_commodityqr").val();
+                var query_tabqr = $("#query_tabqr").val();
+                if($("#hts_query_typeqr").val().trim() === "" || $("#hts_transportationqr").val().trim() === "" || $("#hts_service_typeqr").val() === "" || $("#hts_frequencyqr").val() === "" || $("#hts_query_dateqr").val().trim() === ""|| $("#hts_careerqr").val() === "" || $("#hts_freight_service_classqr").val() === "" || $("#hts_currencyqr").val() === "" || $("#hts_customerqr").val() === "" || $("#hts_other_chargesqr").val() === "" || $("#hts_port_ladingqr").val() === "" || $("#hts_origincountryqr").val() === "" || $("#hts_port_receiptqr").val() === "" || $("#hts_port_unladingqr").val() === "" || $("#hts_destinationcountryqr").val() === "" || $("#hts_port_deliveryladingqr").val() === "" || $("#hts_piecesqr").val() === "" || $("#hts_weightqr").val() === "" || $("#hts_weight_unitqr").val() === "" || $("#hts_volumeqr").val() === "") {
+                    $("#errmsg").show();
+                    $("#crsimple_nav").focus();
+                    setTimeout(() => {
+                        $("#errmsg").hide();
+                    }, 3000);
+                    event.preventDefault();
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ url('/createHtssimplequerycarrierrates') }}",
+                        data: {hts_query_typeqr: hts_query_typeqr, hts_transportationqr: hts_transportationqr, hts_service_typeqr: hts_service_typeqr, hts_frequencyqr: hts_frequencyqr, hts_query_dateqr: hts_query_dateqr, hts_careerqr: hts_careerqr, hts_freight_service_classqr: hts_freight_service_classqr, hts_currencyqr: hts_currencyqr, hts_customerqr: hts_customerqr, hts_other_chargesqr: hts_other_chargesqr, hts_port_ladingqr: hts_port_ladingqr, hts_origincountryqr: hts_origincountryqr, hts_port_receiptqr: hts_port_receiptqr, hts_port_unladingqr: hts_port_unladingqr, hts_destinationcountryqr: hts_destinationcountryqr, hts_port_deliveryladingqr: hts_port_deliveryladingqr, hts_containerizedqr: hts_containerizedqr, hts_piecesqr: hts_piecesqr, hts_weightqr: hts_weightqr, hts_weight_unitqr: hts_weight_unitqr, hts_volumeqr: hts_volumeqr, hts_volume_unitqr: hts_volume_unitqr, hts_carrier_commodityqr: hts_carrier_commodityqr,query_tabqr: query_tabqr, _token: '{{ csrf_token() }}'},
+                        beforeSend: function () { },
+                        success: function (response) {
+                            if(response == '1') {
+                                $('.qsrsmplform')[0].reset();
+                                $("#successmsg").show();
+                                setTimeout(() => {
+                                    $("#myModalcarrierRate").hide();
+                                }, 2000);
+                            }
+                        }
+                    })
+                }
+            })
+
+            $("#hts_advcarrierrates").click(function(event) {
+                var query_typeadvncqr = $("#query_typeadvncqr").val();
+                var customeradvncqr = $("#customeradvncqr").val();
+                var transportationadvncqr = $("#transportationadvncqr").val();
+                var servicetypeadvncqr = $("#servicetypeadvncqr").val();
+                var port_receiptadvncqr = $("#port_receiptadvncqr").val();
+                var port_ladingadvncqr = $("#port_ladingadvncqr").val();
+                var port_unladingadvncqr = $("#port_unladingadvncqr").val();
+                var port_deliveryladingadvncqr = $("#port_deliveryladingadvncqr").val();
+                var containerizedadvncqr = $("#containerizedadvncqr").val();
+                var piecesadvncqr = $("#piecesadvncqr").val();
+                var weightadvncqr = $("#weightadvncqr").val();
+                var weight_unitadvncqr = $("#weight_unitadvncqr").val();
+                var volumeadvncqr = $("#volumeadvncqr").val();
+                var volume_unitadvncqr = $("#volume_unitadvncqr").val();
+                var query_tabqr = $("#query_tabqr").val();
+                if($("#query_typeadvncqr").val().trim() === "" || $("#customeradvncqr").val() === "" || $("#transportationadvncqr").val() === "" || $("#servicetypeadvncqr").val() === "" || $("#port_receiptadvncqr").val() === "" || $("#port_ladingadvncqr").val() === "" || $("#port_unladingadvncqr").val() === "" || $("#port_deliveryladingadvncqr").val() === "" || $("#containerizedadvncqr").val() === "" || $("#piecesadvncqr").val() === "" || $("#weightadvncqr").val() === "" || $("#weight_unitadvncqr").val() === "" || $("#volumeadvncqr").val() === "" || $("#volume_unitadvncqr").val() === "") {
+                    $("#errmsgadvn").show();
+                    $("#crsimple_nav").focus();
+                    setTimeout(() => {
+                        $("#errmsgadvn").hide();
+                    }, 3000);
+                    event.preventDefault();
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ url('/createHtsadvquerycarrierrates') }}",
+                        data: {query_typeadvncqr: query_typeadvncqr,customeradvncqr: customeradvncqr,transportationadvncqr: transportationadvncqr,servicetypeadvncqr: servicetypeadvncqr,port_receiptadvncqr: port_receiptadvncqr,port_ladingadvncqr: port_ladingadvncqr,port_unladingadvncqr: port_unladingadvncqr,port_deliveryladingadvncqr: port_deliveryladingadvncqr,containerizedadvncqr: containerizedadvncqr,piecesadvncqr: piecesadvncqr,weightadvncqr: weightadvncqr,weight_unitadvncqr: weight_unitadvncqr,volumeadvncqr: volumeadvncqr,volume_unitadvncqr: volume_unitadvncqr,query_tabqr: query_tabqr, _token: '{{ csrf_token() }}'},
+                        beforeSend: function () { },
+                        success: function (response) {
+                            if(response == '1') {
+                                $('.qsradvncform')[0].reset();
+                                $("#successmsgadvn").show();
+                                setTimeout(() => {
+                                    $("#myModalcarrierRate").hide();
+                                }, 2000);
+                            }
+                        }
+                    })
+                }
+            })
         })
     </script>
 @endsection
