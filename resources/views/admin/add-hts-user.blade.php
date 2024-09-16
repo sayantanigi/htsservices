@@ -3032,7 +3032,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-12">
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Query Type <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Query Type </label>
                                                                                         <select class="form-control form-select" name="hts_query_typeqr" id="hts_query_typeqr">
                                                                                             <option value="">Choose One</option>
                                                                                             <option value="Sales" {{'Sales' == @$data['rateData']->hts_rate_method ? 'selected' : ''}}>Sales</option>
@@ -3040,7 +3040,7 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Mode of Transportation <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Mode of Transportation </label>
                                                                                         <select class="form-control" name="hts_transportationqr" id="hts_transportationqr">
                                                                                             <option value="">Select...</option>
                                                                                             <optgroup label="Description / Method / Code">
@@ -3055,7 +3055,7 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Service Type <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Service Type </label>
                                                                                         <select class="form-control" name="hts_service_typeqr" id="hts_service_typeqr">
                                                                                             <option value="">Choose One</option>
                                                                                             <option value="any">Any</option>
@@ -3066,7 +3066,7 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left;">
-                                                                                        <label class="form-label">Frequency <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Frequency </label>
                                                                                         <select class="form-control" name="hts_frequencyqr" id="hts_frequencyqr">
                                                                                             <option value="">Choose One</option>
                                                                                             <option value="other">Other</option>
@@ -3079,11 +3079,11 @@
                                                                                 </div>
                                                                                 <div class="col-12">
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Query Date <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Query Date </label>
                                                                                         <input type="date" class="form-control" name="hts_query_dateqr" id="hts_query_dateqr" required="" placeholder="" value="">
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Carrier <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Carrier </label>
                                                                                         <select class="form-select" aria-label="Default select example" name="hts_careerqr" id="hts_careerqr">
                                                                                             <option value="" selected="">Choose One</option>
                                                                                             @if (!empty($data['all_carriers_contact']))
@@ -3095,7 +3095,7 @@
                                                                                     </div>
                                                                                     <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
                                                                                         <div class="col-6" style="display: inline-block; float: left;">
-                                                                                            <label class="form-label">Freight Service Class <span style="color:red">*</span></label>
+                                                                                            <label class="form-label">Freight Service Class </label>
                                                                                             <select class="form-control" name="hts_freight_service_classqr" id="hts_freight_service_classqr">
                                                                                                 <option value="">Select</option>
                                                                                                 <optgroup label="Description / Code / Account Name">
@@ -3116,7 +3116,7 @@
                                                                                 </div>
                                                                                 <div class="col-12">
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Currency <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Currency </label>
                                                                                         <select name="hts_currencyqr" id="hts_currencyqr" class="form-select">
                                                                                             <option value="USD" {{ 'USD' == @$data['rateData']->currency ? 'selected' : '' }}>USD United States Dollar</option>
                                                                                             <option value="EUR" {{ 'EUR' == @$data['rateData']->currency ? 'selected' : '' }}>EUR Euro</option>
@@ -3285,9 +3285,9 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                        <label class="form-label">Customer/Lead <span style="color:red">*</span></label>
+                                                                                        <label class="form-label">Customer/Lead </label>
                                                                                         <select class="form-control" name="hts_customerqr" id="hts_customerqr">
-                                                                                            <option value="">Select Option <span style="color:red">*</span></option>
+                                                                                            <option value="">Select Option </option>
                                                                                             <optgroup label="Name / Entity ID / Type">
                                                                                             @php
                                                                                             $customer = DB::table('hts_users')->where('user_type', 3)->select('id','name','entity_id','parent_entity','user_type')->get();
@@ -3305,7 +3305,7 @@
                                                                                     </div>
                                                                                     <div class="col-lg-6 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
                                                                                         <div class="col-6" style="display: inline-block; float: left;">
-                                                                                            <label class="form-label">Other Charges <span style="color:red">*</span></label>
+                                                                                            <label class="form-label">Other Charges </label>
                                                                                             <select class="form-control" name="hts_other_chargesqr" id="hts_other_chargesqr">
                                                                                                 <option value="">Select Option</option>
                                                                                                 <optgroup label="Description / Code / Account Name">
@@ -3331,7 +3331,7 @@
                                                                                         <h4>Origin</h4>
                                                                                         <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
                                                                                             <div class="col-9" style="display: inline-block; float: left;">
-                                                                                                <label class="form-label">Port of lading <span style="color:red">*</span></label>
+                                                                                                <label class="form-label">Port of lading </label>
                                                                                                 <select class="form-control form-select" name="hts_port_ladingqr" id="hts_port_ladingqr">
                                                                                                     <option value="">Choose One</option>
                                                                                                     @php
@@ -3349,7 +3349,7 @@
                                                                                             </div> -->
                                                                                         </div>
                                                                                         <div class="col-lg-4 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                            <label class="form-label">Country <span style="color:red">*</span></label>
+                                                                                            <label class="form-label">Country </label>
                                                                                             <select class="form-select" name="hts_origincountryqr" id="hts_origincountryqr">
                                                                                                 <option value="" selected="">Select Country...</option>
                                                                                                 @if (!$data['countries']->isEmpty())
@@ -3361,7 +3361,7 @@
                                                                                         </div>
                                                                                         <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
                                                                                             <div class="col-9" style="display: inline-block; float: left;">
-                                                                                                <label class="form-label">Place of Receipt <span style="color:red">*</span></label>
+                                                                                                <label class="form-label">Place of Receipt </label>
                                                                                                 <select class="form-control form-select" name="hts_port_receiptqr" id="hts_port_receiptqr">
                                                                                                     <option value="">Choose One</option>
                                                                                                     @php
@@ -3383,7 +3383,7 @@
                                                                                         <h4>Destination</h4>
                                                                                         <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
                                                                                             <div class="col-9" style="display: inline-block; float: left;">
-                                                                                                <label class="form-label">Port of Unlading <span style="color:red">*</span></label>
+                                                                                                <label class="form-label">Port of Unlading </label>
                                                                                                 <select class="form-control form-select" name="hts_port_unladingqr" id="hts_port_unladingqr">
                                                                                                     <option value="">Choose One</option>
                                                                                                     @php
@@ -3401,7 +3401,7 @@
                                                                                             </div> -->
                                                                                         </div>
                                                                                         <div class="col-lg-4 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
-                                                                                            <label class="form-label">Country <span style="color:red">*</span></label>
+                                                                                            <label class="form-label">Country </label>
                                                                                             <select class="form-select" name="hts_destinationcountryqr" id="hts_destinationcountryqr">
                                                                                                 <option value="" selected="">Choose Country</option>
                                                                                                 @if (!$data['countries']->isEmpty())
@@ -3413,7 +3413,7 @@
                                                                                         </div>
                                                                                         <div class="col-lg-8 form-group" style="display: inline-block; float: left; padding: 0 10px 0 0;">
                                                                                             <div class="col-9" style="display: inline-block; float: left;">
-                                                                                                <label class="form-label">Place of Delivery <span style="color:red">*</span></label>
+                                                                                                <label class="form-label">Place of Delivery </label>
                                                                                                 <select class="form-control form-select" name="hts_port_deliveryladingqr" id="hts_port_deliveryladingqr">
                                                                                                     <option value="">Choose One</option>
                                                                                                     @php
@@ -3445,16 +3445,16 @@
                                                                                     </div>
                                                                                     <div class="col-12" style="display: inline-block">
                                                                                         <div class="col-2" style="display: inline-block; float: left;">
-                                                                                            <label>Pieces <span style="color:red">*</span></label>
+                                                                                            <label>Pieces </label>
                                                                                             <input type="text" class="form-control" name="hts_piecesqr" id="hts_piecesqr" required="" placeholder="Pieces (Exp: 1000)" value="">
                                                                                         </div>
                                                                                         <div class="col-5" style="display: flex;float: left;flex-direction: row;align-items: center;flex-wrap: nowrap;justify-content: center;">
                                                                                             <div class="col-5">
-                                                                                                <label>Weight <span style="color:red">*</span></label>
+                                                                                                <label>Weight </label>
                                                                                                 <input type="text" class="form-control" name="hts_weightqr" id="hts_weightqr" required="" placeholder="Weight (0.00)" value="">
                                                                                             </div>
                                                                                             <div class="col-6" style="margin: 0px 0px 0px 10px;">
-                                                                                                <label>Unit <span style="color:red">*</span></label>
+                                                                                                <label>Unit </label>
                                                                                                 <select class="form-control form-select" name="hts_weight_unitqr" id="hts_weight_unitqr">
                                                                                                     <option value="">Choose an option</option>
                                                                                                     <option value="kilogram">Kilogram (kg)</option>
@@ -3468,11 +3468,11 @@
                                                                                         </div>
                                                                                         <div class="col-5" style="display: flex;float: left;flex-direction: row;align-items: center;flex-wrap: nowrap;justify-content: center;">
                                                                                             <div class="col-5">
-                                                                                                <label>Volume <span style="color:red">*</span></label>
+                                                                                                <label>Volume </label>
                                                                                                 <input type="text" class="form-control" name="hts_volumeqr" id="hts_volumeqr" required="" placeholder="0.00" value="">
                                                                                             </div>
                                                                                             <div class="col-6" style="margin: 0px 0px 0px 10px;">
-                                                                                                <label>Unit <span style="color:red">*</span></label>
+                                                                                                <label>Unit </label>
                                                                                                 <select class="form-control form-select" name="hts_volume_unitqr" id="hts_volume_unitqr">
                                                                                                     <option value="">Choose an option</option>
                                                                                                     <option value="cubic_inch">Cubic inch (in³)</option>
@@ -3482,7 +3482,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-12" style="display: inline-block;">
-                                                                                        <label>Description/Comodity <span style="color:red">*</span></label>
+                                                                                        <label>Description/Comodity </label>
                                                                                         <select class="form-select mb-3" name="hts_carrier_commodityqr" id="hts_carrier_commodityqr" aria-label="Default select example">
                                                                                             <option value="">Choose an option</option>
                                                                                             @if (!$data['carrier_commodity']->isEmpty())
@@ -4916,30 +4916,22 @@
                 var hts_volume_unitqr = $("#hts_volume_unitqr").val();
                 var hts_carrier_commodityqr = $("#hts_carrier_commodityqr").val();
                 var query_tabqr = $("#query_tabqr").val();
-                if($("#hts_query_typeqr").val().trim() === "" || $("#hts_transportationqr").val().trim() === "" || $("#hts_service_typeqr").val() === "" || $("#hts_frequencyqr").val() === "" || $("#hts_query_dateqr").val().trim() === ""|| $("#hts_careerqr").val() === "" || $("#hts_freight_service_classqr").val() === "" || $("#hts_currencyqr").val() === "" || $("#hts_customerqr").val() === "" || $("#hts_other_chargesqr").val() === "" || $("#hts_port_ladingqr").val() === "" || $("#hts_origincountryqr").val() === "" || $("#hts_port_receiptqr").val() === "" || $("#hts_port_unladingqr").val() === "" || $("#hts_destinationcountryqr").val() === "" || $("#hts_port_deliveryladingqr").val() === "" || $("#hts_piecesqr").val() === "" || $("#hts_weightqr").val() === "" || $("#hts_weight_unitqr").val() === "" || $("#hts_volumeqr").val() === "") {
-                    $("#errmsg").show();
-                    $("#crsimple_nav").focus();
-                    setTimeout(() => {
-                        $("#errmsg").hide();
-                    }, 3000);
-                    event.preventDefault();
-                } else {
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ url('/createHtssimplequerycarrierrates') }}",
-                        data: {hts_query_typeqr: hts_query_typeqr, hts_transportationqr: hts_transportationqr, hts_service_typeqr: hts_service_typeqr, hts_frequencyqr: hts_frequencyqr, hts_query_dateqr: hts_query_dateqr, hts_careerqr: hts_careerqr, hts_freight_service_classqr: hts_freight_service_classqr, hts_currencyqr: hts_currencyqr, hts_customerqr: hts_customerqr, hts_other_chargesqr: hts_other_chargesqr, hts_port_ladingqr: hts_port_ladingqr, hts_origincountryqr: hts_origincountryqr, hts_port_receiptqr: hts_port_receiptqr, hts_port_unladingqr: hts_port_unladingqr, hts_destinationcountryqr: hts_destinationcountryqr, hts_port_deliveryladingqr: hts_port_deliveryladingqr, hts_containerizedqr: hts_containerizedqr, hts_piecesqr: hts_piecesqr, hts_weightqr: hts_weightqr, hts_weight_unitqr: hts_weight_unitqr, hts_volumeqr: hts_volumeqr, hts_volume_unitqr: hts_volume_unitqr, hts_carrier_commodityqr: hts_carrier_commodityqr,query_tabqr: query_tabqr, _token: '{{ csrf_token() }}'},
-                        beforeSend: function () { },
-                        success: function (response) {
-                            if(response == '1') {
-                                $('.qsrsmplform')[0].reset();
-                                $("#successmsg").show();
-                                setTimeout(() => {
-                                    $("#myModalcarrierRate").hide();
-                                }, 2000);
-                            }
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('/createHtssimplequerycarrierrates') }}",
+                    data: {hts_query_typeqr: hts_query_typeqr, hts_transportationqr: hts_transportationqr, hts_service_typeqr: hts_service_typeqr, hts_frequencyqr: hts_frequencyqr, hts_query_dateqr: hts_query_dateqr, hts_careerqr: hts_careerqr, hts_freight_service_classqr: hts_freight_service_classqr, hts_currencyqr: hts_currencyqr, hts_customerqr: hts_customerqr, hts_other_chargesqr: hts_other_chargesqr, hts_port_ladingqr: hts_port_ladingqr, hts_origincountryqr: hts_origincountryqr, hts_port_receiptqr: hts_port_receiptqr, hts_port_unladingqr: hts_port_unladingqr, hts_destinationcountryqr: hts_destinationcountryqr, hts_port_deliveryladingqr: hts_port_deliveryladingqr, hts_containerizedqr: hts_containerizedqr, hts_piecesqr: hts_piecesqr, hts_weightqr: hts_weightqr, hts_weight_unitqr: hts_weight_unitqr, hts_volumeqr: hts_volumeqr, hts_volume_unitqr: hts_volume_unitqr, hts_carrier_commodityqr: hts_carrier_commodityqr,query_tabqr: query_tabqr, _token: '{{ csrf_token() }}'},
+                    beforeSend: function () { },
+                    success: function (response) {
+                        if(response == '1') {
+                            $('.qsrsmplform')[0].reset();
+                            $("#successmsg").show();
+                            setTimeout(() => {
+                                $("#myModalcarrierRate").hide();
+                            }, 2000);
                         }
-                    })
-                }
+                    }
+                })
             })
 
             $("#hts_advcarrierrates").click(function(event) {
@@ -4958,30 +4950,22 @@
                 var volumeadvncqr = $("#volumeadvncqr").val();
                 var volume_unitadvncqr = $("#volume_unitadvncqr").val();
                 var query_tabqr = $("#query_tabqr").val();
-                if($("#query_typeadvncqr").val().trim() === "" || $("#customeradvncqr").val() === "" || $("#transportationadvncqr").val() === "" || $("#servicetypeadvncqr").val() === "" || $("#port_receiptadvncqr").val() === "" || $("#port_ladingadvncqr").val() === "" || $("#port_unladingadvncqr").val() === "" || $("#port_deliveryladingadvncqr").val() === "" || $("#containerizedadvncqr").val() === "" || $("#piecesadvncqr").val() === "" || $("#weightadvncqr").val() === "" || $("#weight_unitadvncqr").val() === "" || $("#volumeadvncqr").val() === "" || $("#volume_unitadvncqr").val() === "") {
-                    $("#errmsgadvn").show();
-                    $("#crsimple_nav").focus();
-                    setTimeout(() => {
-                        $("#errmsgadvn").hide();
-                    }, 3000);
-                    event.preventDefault();
-                } else {
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ url('/createHtsadvquerycarrierrates') }}",
-                        data: {query_typeadvncqr: query_typeadvncqr,customeradvncqr: customeradvncqr,transportationadvncqr: transportationadvncqr,servicetypeadvncqr: servicetypeadvncqr,port_receiptadvncqr: port_receiptadvncqr,port_ladingadvncqr: port_ladingadvncqr,port_unladingadvncqr: port_unladingadvncqr,port_deliveryladingadvncqr: port_deliveryladingadvncqr,containerizedadvncqr: containerizedadvncqr,piecesadvncqr: piecesadvncqr,weightadvncqr: weightadvncqr,weight_unitadvncqr: weight_unitadvncqr,volumeadvncqr: volumeadvncqr,volume_unitadvncqr: volume_unitadvncqr,query_tabqr: query_tabqr, _token: '{{ csrf_token() }}'},
-                        beforeSend: function () { },
-                        success: function (response) {
-                            if(response == '1') {
-                                $('.qsradvncform')[0].reset();
-                                $("#successmsgadvn").show();
-                                setTimeout(() => {
-                                    $("#myModalcarrierRate").hide();
-                                }, 2000);
-                            }
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('/createHtsadvquerycarrierrates') }}",
+                    data: {query_typeadvncqr: query_typeadvncqr,customeradvncqr: customeradvncqr,transportationadvncqr: transportationadvncqr,servicetypeadvncqr: servicetypeadvncqr,port_receiptadvncqr: port_receiptadvncqr,port_ladingadvncqr: port_ladingadvncqr,port_unladingadvncqr: port_unladingadvncqr,port_deliveryladingadvncqr: port_deliveryladingadvncqr,containerizedadvncqr: containerizedadvncqr,piecesadvncqr: piecesadvncqr,weightadvncqr: weightadvncqr,weight_unitadvncqr: weight_unitadvncqr,volumeadvncqr: volumeadvncqr,volume_unitadvncqr: volume_unitadvncqr,query_tabqr: query_tabqr, _token: '{{ csrf_token() }}'},
+                    beforeSend: function () { },
+                    success: function (response) {
+                        if(response == '1') {
+                            $('.qsradvncform')[0].reset();
+                            $("#successmsgadvn").show();
+                            setTimeout(() => {
+                                $("#myModalcarrierRate").hide();
+                            }, 2000);
                         }
-                    })
-                }
+                    }
+                })
             })
         })
     </script>
