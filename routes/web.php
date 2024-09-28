@@ -262,6 +262,7 @@ Route::post('/createHtsadvquerycarrierrates', [HtsUsersController::class, 'creat
 Route::post('/updateHtsRateContract', [HtsUsersController::class, 'updateHtsRateContract'])->name('updateHtsRateContract');
 Route::post('/create-hts-rate-notes', [HtsUsersController::class, 'createHtsRateNotes'])->name('create-hts-rate-notes');
 Route::get('/deleteHtsRateGroundTabData/{id}', [HtsUsersController::class, 'deleteHtsRateGroundTabData'])->name('deleteHtsRateGroundTabData');
+Route::get('/deleteHtsQSRateGroundTabData/{id}', [HtsUsersController::class, 'deleteHtsQSRateGroundTabData'])->name('deleteHtsQSRateGroundTabData');
 Route::post('/createHtsCustomCharge', [HtsUsersController::class, 'createHtsCustomCharge'])->name('createHtsCustomCharge');
 Route::post('/createHtsCustomChargeAutoCreation', [HtsUsersController::class, 'createHtsCustomChargeAutoCreation'])->name('createHtsCustomChargeAutoCreation');
 Route::get('/deleteHtsChargeTabData/{id}', [HtsUsersController::class, 'deleteHtsChargeTabData'])->name('deleteHtsChargeTabData');
