@@ -237,7 +237,10 @@ Route::post('/updateHtsBillingAddress', [HtsUsersController::class, 'updateHtsBi
 Route::post('/updateHtsOtherAddress', [HtsUsersController::class, 'updateHtsOtherAddress'])->name('updateHtsOtherAddress');
 Route::post('/saveHtsOtherAddress', [HtsUsersController::class, 'saveHtsOtherAddress'])->name('saveHtsOtherAddress');
 Route::get('/deleteHtsOtherAddress/{id}', [HtsUsersController::class, 'deleteHtsOtherAddress'])->name('deleteHtsOtherAddress');
+Route::post('/getUserDetails', [HtsUsersController::class, 'getUserDetails'])->name('getUserDetails');
 Route::post('/updateHtsParentEntity', [HtsUsersController::class, 'updateHtsParentEntity'])->name('updateHtsParentEntity');
+Route::post('/adduserfromsearchlist', [HtsUsersController::class, 'adduserfromsearchlist'])->name('adduserfromsearchlist');
+
 Route::post('/updateHtsSalesPerson', [HtsUsersController::class, 'updateHtsSalesPerson'])->name('updateHtsSalesPerson');
 Route::post('/updateHtsDestinationAgent', [HtsUsersController::class, 'updateHtsDestinationAgent'])->name('updateHtsDestinationAgent');
 Route::post('/changeHtsUserStatus', [HtsUsersController::class, 'changeHtsUserStatus'])->name('changeHtsUserStatus');

@@ -145,6 +145,7 @@ class HtsUsersController extends Controller {
         $chargeArray = [];
         $carrier_contacts = [];
         $carrier_rates = [];
+        $qscarrier_rates= [];
         $carrier_charges = [];
         $states = [];
         $constates = [];
@@ -218,7 +219,8 @@ class HtsUsersController extends Controller {
                 $rateArray = [];
             }
         }
-        $sessionData = session()->all();
+        //$sessionData = session()->all();
+        //print_r($sessionData); die();
         // Query Carrier rate module
         if (Session::has('hts_user_id')) {
             //$hts_rate_id = Session::get('hts_rate_id');
@@ -288,7 +290,6 @@ class HtsUsersController extends Controller {
             'carrier_contacts' => $carrier_contacts,
             'carrier_rates' => $carrier_rates,
             'qscarrier_rates' => $qscarrier_rates,
-
             'carrier_charges'  => $carrier_charges,
             'countries' => $countries,
             'states' => $states,
@@ -3237,7 +3238,6 @@ class HtsUsersController extends Controller {
         ]);
         echo '1';
     }
-
     public function createHtsadvquerycarrierrates(Request $request) {
         //print_r($_POST); die();
         $hts_user_id = Session::get('hts_user_id');
@@ -3262,4 +3262,13 @@ class HtsUsersController extends Controller {
         ]);
         echo '1';
     }
+    public function getUserDetails() {
+        //print_r($_POST); die();
+        $user_id = $_POST['userId'];
+        $userDetails = DB::table("hts_users")->WHERE('id', $user_id)->first();
+        echo json_encode($userDetails);
+    }
+    /*public function adduserfromsearchlist() {
+        echo $hts_user_id = Session::get('hts_user_id');
+    }*/
 }

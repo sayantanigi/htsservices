@@ -189,16 +189,20 @@
                             </ul>
                             <div class="tab-content p-3 text-muted">
                                 <div class="tab-pane active" id="general" role="tabpanel">
-                                    <form action="{{ route('createHtsUser') }}" class="custom-validation" method="post"
-                                        id="formValidated">
+                                    <form action="{{ route('createHtsUser') }}" class="custom-validation" method="post" id="formValidated">
                                         @csrf
                                         <input type="hidden" name="user_type" value="{{ @$data['userType'] }}">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-group mb-3">
-                                                    <label>Name<code>*</code></label>
-                                                    <input type="text" class="form-control" name="name"
-                                                        value="{{ @$data['userData']->name }}">
+                                                    <div style="display: inline-block; width: 95%; float: left;">
+                                                        <label>Name<code>*</code></label>
+                                                        <input type="text" class="form-control" name="name" id="name_general" value="{{ @$data['userData']->name }}">
+                                                        <p id="name_general_err"></p>
+                                                    </div>
+                                                    <div style="display: inline-block; margin: 28px 0px 0px 2px;">
+                                                        <i style="font-size:22px" class="fa btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" onclick="searchcustomer()">&#xf002;</i>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -213,7 +217,7 @@
                                                     <label>Phone </label>
                                                     <div class="row">
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="phone"
+                                                            <input type="text" class="form-control" id="phone" name="phone"
                                                                 value="{{ @$data['userData']->phone }}">
                                                         </div>
                                                         <div class="col-sm-3">
@@ -254,21 +258,21 @@
                                             <div class="col-lg-12">
                                                 <div class="form-group mb-3">
                                                     <label>Account Number </label>
-                                                    <input type="text" class="form-control" name="account_number"
+                                                    <input type="text" class="form-control" name="account_number" id="account_number"
                                                         value="{{ @$data['userData']->account_number }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group mb-3">
                                                     <label>Contact First Name </label>
-                                                    <input type="text" class="form-control" name="contact_first_name"
+                                                    <input type="text" class="form-control" name="contact_first_name" id="contact_first_name"
                                                         value="{{ @$data['userData']->contact_first_name }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group mb-3">
                                                     <label>Contact Last Name </label>
-                                                    <input type="text" class="form-control" name="contact_last_name"
+                                                    <input type="text" class="form-control" name="contact_last_name" id="contact_last_name"
                                                         value="{{ @$data['userData']->contact_last_name }}">
                                                 </div>
                                             </div>
@@ -375,12 +379,12 @@
                                         <div class="form-group mb-3">
                                             <label>Street & Number<code>*</code></label>
                                             <div>
-                                                <textarea required="" name="street_number" class="form-control" rows="5">{{ @$data['userData']->street_number }}</textarea>
+                                                <textarea required="" name="street_number" id="street_number" class="form-control" rows="5">{{ @$data['userData']->street_number }}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label>City<code>*</code></label>
-                                            <input type="text" class="form-control" name="city" required=""
+                                            <input type="text" class="form-control" name="city" required="" id="city"
                                                 placeholder="Type City" value="{{ @$data['userData']->city }}">
                                         </div>
                                         <div class="form-group mb-3">
@@ -413,7 +417,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label>Zip Code<code>*</code></label>
-                                            <input type="text" class="form-control" name="zip_code" required=""
+                                            <input type="text" class="form-control" name="zip_code" required="" id="zip_code"
                                                 placeholder="Type Zip Code"
                                                 value="{{ @$data['userData']->zip_code }}">
                                         </div>
@@ -4494,18 +4498,25 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="mb-3 form-group">
-                                                    <label>Country of Citizenship
-                                                    </label>
-                                                    <select class="form-select select2" aria-label="Default select example"
-                                                        name="country_of_citizenship" id="country_of_citizenshipPer">
+                                                    <label>Country of Citizenship</label>
+                                                    <!-- <select class="form-select select2" aria-label="Default select example" name="country_of_citizenship" id="country_of_citizenshipPer">
                                                         <option value="" selected="">Select Country...</option>
                                                         @if (!$data['countries']->isEmpty())
                                                             @foreach ($data['countries'] as $key => $item_val)
-                                                                <option value="{{ @$item_val->id }}"
-                                                                    {{ @$item_val->id == @$data['userData']->country_of_citizenship ? 'selected' : '' }}>
-                                                                    {{ @$item_val->name }}</option>
+                                                            <option value="{{ @$item_val->id }}" {{ @$item_val->id == @$data['userData']->country_of_citizenship ? 'selected' : '' }}> {{ @$item_val->name }} </option>
                                                             @endforeach
                                                         @endif
+                                                    </select> -->
+
+                                                    <select class="form-select select2" aria-label="Default select example" name="country_of_citizenship" id="country_of_citizenshipPer">
+                                                        <option value="">Choose Country</option>
+                                                        <optgroup label="Country Name / Country Code">
+                                                        @if (!$data['countries']->isEmpty())
+                                                            @foreach ($data['countries'] as $key => $item_val)
+                                                            <option value="{{ @$item_val->id }}" {{ @$item_val->id == @$data['userData']->country_of_citizenship ? 'selected' : '' }}> {{ @$item_val->name ." / ".@$item_val->iso2 }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                        </optgroup>
                                                     </select>
                                                 </div>
                                             </div>
@@ -4793,14 +4804,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="otherserviceadd" role="dialog"
-            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal fade" id="otherserviceadd" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalScrollableTitle">Add Address</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('updateHtsOtherAddress') }}" class="custom-validation" method="post" id="formValidatedOtherAddress">
@@ -4916,6 +4925,79 @@
             </div><!-- /.modal-dialog -->
         </div>
     </div>
+    <div class="modal fade" id="bd-example-modal-lg-search" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%;">
+            <div class="modal-content">
+                <div class="modal-header" style="justify-content: flex-end;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style=" border: none; border-radius: 12px; background: #08cbfe; color: #fff; width: 23px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <form action="{{ route('adduserfromsearchlist') }}" class="custom-validation" method="post" id="formValidatedParentEntity">
+                            <div style="max-height: 450px; overflow-y: auto;">
+                                @csrf
+                                <table class="table table-centered table-nowrap table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="">Entity ID</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if(!empty($data['all_users']))
+                                        @foreach($data['all_users'] as $key=>$item_val)
+                                        @php
+                                        $usertypes = DB::table('hts_user_types')->where('id', $item_val->user_type)->select('name')->first();
+                                        @endphp
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-size-16">
+                                                @if (@$item_val->name)
+                                                    {{ $item_val->name }}
+                                                @else
+                                                    &#8212;
+                                                @endif
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                @if (@$item_val->entity_id)
+                                                    {{ $item_val->entity_id }}
+                                                @else
+                                                    &#8212;
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if (@$item_val->user_type)
+                                                    {{ $usertypes->name }}
+                                                @else
+                                                    &#8212;
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input class="table-radio" type="radio" {{ @$item_val->id == @$data['userData']->parent_entity ? 'checked' : '' }} name="adduserfromsearchlist" required id="adduserfromsearchlist_{{ @$item_val->id }}" value="{{ @$item_val->id }}">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" value="Parententity" class="btn btn-primary waves-effect waves-light">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <style>
         #output_image{height:67px;width:67px;padding:2px;border:1px solid #f15a24}
         .select2-container{display:block}
@@ -4928,6 +5010,7 @@
         #errmsgadvn {display: none;}
         #successmsg {display: none;}
         #successmsgadvn {display: none;}
+        .show_customer {display: block; opacity: 1;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -4979,6 +5062,7 @@
                     $("#check_digit").val("0");
                 }
             });
+
             $("#bsratemodalxlqcr").click(function(){
                 $("#crsimple_nav").addClass("active");
                 $("#crsimple").addClass("active");
@@ -5061,5 +5145,62 @@
                 })
             })
         })
+
+        function searchcustomer() {
+            var customer = $("#name_general").val();
+            //if(customer != '') {
+                $("#bd-example-modal-lg-search").addClass('show');
+                $("#bd-example-modal-lg-search").addClass('show_customer');
+            //} else {
+                //$("#name_general_err").fadeIn().html("Please Enter Name").css("color","red");
+                //setTimeout(function(){$("#name_general_err").fadeOut("&nbsp;");},2000)
+                //$("#name_general").focus();
+                //return false;
+            //}
+        }
+        $('.close').on('click', function(){
+            $("#bd-example-modal-lg-search").removeClass('show');
+            $("#bd-example-modal-lg-search").removeClass('show_customer');
+        })
+
+        @foreach($data['all_users'] as $key=>$item_val)
+        $('#adduserfromsearchlist_{{@$item_val->id}}').change(function(){
+            var userId = $('#adduserfromsearchlist_{{@$item_val->id}}').val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('getUserDetails') }}",
+                data: {userId: userId, _token: '{{ csrf_token() }}'},
+                beforeSend: function () { },
+                success: function (response) {
+                    if (response && typeof response === 'string') {
+                        let data;
+                        try {
+                            data = JSON.parse(response);
+                            console.log(data);
+                        } catch (e) {
+                            console.error('Error parsing JSON:', e);
+                            return;
+                        }
+
+                        $('#name_general').val(data.name || '');
+                        $('#phone').val(data.phone || '');
+                        $('#account_number').val(data.account_number || '');
+                        $('#contact_first_name').val(data.contact_first_name || '');
+                        $('#contact_last_name').val(data.contact_last_name || '');
+                        $('#street_number').val(data.street_number || '');
+                        $('#city').val(data.city || '');
+                        $('#country_id').val(data.country || '');
+                        $('#state_html').val(data.state || '');
+                        $('#zip_code').val(data.zip_code || '');
+
+                        $("#bd-example-modal-lg-search").removeClass('show');
+                        $("#bd-example-modal-lg-search").removeClass('show_customer');
+                    } else {
+                        console.error('Invalid response:', response);
+                    }
+                }
+            })
+        })
+        @endforeach
     </script>
 @endsection
