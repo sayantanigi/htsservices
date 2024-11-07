@@ -1859,6 +1859,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th width="10">#</th>
+                                                            <th>Client Name</th>
                                                             <th>Participation</th>
                                                             <th>Charge</th>
                                                             <th>Value</th>
@@ -1878,9 +1879,17 @@
                                                             @foreach ($data['participations_charges'] as $key => $row_val)
                                                                 @php
                                                                     $pinfo = DB::table('hts_participations')->where('id', @$row_val->participation_charge_id)->first();
+                                                                    $clientName = DB::table('hts_users')->WHERE('id', @$row_val->client_id)->first();
                                                                 @endphp
                                                                 <tr>
                                                                     <td>{{ $loop->iteration }}</td>
+                                                                    <td>
+                                                                        @if($row_val->client_id)
+                                                                            {{$clientName->name}}
+                                                                        @else
+                                                                            &#8212;
+                                                                        @endif
+                                                                    </td>
                                                                     <td>
                                                                         @if (@$row_val->participation_type)
                                                                             {{ $row_val->participation_type }}
@@ -1982,9 +1991,29 @@
                                                         <div class="modal-body">
                                                             <div class="card">
                                                                 <div class="card-body">
-                                                                    <form action="{{ route('create-participation-inner') }}" class="custom-validation" method="post"
-                                                                                id="formValidatedCharge">
+                                                                    <form action="{{ route('create-participation-inner') }}" class="custom-validation" method="post" id="formValidatedCharge">
                                                                         @csrf
+                                                                        <div class="row row-border-bottom mt-0 mb-3">
+                                                                            <div class="col-lg-8">
+                                                                                <div class="mb-3 form-group">
+                                                                                    <label class="form-label">Client Name</label>
+                                                                                    <select class="form-control select2" name="client_name" id="client_name" required>
+                                                                                        <option value="">Select</option>
+                                                                                        <optgroup label="Name / Entity ID / Type">
+                                                                                            @php
+                                                                                            $customerList = DB::table('hts_users')->WHERE('user_type', '3')->get();
+                                                                                            print_r($customerList);
+                                                                                            @endphp
+                                                                                            @if(!$customerList->isEmpty())
+                                                                                                @foreach($customerList as $customer)
+                                                                                                <option value="{{$customer->id}}">{{$customer->name." / ".$customer->entity_id." / Customer" }}</option>
+                                                                                                @endforeach
+                                                                                            @endif
+                                                                                        </optgroup>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                         <div class="row row-border-bottom mt-0 mb-3">
                                                                             <div class="col-lg-8">
                                                                                 <div class="mb-3 form-group">
@@ -2284,13 +2313,9 @@
                                                                             <input type="checkbox" name="check_digit" id="check_digit" style="display: inline-block; float: left; margin-right: 10px; margin-top: 4px;">
                                                                             <p> Check Digit</p>
                                                                         </div>
-                                                                        <div class="row mt-3" style="display: inline-block;">
-                                                                            <div class="col-lg-12">
-                                                                                <div class="mb-3 ms-3 form-group">
-                                                                                    <label class="form-label">&nbsp;</label>
-                                                                                    <button class="btn btn-primary" type="submit" name="submit" value="customCharge">Submit</button>
-                                                                                </div>
-                                                                            </div>
+                                                                        <div class="row" id="err_msg"></div>
+                                                                        <div class="row mt-3" style="display: inline-block; margin: 0px;">
+                                                                            <button class="btn btn-primary" type="submit" name="submit" value="customCharge">Submit</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -4984,13 +5009,11 @@
                                             </td>
                                         </tr>
                                         @endforeach
+                                    @else
+                                        <tr>No data found</tr>
                                     @endif
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="submit" value="Parententity" class="btn btn-primary waves-effect waves-light">Save</button>
                             </div>
                         </form>
                     </div>
@@ -5011,6 +5034,7 @@
         #successmsg {display: none;}
         #successmsgadvn {display: none;}
         .show_customer {display: block; opacity: 1;}
+        #err_msg {display: block; margin-left: 0px; color: red;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -5022,28 +5046,28 @@
                     $('#end_awb_number_range').attr("readonly", false);
                     $('#start_awb_number_amount').attr("readonly", true);
                     $('#end_awb_number_amount').attr("readonly", true);
-                    $('#start_awb_number_range').attr("required", true);
+                    /*$('#start_awb_number_range').attr("required", true);
                     $('#end_awb_number_range').attr("required", true);
                     $('#start_awb_number_amount').attr("required", false);
-                    $('#end_awb_number_amount').attr("required", false);
+                    $('#end_awb_number_amount').attr("required", false);*/
                 } else if (range_waybillno == '2') {
                     $('#start_awb_number_range').attr("readonly", true);
                     $('#end_awb_number_range').attr("readonly", true);
                     $('#start_awb_number_amount').attr("readonly", false);
                     $('#end_awb_number_amount').attr("readonly", false);
-                    $('#start_awb_number_range').attr("required", false);
+                    /*$('#start_awb_number_range').attr("required", false);
                     $('#end_awb_number_range').attr("required", false);
                     $('#start_awb_number_amount').attr("required", true);
-                    $('#end_awb_number_amount').attr("required", true);
+                    $('#end_awb_number_amount').attr("required", true);*/
                 } else {
                     $('#start_awb_number_range').attr("readonly", true);
                     $('#end_awb_number_range').attr("readonly", true);
                     $('#start_awb_number_amount').attr("readonly", true);
                     $('#end_awb_number_amount').attr("readonly", true);
-                    $('#start_awb_number_range').attr("required", false);
+                    /*$('#start_awb_number_range').attr("required", false);
                     $('#end_awb_number_range').attr("required", false);
                     $('#start_awb_number_amount').attr("required", false);
-                    $('#end_awb_number_amount').attr("required", false);
+                    $('#end_awb_number_amount').attr("required", false);*/
                 }
             });
             $('#start_awb_number_range').attr("readonly", true);
@@ -5143,6 +5167,44 @@
                         }
                     }
                 })
+            })
+
+            $("#formValidatedAWB").submit(function(event) {
+                event.preventDefault();
+                var isRadioSelected = $('input[name="range_waybillno"]:checked').val();
+                var isValid = true;
+                if(isRadioSelected == '1') {
+                    var startValue = $("#start_awb_number_range").val();
+                    var endValue = $("#end_awb_number_range").val();
+                    if(!startValue || !endValue) {
+                        isValid = false;
+                        $('#err_msg').text('*Please fill in all requires fields before submitting.');
+                        setTimeout(() => {
+                            $('#err_msg').text('');
+                        }, 3000);
+                    }
+                } else if (isRadioSelected == "2") {
+                    var startAmount = $("#start_awb_number_amount").val();
+                    var endAmount = $("#end_awb_number_amount").val();
+                    if(!startAmount || !endAmount) {
+                        isValid = false;
+                        $('#err_msg').text('*Please fill in all requires fields before submitting.');
+                        setTimeout(() => {
+                            $('#err_msg').text('');
+                        }, 3000);
+                    }
+                } else {
+                    isValid = false;
+                    $('#err_msg').text('Please select a range type (either "Generate a range" or "Generate an amount").');
+                    setTimeout(() => {
+                        $('#err_msg').text('');
+                    }, 3000);
+                }
+
+                if (isValid) {
+                    $(this).off('submit').submit();
+                }
+                return false;
             })
         })
 

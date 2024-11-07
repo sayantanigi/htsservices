@@ -3111,6 +3111,7 @@ class HtsUsersController extends Controller {
         // } else {
             $auto_id = DB::table('hts_participation_list')->insertGetId([
                 'user_id'                                      => @$hts_user_id,
+                'client_id'                                    => @$request->client_name,
                 'participation_type'                           => @$request->participation_type,
                 'participation_charge_id'                      => @$request->participation_charge_id,
                 'type'                                         => @$request->type,
