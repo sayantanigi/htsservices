@@ -254,59 +254,25 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title">Menu</li>
-                        <li><a href="{{ route('admin-dashboard') }}" class="waves-effect"><i class="fas fa-home"></i>
-                                Dashboard</a></li>
-
+                        <li><a href="{{ route('admin-dashboard') }}" class="waves-effect"><i class="fas fa-home"></i> Dashboard</a></li>
                         <li class="{{ @$data['page'] == 'lists' ? 'mm-active' : '' }}">
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="ri-database-fill"></i>
                                 <span>Master Data Mgmt</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('identification-types') }}"
-                                        class="{{ @$data['subpage'] == 'types' ? 'active' : '' }}">List of
-                                        Identification Types</a></li>
-
-                                <li><a href="{{ route('divisons') }}"
-                                        class="{{ @$data['subpage'] == 'divisons' ? 'active' : '' }}">List of
-                                        Divisons</a></li>
-
-                                <li><a href="{{ route('carrier-codes') }}"
-                                        class="{{ @$data['subpage'] == 'codes' ? 'active' : '' }}">List of
-                                        Carrier Codes</a></li>
-
-                                <li><a href="{{ route('flights') }}"
-                                        class="{{ @$data['subpage'] == 'flight' ? 'active' : '' }}">List of
-                                        Flights</a></li>
-
-                                <li><a href="{{ route('transportation') }}"
-                                        class="{{ @$data['subpage'] == 'transportation' ? 'active' : '' }}">List of
-                                        Transportation</a></li>
-
-                                <li><a href="{{ route('freight-service-class') }}"
-                                        class="{{ @$data['subpage'] == 'service_class' ? 'active' : '' }}">List of
-                                        Freight Service Class</a></li>
-
-                                <li><a href="{{ route('frequency') }}"
-                                        class="{{ @$data['subpage'] == 'frequency' ? 'active' : '' }}">List of
-                                        Frequency</a></li>
-
-                                <li><a href="{{ route('commodity') }}"
-                                        class="{{ @$data['subpage'] == 'commodity' ? 'active' : '' }}">List of
-                                        Commodity</a></li>
-
-                                <li><a href="{{ route('custom-charge') }}"
-                                        class="{{ @$data['subpage'] == 'charge' ? 'active' : '' }}">List of
-                                        Custom Charge</a></li>
-
-                                <li><a href="{{ route('participation') }}"
-                                        class="{{ @$data['subpage'] == 'participation' ? 'active' : '' }}">List of
-                                        Participation</a></li>
-
-                                <li><a href="{{ route('pmt-terms') }}"
-                                        class="{{ @$data['subpage'] == 'pmtTerms' ? 'active' : '' }}">List of
-                                        Payment Terms</a></li>
-
+                                <li><a href="{{ route('identification-types') }}" class="{{ @$data['subpage'] == 'types' ? 'active' : '' }}">List of Identification Types</a></li>
+                                <li><a href="{{ route('divisons') }}" class="{{ @$data['subpage'] == 'divisons' ? 'active' : '' }}">List of Divisons</a></li>
+                                <li><a href="{{ route('carrier-codes') }}" class="{{ @$data['subpage'] == 'codes' ? 'active' : '' }}">List of Carrier Codes</a></li>
+                                <li><a href="{{ route('flights') }}" class="{{ @$data['subpage'] == 'flight' ? 'active' : '' }}">List of Flights</a></li>
+                                <li><a href="{{ route('transportation') }}" class="{{ @$data['subpage'] == 'transportation' ? 'active' : '' }}">List of Transportation</a></li>
+                                <li><a href="{{ route('transportation-method') }}" class="{{ @$data['subpage'] == 'transportation-method' ? 'active' : '' }}">List of Transportation Method</a></li>
+                                <li><a href="{{ route('freight-service-class') }}" class="{{ @$data['subpage'] == 'service_class' ? 'active' : '' }}">List of Freight Service Class</a></li>
+                                <li><a href="{{ route('frequency') }}" class="{{ @$data['subpage'] == 'frequency' ? 'active' : '' }}">List of Frequency</a></li>
+                                <li><a href="{{ route('commodity') }}" class="{{ @$data['subpage'] == 'commodity' ? 'active' : '' }}">List of Commodity</a></li>
+                                <li><a href="{{ route('custom-charge') }}" class="{{ @$data['subpage'] == 'charge' ? 'active' : '' }}">List of Custom Charge</a></li>
+                                <li><a href="{{ route('participation') }}" class="{{ @$data['subpage'] == 'participation' ? 'active' : '' }}">List of Participation</a></li>
+                                <li><a href="{{ route('pmt-terms') }}" class="{{ @$data['subpage'] == 'pmtTerms' ? 'active' : '' }}">List of Payment Terms</a></li>
                             </ul>
                         </li>
 
@@ -3529,6 +3495,24 @@
             });
         }
 
+        function deleteTransportationMethod(id) {
+            swal({
+                title: 'Are You sure want to delete this transportation method?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#A5DC86',
+                cancelButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href = "{{ url('deleteTransportationMethod') }}" + '/' + id
+                }
+            });
+        }
+
         function deletePmtTerms(id) {
             swal({
                 title: 'Are You sure want to delete this terms?',
@@ -4323,6 +4307,34 @@
 
             $.ajax({
                 url: "{{ url('/changeTransportationStatus') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: String(id),
+                    status: String(newStatus),
+                    _token: '{{ csrf_token() }}'
+                },
+            })
+                .done(function (data) {
+                    alert_func(data);
+                })
+                .fail(function (data) {
+                    console.log(data);
+                });
+        }
+
+        function changeTransportationMethodStatus(id, thisSwitch) {
+            var newStatus;
+            if (thisSwitch.val() == 1) {
+                thisSwitch.val('0');
+                newStatus = '0';
+            } else {
+                thisSwitch.val('1');
+                newStatus = '1';
+            }
+
+            $.ajax({
+                url: "{{ url('/changeTransportationMethodStatus') }}",
                 type: 'POST',
                 dataType: 'json',
                 data: {

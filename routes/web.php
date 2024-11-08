@@ -87,6 +87,9 @@ Route::get('/divisons', [MasterdataController::class, 'divisons'])->name('diviso
 Route::get('/ports', [MasterdataController::class, 'ports'])->name('ports');
 Route::get('/carrier-codes', [MasterdataController::class, 'carrierCodes'])->name('carrier-codes');
 Route::get('/transportation', [MasterdataController::class, 'transportation'])->name('transportation');
+
+Route::get('/transportation-method', [MasterdataController::class, 'transportation_method'])->name('transportation-method');
+
 Route::get('/pmt-terms', [MasterdataController::class, 'pmtTerms'])->name('pmt-terms');
 Route::get('/freight-service-class', [MasterdataController::class, 'freight_service_class'])->name('freight-service-class');
 Route::get('/custom-charge', [MasterdataController::class, 'customCharge'])->name('custom-charge');
@@ -100,6 +103,8 @@ Route::post('/createFrequency', [MasterdataController::class, 'createFrequency']
 Route::post('/createCommodity', [MasterdataController::class, 'createCommodity'])->name('createCommodity');
 Route::post('/createCarrierCode', [MasterdataController::class, 'createCarrierCode'])->name('createCarrierCode');
 Route::post('/createTransportation', [MasterdataController::class, 'createTransportation'])->name('createTransportation');
+
+Route::post('/createTransportationMethod', [MasterdataController::class, 'createTransportationMethod'])->name('createTransportationMethod');
 Route::post('/createPmtTerms', [MasterdataController::class, 'createPmtTerms'])->name('createPmtTerms');
 Route::post('/createFreightServiceClass', [MasterdataController::class, 'createFreightServiceClass'])->name('createFreightServiceClass');
 Route::post('/createCustomCharge', [MasterdataController::class, 'createCustomCharge'])->name('createCustomCharge');
@@ -112,6 +117,7 @@ Route::get('/deleteFrequency/{id}', [MasterdataController::class, 'deleteFrequen
 Route::get('/deleteCommodity/{id}', [MasterdataController::class, 'deleteCommodity'])->name('deleteCommodity');
 Route::get('/deleteCode/{id}', [MasterdataController::class, 'deleteCode'])->name('deleteCode');
 Route::get('/deleteTransportation/{id}', [MasterdataController::class, 'deleteTransportation'])->name('deleteTransportation');
+Route::get('/deleteTransportationMethod/{id}', [MasterdataController::class, 'deleteTransportationMethod'])->name('deleteTransportationMethod');
 Route::get('/deletePmtTerms/{id}', [MasterdataController::class, 'deletePmtTerms'])->name('deletePmtTerms');
 Route::get('/deleteFreightServiceClass/{id}', [MasterdataController::class, 'deleteFreightServiceClass'])->name('deleteFreightServiceClass');
 Route::get('/deleteCustomCharge/{id}', [MasterdataController::class, 'deleteCustomCharge'])->name('deleteCustomCharge');
@@ -123,6 +129,7 @@ Route::post('/changeFrequencyStatus', [MasterdataController::class, 'changeFrequ
 Route::post('/changeCommodityStatus', [MasterdataController::class, 'changeCommodityStatus'])->name('changeCommodityStatus');
 Route::post('/changeCodeStatus', [MasterdataController::class, 'changeCodeStatus'])->name('changeCodeStatus');
 Route::post('/changeTransportationStatus', [MasterdataController::class, 'changeTransportationStatus'])->name('changeTransportationStatus');
+Route::post('/changeTransportationMethodStatus', [MasterdataController::class, 'changeTransportationMethodStatus'])->name('changeTransportationMethodStatus');
 Route::post('/changeFreightServiceClass', [MasterdataController::class, 'changeFreightServiceClass'])->name('changeFreightServiceClass');
 Route::post('/changeChargeStatus', [MasterdataController::class, 'changeChargeStatus'])->name('changeChargeStatus');
 Route::post('/changeFlightStatus', [MasterdataController::class, 'changeFlightStatus'])->name('changeFlightStatus');
@@ -133,6 +140,7 @@ Route::post('/updateFrequency', [MasterdataController::class, 'updateFrequency']
 Route::post('/updateCommodity', [MasterdataController::class, 'updateCommodity'])->name('updateCommodity');
 Route::post('/updateCarrierCode', [MasterdataController::class, 'updateCarrierCode'])->name('updateCarrierCode');
 Route::post('/updateTransportation', [MasterdataController::class, 'updateTransportation'])->name('updateTransportation');
+Route::post('/updateTransportationMethod', [MasterdataController::class, 'updateTransportationMethod'])->name('updateTransportationMethod');
 Route::post('/updatePmtTerms', [MasterdataController::class, 'updatePmtTerms'])->name('updatePmtTerms');
 Route::post('/updateFreightServiceClass', [MasterdataController::class, 'updateFreightServiceClass'])->name('updateFreightServiceClass');
 Route::post('/updateCustomCharge', [MasterdataController::class, 'updateCustomCharge'])->name('updateCustomCharge');

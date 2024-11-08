@@ -2,207 +2,164 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;  
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\listingGallery;
-
-class MasterdataController extends Controller
-{
+class MasterdataController extends Controller {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth:admin');
     }
-
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    
-
-     public function identificationTypes()
-    {
+    public function identificationTypes() {
         $types = DB::table('identification_types')->orderBy('name','asc')->get();
-
         $data = array(
             'title' => 'Identification Type List',
             'page' => 'lists',
             'subpage' => 'types',
             'list' => $types
         );
-
         return view('admin.identification-types', compact('data'));
     }
-
-    public function divisons()
-    {
+    public function divisons() {
         $list = DB::table('divisons')->orderBy('name','asc')->get();
-
         $data = array(
             'title' => 'Divison List',
             'page' => 'lists',
             'subpage' => 'divisons',
             'list' => $list
         );
-
         return view('admin.divisons', compact('data'));
     }
-
-    public function ports()
-    {
+    public function ports() {
         $list = DB::table('port_lists')
             ->leftJoin('countries', 'port_lists.country_id', '=', 'countries.id')
             ->select(DB::raw('port_lists.*, countries.name as country_name'))
             ->orderBy('port_lists.country_id','asc')->get();
-
         $countries = DB::table('countries')->orderBy('name','asc')->get();
-
+        $transport_method = DB::table('transport_method')->WHERE('status', '1')->orderBy('method','asc')->get();
         $data = array(
             'title' => 'Port List',
             'page' => 'ports',
             'subpage' => 'ports',
             'list' => $list,
-            'countries' => $countries
+            'countries' => $countries,
+            'transport_method' => $transport_method
         );
-
         return view('admin.ports', compact('data'));
     }
-
-    public function frequency()
-    {
+    public function frequency() {
         $list = DB::table('carrier_frequency')->orderBy('name','asc')->get();
-
         $data = array(
             'title' => 'Frequency List',
             'page' => 'lists',
             'subpage' => 'frequency',
             'list' => $list
         );
-
         return view('admin.frequency', compact('data'));
     }
-
-    public function commodity()
-    {
+    public function commodity() {
         $list = DB::table('carrier_commodity')->orderBy('name','asc')->get();
-
         $data = array(
             'title' => 'Commodity List',
             'page' => 'lists',
             'subpage' => 'commodity',
             'list' => $list
         );
-
         return view('admin.commodity', compact('data'));
     }
-
-    public function carrierCodes()
-    {
+    public function carrierCodes() {
         // $list = DB::table('carrier_codes')->orderBy('carrier_code','asc')->get();
         $list = DB::table('carrier_codes')->join('carriers_types', 'carriers_types.id', '=', 'carrier_codes.carrier_type')
              ->select('carrier_codes.*', 'carriers_types.name as typename')
              ->orderBy('carrier_codes.id', 'desc')
              ->get();
-
         $data = array(
             'title' => 'Carrier Code List',
             'page' => 'lists',
             'subpage' => 'codes',
             'list' => $list
         );
-
         return view('admin.carrier-codes', compact('data'));
     }
-
-    public function transportation()
-    {
+    public function transportation() {
         $list = DB::table('transportation')->orderBy('id','desc')->get();
-
         $data = array(
             'title' => 'Transportation List',
             'page' => 'lists',
             'subpage' => 'transportation',
             'list' => $list
         );
-
         return view('admin.transportation', compact('data'));
     }
+    public function transportation_method() {
+        $list = DB::table('transportation_method')->orderBy('id','desc')->get();
+        $data = array(
+            'title' => 'Transportation Method List',
+            'page' => 'lists',
+            'subpage' => 'transportationmethod',
+            'list' => $list
+        );
+        return view('admin.transportationmethod', compact('data'));
+    }
 
-    public function pmtTerms()
-    {
+    public function pmtTerms() {
         $list = DB::table('pmt_terms')->orderBy('id','desc')->get();
-
         $data = array(
             'title' => 'Payment Terms List',
             'page' => 'lists',
             'subpage' => 'pmtTerms',
             'list' => $list
         );
-
         return view('admin.pmt_terms', compact('data'));
     }
-
-    public function freight_service_class()
-    {
+    public function freight_service_class() {
         $list = DB::table('freight_service_class')->orderBy('id','desc')->get();
-
         $data = array(
             'title' => 'Freight Service Class List',
             'page' => 'lists',
             'subpage' => 'service_class',
             'list' => $list
         );
-
         return view('admin.freight_service_class', compact('data'));
     }
-
-    public function customCharge()
-    {
+    public function customCharge() {
         $list = DB::table('charge_list')->orderBy('id','desc')->get();
-
         $data = array(
             'title' => 'Custom Charge List',
             'page' => 'lists',
             'subpage' => 'charge',
             'list' => $list
         );
-
         return view('admin.custom-charge', compact('data'));
     }
-
-    public function flights()
-    {
+    public function flights() {
         // $list = DB::table('carrier_codes')->orderBy('carrier_code','asc')->get();
         $list = DB::table('flights')->select('flights.*')
              ->orderBy('id', 'desc')
              ->get();
-
         $data = array(
             'title' => 'Flight List',
             'page' => 'lists',
             'subpage' => 'flight',
             'list' => $list
         );
-
         return view('admin.flights', compact('data'));
     }
-
-
-    public function filter_data_exist(Request $request)
-	{
+    public function filter_data_exist(Request $request) {
 		if (array_key_exists('type_name', $_POST)) {
-
 			$type_name = $request['type_name'];
-
             if (DB::table('identification_types')->where('name', '=', $type_name)->where('name', '!=', '')->exists()) {
                 // user found
                 echo json_encode(FALSE);
@@ -211,7 +168,6 @@ class MasterdataController extends Controller
              }
 		}
 	}
-
     public function createType(Request $request)
     {
 
@@ -240,7 +196,7 @@ class MasterdataController extends Controller
         }
         return $randomString;
     }
-    
+
 
     public function createDivison(Request $request)
     {
@@ -259,7 +215,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('divisons');
     }
-    
+
     public function createPort(Request $request)
     {
         $transportation_method = "";
@@ -295,7 +251,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('ports');
     }
-    
+
     public function createFrequency(Request $request)
     {
 
@@ -331,7 +287,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('commodity');
     }
-    
+
     public function createCarrierCode(Request $request)
     {
 
@@ -351,25 +307,35 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('carrier-codes');
     }
-    
-    public function createTransportation(Request $request)
-    {
 
+    public function createTransportation(Request $request) {
         $usrData = array(
-            'code'                      => $request->carrier_code,
-            'method'                    => $request->carrier_method,
-            'description'               => $request->carrier_description,
-            'status'                    => 1,
-            'created_at'                => date('Y-m-d h:i:s')
+            'code' => $request->carrier_code,
+            'method' => $request->carrier_method,
+            'description' => $request->carrier_description,
+            'status' => 1,
+            'created_at'  => date('Y-m-d h:i:s')
         );
-
         DB::table('transportation')->insert($usrData);
-
         $msg = 'Record saved successfully.';
-
         $type = "success";
         Session::flash($type, $msg);
         return redirect('transportation');
+    }
+
+    public function createTransportationMethod(Request $request) {
+        $usrData = array(
+            'code' => $request->carrier_code,
+            'method' => $request->carrier_method,
+            'description' => $request->carrier_description,
+            'status' => 1,
+            'created_at'  => date('Y-m-d h:i:s')
+        );
+        DB::table('transportation_method')->insert($usrData);
+        $msg = 'Record saved successfully.';
+        $type = "success";
+        Session::flash($type, $msg);
+        return redirect('transportation-method');
     }
 
     public function createPmtTerms(Request $request)
@@ -459,7 +425,7 @@ class MasterdataController extends Controller
             'name'     => $request['type_name_edt']
         );
 
-        
+
         DB::table('identification_types')->where('id', $request['type_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -468,7 +434,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('identification-types');
     }
-    
+
     public function updateDivison(Request $request)
     {
 
@@ -476,7 +442,7 @@ class MasterdataController extends Controller
             'name'     => $request['type_name_edt']
         );
 
-        
+
         DB::table('divisons')->where('id', $request['divison_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -485,7 +451,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('divisons');
     }
-    
+
     public function updatePort(Request $request)
     {
         if(!empty($request->transportation_method_edt)) {
@@ -510,7 +476,7 @@ class MasterdataController extends Controller
             'notes'                     => $request['notes_edt'],
         );
 
-        
+
         DB::table('port_lists')->where('id', $request['port_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -519,7 +485,7 @@ class MasterdataController extends Controller
 
         return redirect('ports');
     }
-    
+
     public function updateFrequency(Request $request)
     {
 
@@ -527,7 +493,7 @@ class MasterdataController extends Controller
             'name'     => $request['type_name_edt']
         );
 
-        
+
         DB::table('carrier_frequency')->where('id', $request['port_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -544,7 +510,7 @@ class MasterdataController extends Controller
             'name'     => $request['type_name_edt']
         );
 
-        
+
         DB::table('carrier_commodity')->where('id', $request['port_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -553,7 +519,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('commodity');
     }
-    
+
     public function updateCarrierCode(Request $request)
     {
 
@@ -563,7 +529,7 @@ class MasterdataController extends Controller
             'carrier_description'       => $request['carrier_description_edt']
         );
 
-        
+
         DB::table('carrier_codes')->where('id', $request['code_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -572,24 +538,31 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('carrier-codes');
     }
-    
-    public function updateTransportation(Request $request)
-    {
 
+    public function updateTransportation(Request $request) {
         $usrData = array(
-            'code'              => $request['carrier_code_edt'],
-            'method'              => $request['carrier_method_edt'],
-            'description'       => $request['carrier_description_edt']
+            'code' => $request['carrier_code_edt'],
+            'method' => $request['carrier_method_edt'],
+            'description' => $request['carrier_description_edt']
         );
-
-        
         DB::table('transportation')->where('id', $request['code_id'])->update($usrData);
-
         $msg = 'Record update successfully.';
-
         $type = "success";
         Session::flash($type, $msg);
         return redirect('transportation');
+    }
+
+    public function updateTransportationMethod(Request $request) {
+        $usrData = array(
+            'code' => $request['carrier_code_edt'],
+            'method' => $request['carrier_method_edt'],
+            'description' => $request['carrier_description_edt']
+        );
+        DB::table('transportation_method')->where('id', $request['code_id'])->update($usrData);
+        $msg = 'Record update successfully.';
+        $type = "success";
+        Session::flash($type, $msg);
+        return redirect('transportation-method');
     }
 
     public function updatePmtTerms(Request $request)
@@ -603,7 +576,7 @@ class MasterdataController extends Controller
             'status'                    => $request->status,
         );
 
-        
+
         DB::table('pmt_terms')->where('id', $request['code_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -622,7 +595,7 @@ class MasterdataController extends Controller
             'description'       => $request['carrier_description_edt']
         );
 
-        
+
         DB::table('freight_service_class')->where('id', $request['code_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -641,7 +614,7 @@ class MasterdataController extends Controller
             'description'       => $request['carrier_description_edt']
         );
 
-        
+
         DB::table('charge_list')->where('id', $request['code_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -659,7 +632,7 @@ class MasterdataController extends Controller
             'passenger'                 => $request['carrier_description_edt']
         );
 
-        
+
         DB::table('flights')->where('id', $request['code_id'])->update($usrData);
 
         $msg = 'Record update successfully.';
@@ -668,7 +641,7 @@ class MasterdataController extends Controller
         Session::flash($type, $msg);
         return redirect('flights');
     }
-    
+
     public function updateIdentiTypeStatus(Request $request)
     {
 
@@ -693,7 +666,7 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
 
     public function changeDivisonStatus(Request $request)
@@ -720,9 +693,9 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
-    
+
     public function changePortStatus(Request $request)
     {
 
@@ -747,9 +720,9 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
-    
+
     public function changeFrequencyStatus(Request $request)
     {
 
@@ -774,7 +747,7 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
 
     public function changeCommodityStatus(Request $request)
@@ -801,9 +774,9 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
-    
+
     public function changeCodeStatus(Request $request)
     {
 
@@ -828,34 +801,47 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
-    }
-    
-    public function changeTransportationStatus(Request $request)
-    {
 
+    }
+
+    public function changeTransportationStatus(Request $request) {
         $id = $request['id'];
         $status = $request['status'];
-
         $usrData = array(
-            'status'            => @$status,
-            'updated_at'        => date('Y-m-d H:i:s')
+            'status' => @$status,
+            'updated_at' => date('Y-m-d H:i:s')
         );
-
         $usrResponse = DB::table('transportation')->where('id', $id)->update($usrData);
-
         if ($status == 1) {
             $msg = 'Transportation has been activated successfully!';
         } else {
             $msg = 'Transportation has been deactivated successfully!';
         }
-
         if ($usrResponse) {
             echo '["'.$msg.'", "success", "#A5DC86"]';
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+    }
+
+    public function changeTransportationMethodStatus(Request $request) {
+        $id = $request['id'];
+        $status = $request['status'];
+        $usrData = array(
+            'status' => @$status,
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        $usrResponse = DB::table('transportation_method')->where('id', $id)->update($usrData);
+        if ($status == 1) {
+            $msg = 'Transportation Method has been activated successfully!';
+        } else {
+            $msg = 'Transportation Method has been deactivated successfully!';
+        }
+        if ($usrResponse) {
+            echo '["'.$msg.'", "success", "#A5DC86"]';
+        } else {
+            echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
+        }
     }
 
     public function changeFreightServiceClass(Request $request)
@@ -882,7 +868,7 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
 
     public function changeChargeStatus(Request $request)
@@ -909,7 +895,7 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
 
     public function changeFlightStatus(Request $request)
@@ -936,7 +922,7 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
 
     public function deleteIdentificationType(Request $request, $id)
@@ -950,11 +936,11 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = ' Type deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('identification-types');
     }
-    
+
     public function deleteDivison(Request $request, $id)
     {
         $delete = DB::table('divisons')->where('id', $id)->delete();
@@ -966,11 +952,11 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = ' Divison deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('divisons');
     }
-    
+
     public function deletePort(Request $request, $id)
     {
         $delete = DB::table('port_lists')->where('id', $id)->delete();
@@ -982,11 +968,11 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = ' Port deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('ports');
     }
-    
+
     public function deleteFrequency(Request $request, $id)
     {
         $delete = DB::table('carrier_frequency')->where('id', $id)->delete();
@@ -998,7 +984,7 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = ' Frequency deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('frequency');
     }
@@ -1014,11 +1000,11 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = ' Commodity deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('commodity');
     }
-    
+
     public function deleteCode(Request $request, $id)
     {
         $delete = DB::table('carrier_codes')->where('id', $id)->delete();
@@ -1030,15 +1016,13 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'Carrier code deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('carrier-codes');
     }
-    
-    public function deleteTransportation(Request $request, $id)
-    {
-        $delete = DB::table('transportation')->where('id', $id)->delete();
 
+    public function deleteTransportation(Request $request, $id) {
+        $delete = DB::table('transportation')->where('id', $id)->delete();
         if (!$delete) {
             $type = "error";
             $msg = 'Transportation has been not deleted ';
@@ -1046,9 +1030,21 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'Transportation deleted successfully. ';
         }
-    
         Session::flash($type, $msg);
         return redirect('transportation');
+    }
+
+    public function deleteTransportationMethod(Request $request, $id) {
+        $delete = DB::table('transportation_method')->where('id', $id)->delete();
+        if (!$delete) {
+            $type = "error";
+            $msg = 'Transportation Method has been not deleted ';
+        } else {
+            $type = "success";
+            $msg = 'Transportation Method deleted successfully. ';
+        }
+        Session::flash($type, $msg);
+        return redirect('transportation-method');
     }
 
     public function deletePmtTerms(Request $request, $id)
@@ -1062,7 +1058,7 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'Terms deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('pmt-terms');
     }
@@ -1078,7 +1074,7 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'freight service class deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('freight-service-class');
     }
@@ -1094,7 +1090,7 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'Charge deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('custom-charge');
     }
@@ -1110,7 +1106,7 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'Flight deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('flights');
     }
@@ -1178,7 +1174,7 @@ class MasterdataController extends Controller
             'description'       => $request['carrier_description_edt']
         );
 
-        
+
         DB::table('hts_participations')->where('id', $request['code_id'])->update($usrData);
 
         $msg = 'Record has updated successfully.';
@@ -1201,7 +1197,7 @@ class MasterdataController extends Controller
 
         $usrResponse = DB::table('hts_participations')->where('id', $id)->update($usrData);
 
-        if ($status == 1) 
+        if ($status == 1)
         {
             $msg = 'Participation Status has been activated successfully!';
         } else {
@@ -1213,7 +1209,7 @@ class MasterdataController extends Controller
         } else {
             echo '["Some error occured, Please try again!", "error", "#DD6B55"]';
         }
-        
+
     }
 
     public function deleteParticipation(Request $request, $id)
@@ -1227,7 +1223,7 @@ class MasterdataController extends Controller
             $type = "success";
             $msg = 'Participation has deleted successfully. ';
         }
-    
+
         Session::flash($type, $msg);
         return redirect('participation');
     }
