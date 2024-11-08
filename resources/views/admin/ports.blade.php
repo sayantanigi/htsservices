@@ -158,46 +158,16 @@
                                                         <div class="form-group mb-3">
                                                             <label class="fw-bold font-size-13">Transportation Method</label>
                                                             <div class="row">
-                                                                <div class="col-lg-5">
+                                                                @if(!$data['transport_method']->isEmpty())
+                                                                @foreach ($data['transport_method'] as $method)
+                                                                <div class="col-lg-6">
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" {{ in_array('Ocean', $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="Ocean" id="Ocean">
-                                                                        <label class="form-check-label" for="Ocean">Maritime</label>
+                                                                        <input class="form-check-input" type="checkbox" {{ in_array($method->method, $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="{{$method->method}}" id="{{$method->method}}">
+                                                                        <label class="form-check-label" for="{{$method->method}}">{{$method->method}}</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-5">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" {{ in_array('Air', $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="Air" id="Air">
-                                                                        <label class="form-check-label" for="Air">Air</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-5">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" {{ in_array('Rail', $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="Rail" id="Rail">
-                                                                        <label class="form-check-label" for="Rail">Rail</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-5">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" {{ in_array('Mail', $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="Mail" id="Mail">
-                                                                        <label class="form-check-label" for="Mail">Mail</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-5">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" {{ in_array('Road', $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="Road" id="Road">
-                                                                        <label class="form-check-label" for="Road">Road</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-5">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" {{ in_array('Bording Crossing Point', $methodArr) ? 'checked' : '' }} name="transportation_method_edt[]" value="Bording Crossing Point" id="Bording Crossing Point">
-                                                                        <label class="form-check-label" for="Bording Crossing Point">Bording Crossing Point</label>
-                                                                    </div>
-                                                                </div>
+                                                                @endforeach
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -289,47 +259,16 @@
                             <div class="form-group mb-3">
                                 <label class="fw-bold font-size-13">Transportation Method</label>
                                 <div class="row">
+                                    @if(!$data['transport_method']->isEmpty())
+                                    @foreach ($data['transport_method'] as $method)
                                     <div class="col-lg-5">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="Ocean" id="Ocean">
-                                            <label class="form-check-label" for="Ocean">Maritime</label>
+                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="{{$method->method}}" id="{{$method->method}}">
+                                            <label class="form-check-label" for="{{$method->method}}">{{$method->method}}</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="Air" id="Air">
-                                            <label class="form-check-label" for="Air">Air</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="Rail" id="Rail">
-                                            <label class="form-check-label" for="Rail">Rail</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="Mail" id="Mail">
-                                            <label class="form-check-label" for="Mail">Mail</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="Road" id="Road">
-                                            <label class="form-check-label" for="Road">Road</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="transportation_method[]" value="Bording Crossing Point" id="Bording Crossing Point">
-                                            <label class="form-check-label" for="Bording Crossing Point">Bording Crossing Point</label>
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>

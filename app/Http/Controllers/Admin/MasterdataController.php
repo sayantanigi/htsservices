@@ -48,7 +48,7 @@ class MasterdataController extends Controller {
             ->select(DB::raw('port_lists.*, countries.name as country_name'))
             ->orderBy('port_lists.country_id','asc')->get();
         $countries = DB::table('countries')->orderBy('name','asc')->get();
-        $transport_method = DB::table('transport_method')->WHERE('status', '1')->orderBy('method','asc')->get();
+        $transport_method = DB::table('transportation_method')->WHERE('status', '1')->orderBy('method','asc')->get();
         $data = array(
             'title' => 'Port List',
             'page' => 'ports',
